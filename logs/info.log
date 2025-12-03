@@ -1,0 +1,11 @@
+INFO: 2025/11/23 18:27:59 logger.go:65: Logger initialized
+INFO: 2025/11/23 18:31:31 auth_service.go:73: SetPassword: success for userID=2
+INFO: 2025/11/23 18:31:39 auth_service.go:92: VerifyUser: success for userID=2
+INFO: 2025/11/23 19:29:28 auth_service.go:72: SetPassword: success for userID=2
+INFO: 2025/11/23 19:29:51 auth_service.go:91: VerifyUser: success for userID=2
+INFO: 2025/11/24 23:41:19 auth_service.go:49: RegisterUser: success, userID=3
+INFO: 2025/11/24 23:51:28 auth_service.go:49: RegisterUser: success, userID=4
+INFO: 2025/11/29 12:29:50 auth_service.go:75: SetPassword: success for userID=2
+INFO: 2025/11/29 12:46:04 auth_service.go:52: RegisterUser: success, userID=5
+INFO: 2025/11/29 12:46:27 auth_service.go:75: SetPassword: success for userID=5
+INFO: 2025/11/29 14:24:06 auth_service.go:75: SetPassword: success for userID=5

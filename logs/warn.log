@@ -1,0 +1,7 @@
+WARN: 2025/11/23 18:27:59 logger.go:67: Logger initialized
+WARN: 2025/11/23 18:31:12 auth_service.go:33: RegisterUser: phone already registered: +992931112345
+WARN: 2025/11/23 18:31:17 auth_service.go:26: RegisterUser: invalid phone format: +99293111234
+WARN: 2025/11/23 18:31:25 auth_service.go:33: RegisterUser: phone already registered: +992931112345
+WARN: 2025/11/23 19:29:08 auth_service.go:33: RegisterUser: phone already registered: +992931112345
+WARN: 2025/11/23 19:29:12 auth_service.go:56: SetPassword: weak password for userID=2
+WARN: 2025/11/24 20:13:01 auth_service.go:33: RegisterUser: phone already registered: +992931112345
