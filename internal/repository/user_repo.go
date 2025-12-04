@@ -2,6 +2,7 @@ package repository
 
 import (
 	"WalletX/models"
+	"WalletX/pkg/logger"
 	"database/sql"
 )
 
@@ -30,8 +31,10 @@ func (r *PostgresUserRepo) CreateUser(user models.User) (models.User, error) {
 		user.Phone, user.IsVerified,
 	).Scan(&user.ID, &user.Phone, &user.IsVerified)
 	if err != nil {
+		logger.Error.Printf("[CreateUser] failed: %v", err)
 		return models.User{}, translateError(err)
 	}
+	logger.Info.Printf("[CreateUser] success: userID=%d", user.ID)
 	return user, nil
 }
 
@@ -39,40 +42,55 @@ func (r *PostgresUserRepo) GetByPhone(phone string) (models.User, error) {
 	var user models.User
 	err := r.DB.QueryRow(
 		`SELECT id, phone, password, device_id, password_attempts, is_verified, first_name, last_name, middle_name, passport_number 
-    FROM users WHERE phone=$1`,
+		 FROM users WHERE phone=$1`,
 		phone,
 	).Scan(&user.ID, &user.Phone, &user.Password, &user.DeviceID, &user.PasswordAttempts,
 		&user.IsVerified, &user.FirstName, &user.LastName, &user.MiddleName, &user.PassportNumber)
+	if err != nil {
+		logger.Warn.Printf("[GetByPhone] failed for phone=%s: %v", phone, err)
+	} else {
+		logger.Info.Printf("[GetByPhone] success for phone=%s, userID=%d", phone, user.ID)
+	}
 	return user, translateError(err)
 }
+
 func (r *PostgresUserRepo) UpdatePassword(userID int, hashedPassword string) error {
-	_, err := r.DB.Exec(
-		`UPDATE users SET password=$1 WHERE id=$2`,
-		hashedPassword, userID,
-	)
+	_, err := r.DB.Exec(`UPDATE users SET password=$1 WHERE id=$2`, hashedPassword, userID)
+	if err != nil {
+		logger.Error.Printf("[UpdatePassword] failed: userID=%d, err=%v", userID, err)
+	} else {
+		logger.Info.Printf("[UpdatePassword] success: userID=%d", userID)
+	}
 	return translateError(err)
 }
+
 func (r *PostgresUserRepo) IncrementPasswordAttempts(userID int) error {
-	_, err := r.DB.Exec(
-		`UPDATE users SET password_attempts = password_attempts + 1 WHERE id=$1`,
-		userID,
-	)
+	_, err := r.DB.Exec(`UPDATE users SET password_attempts = password_attempts + 1 WHERE id=$1`, userID)
+	if err != nil {
+		logger.Warn.Printf("[IncrementPasswordAttempts] failed: userID=%d, err=%v", userID, err)
+	} else {
+		logger.Info.Printf("[IncrementPasswordAttempts] success: userID=%d", userID)
+	}
 	return translateError(err)
 }
 
 func (r *PostgresUserRepo) ResetPasswordAttempts(userID int) error {
-	_, err := r.DB.Exec(
-		`UPDATE users SET password_attempts = 0 WHERE id=$1`,
-		userID,
-	)
+	_, err := r.DB.Exec(`UPDATE users SET password_attempts = 0 WHERE id=$1`, userID)
+	if err != nil {
+		logger.Warn.Printf("[ResetPasswordAttempts] failed: userID=%d, err=%v", userID, err)
+	} else {
+		logger.Info.Printf("[ResetPasswordAttempts] success: userID=%d", userID)
+	}
 	return translateError(err)
 }
 
 func (r *PostgresUserRepo) BlockUser(userID int) error {
-	_, err := r.DB.Exec(
-		`UPDATE users SET device_id = true WHERE id=$1`,
-		userID,
-	)
+	_, err := r.DB.Exec(`UPDATE users SET device_id = true WHERE id=$1`, userID)
+	if err != nil {
+		logger.Warn.Printf("[BlockUser] failed: userID=%d, err=%v", userID, err)
+	} else {
+		logger.Info.Printf("[BlockUser] success: userID=%d", userID)
+	}
 	return translateError(err)
 }
 
@@ -83,6 +101,11 @@ func (r *PostgresUserRepo) UpdateVerification(userID int, firstName, lastName, m
 		 WHERE id=$5`,
 		firstName, lastName, middleName, passport_number, userID,
 	)
+	if err != nil {
+		logger.Error.Printf("[UpdateVerification] failed: userID=%d, err=%v", userID, err)
+	} else {
+		logger.Info.Printf("[UpdateVerification] success: userID=%d", userID)
+	}
 	return translateError(err)
 }
 
@@ -90,9 +113,14 @@ func (r *PostgresUserRepo) GetByID(userID int) (models.User, error) {
 	var user models.User
 	err := r.DB.QueryRow(
 		`SELECT id, phone, password, is_verified, first_name, last_name, middle_name, passport_number
-		FROM users WHERE id=$1`,
+		 FROM users WHERE id=$1`,
 		userID,
 	).Scan(&user.ID, &user.Phone, &user.Password, &user.IsVerified,
 		&user.FirstName, &user.LastName, &user.MiddleName, &user.PassportNumber)
+	if err != nil {
+		logger.Warn.Printf("[GetByID] failed: userID=%d, err=%v", userID, err)
+	} else {
+		logger.Info.Printf("[GetByID] success: userID=%d", userID)
+	}
 	return user, translateError(err)
 }

@@ -9,3 +9,53 @@ INFO: 2025/11/29 12:29:50 auth_service.go:75: SetPassword: success for userID=2
 INFO: 2025/11/29 12:46:04 auth_service.go:52: RegisterUser: success, userID=5
 INFO: 2025/11/29 12:46:27 auth_service.go:75: SetPassword: success for userID=5
 INFO: 2025/11/29 14:24:06 auth_service.go:75: SetPassword: success for userID=5
+INFO: 2025/12/04 20:46:05 main.go:61: Server running on :8080
+INFO: 2025/12/04 20:47:10 auth_handler.go:25: Ping endpoint called
+INFO: 2025/12/04 20:47:38 auth_service.go:26: GetByPhone called for phone: +992222222222
+INFO: 2025/12/04 20:47:38 auth_handler.go:83: SMS verification code sent to +992222222222: 22648
+INFO: 2025/12/04 20:48:23 user_repo.go:37: [CreateUser] success: userID=6
+INFO: 2025/12/04 20:48:23 auth_service.go:57: RegisterUser: success, userID=6
+INFO: 2025/12/04 20:48:23 auth_handler.go:118: User registered successfully: 6
+INFO: 2025/12/04 20:48:53 user_repo.go:62: [UpdatePassword] success: userID=6
+INFO: 2025/12/04 20:48:53 auth_service.go:79: SetPassword: success for userID=6
+INFO: 2025/12/04 20:48:53 auth_handler.go:139: Password set successfully for user 6
+INFO: 2025/12/04 20:50:17 user_repo.go:52: [GetByPhone] success for phone=+992222222222, userID=6
+INFO: 2025/12/04 20:50:17 user_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/04 20:50:17 auth_service.go:120: User 6 logged in successfully
+INFO: 2025/12/04 20:50:17 auth_handler.go:177: User 6 logged in successfully
+INFO: 2025/12/04 20:51:18 user_repo.go:107: [UpdateVerification] success: userID=6
+INFO: 2025/12/04 20:51:18 auth_service.go:136: VerifyUser: success for userID=6
+INFO: 2025/12/04 20:51:18 auth_handler.go:199: User 6 verified identity successfully
+INFO: 2025/12/04 20:52:02 user_repo.go:52: [GetByPhone] success for phone=+992222222222, userID=6
+INFO: 2025/12/04 20:52:02 user_repo.go:72: [IncrementPasswordAttempts] success: userID=6
+INFO: 2025/12/04 20:52:11 user_repo.go:52: [GetByPhone] success for phone=+992222222222, userID=6
+INFO: 2025/12/04 20:52:11 user_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/04 20:52:11 auth_service.go:120: User 6 logged in successfully
+INFO: 2025/12/04 20:52:11 auth_handler.go:177: User 6 logged in successfully
+INFO: 2025/12/04 20:52:37 auth_service.go:26: GetByPhone called for phone: +992222222222
+INFO: 2025/12/04 20:52:37 user_repo.go:52: [GetByPhone] success for phone=+992222222222, userID=6
+INFO: 2025/12/04 20:52:37 auth_handler.go:69: Attempt to register already existing user: +992222222222
+INFO: 2025/12/04 20:52:46 user_repo.go:62: [UpdatePassword] success: userID=3
+INFO: 2025/12/04 20:52:46 auth_service.go:79: SetPassword: success for userID=3
+INFO: 2025/12/04 20:52:46 auth_handler.go:139: Password set successfully for user 3
+INFO: 2025/12/04 20:52:55 user_repo.go:62: [UpdatePassword] success: userID=6
+INFO: 2025/12/04 20:52:55 auth_service.go:79: SetPassword: success for userID=6
+INFO: 2025/12/04 20:52:55 auth_handler.go:139: Password set successfully for user 6
+INFO: 2025/12/04 20:53:10 user_repo.go:52: [GetByPhone] success for phone=+992222222222, userID=6
+INFO: 2025/12/04 20:53:10 user_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/04 20:53:10 auth_service.go:120: User 6 logged in successfully
+INFO: 2025/12/04 20:53:10 auth_handler.go:177: User 6 logged in successfully
+INFO: 2025/12/04 20:53:22 user_repo.go:52: [GetByPhone] success for phone=+992222222222, userID=6
+INFO: 2025/12/04 20:53:22 user_repo.go:72: [IncrementPasswordAttempts] success: userID=6
+INFO: 2025/12/04 20:53:26 user_repo.go:52: [GetByPhone] success for phone=+992222222222, userID=6
+INFO: 2025/12/04 20:53:26 user_repo.go:72: [IncrementPasswordAttempts] success: userID=6
+INFO: 2025/12/04 20:53:28 user_repo.go:52: [GetByPhone] success for phone=+992222222222, userID=6
+INFO: 2025/12/04 20:53:28 user_repo.go:72: [IncrementPasswordAttempts] success: userID=6
+INFO: 2025/12/04 20:53:28 user_repo.go:92: [BlockUser] success: userID=6
+INFO: 2025/12/04 20:53:30 user_repo.go:52: [GetByPhone] success for phone=+992222222222, userID=6
+INFO: 2025/12/04 20:54:16 user_repo.go:107: [UpdateVerification] success: userID=6
+INFO: 2025/12/04 20:54:16 auth_service.go:136: VerifyUser: success for userID=6
+INFO: 2025/12/04 20:54:16 auth_handler.go:199: User 6 verified identity successfully
+INFO: 2025/12/04 20:54:34 user_repo.go:107: [UpdateVerification] success: userID=6
+INFO: 2025/12/04 20:54:34 auth_service.go:136: VerifyUser: success for userID=6
+INFO: 2025/12/04 20:54:34 auth_handler.go:199: User 6 verified identity successfully

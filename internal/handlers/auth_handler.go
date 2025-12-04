@@ -4,11 +4,12 @@ import (
 	"WalletX/internal/service"
 	"WalletX/models"
 	"WalletX/pkg/errs"
+	"WalletX/pkg/logger"
 	"WalletX/pkg/utils"
 	"WalletX/respond"
+	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"github.com/redis/go-redis/v9"
 	"net/http"
 	"time"
@@ -21,6 +22,7 @@ func NewHandler() *Handler {
 }
 
 func (h *Handler) Ping(w http.ResponseWriter, r *http.Request) {
+	logger.Info.Println("Ping endpoint called")
 	respond.JSON(w, http.StatusOK, map[string]string{
 		"status":  "ok",
 		"message": "service is running",
@@ -52,73 +54,68 @@ func (h *UserHandler) SignUp(w http.ResponseWriter, r *http.Request) {
 
 	ctx := r.Context()
 
-	// ----------------------------------------------------
-	// 1️⃣ Первый шаг — номер без кода → отправить SMS
-	// ----------------------------------------------------
 	if req.Code == "" {
+		h.sendVerificationCode(w, ctx, req.Phone)
+		return
+	}
 
-		// Проверка — не зарегистрирован ли уже пользователь
-		user, _ := h.Service.GetByPhone(req.Phone)
-		if user.ID != 0 {
-			respond.JSON(w, http.StatusConflict, map[string]string{
-				"message": "user already registered",
-			})
-			return
-		}
+	h.registerUser(w, ctx, req.Phone, req.Code)
+}
 
-		// Генерируем код
-		code := utils.GenerateCode()
-
-		// сохраняем в redis на 5 минут
-		err := h.Redis.Set(ctx, "verify:"+req.Phone, code, 5*time.Minute).Err()
-		if err != nil {
-			respond.Error(w, http.StatusInternalServerError, "failed to save code", err)
-			return
-		}
-
-		fmt.Println("SMS to", req.Phone, "code:", code)
-
-		respond.JSON(w, http.StatusCreated, map[string]string{
-			"message": "registration code sent",
+// Вспомогательная функция для отправки кода
+func (h *UserHandler) sendVerificationCode(w http.ResponseWriter, ctx context.Context, phone string) {
+	user, _ := h.Service.GetByPhone(phone)
+	if user.ID != 0 {
+		logger.Info.Printf("Attempt to register already existing user: %s", phone)
+		respond.JSON(w, http.StatusConflict, map[string]string{
+			"message": "user already registered",
 		})
 		return
 	}
 
-	// ----------------------------------------------------
-	// 2️⃣ Второй шаг — проверка кода
-	// ----------------------------------------------------
-	savedCode, err := h.Redis.Get(ctx, "verify:"+req.Phone).Result()
-	if err != nil {
-		respond.Error(w, http.StatusBadRequest, "code expired or not found", nil)
+	code := utils.GenerateCode()
+	if err := h.Redis.Set(ctx, "verify:"+phone, code, 5*time.Minute).Err(); err != nil {
+		logger.Error.Printf("Failed to save verification code for %s: %v", phone, err)
+		respond.Error(w, http.StatusInternalServerError, "failed to save code", err)
 		return
 	}
 
-	if savedCode != req.Code {
+	logger.Info.Printf("SMS verification code sent to %s: %s", phone, code)
+	respond.JSON(w, http.StatusCreated, map[string]string{
+		"message": "registration code sent",
+	})
+}
+
+// Вспомогательная функция для регистрации пользователя
+func (h *UserHandler) registerUser(w http.ResponseWriter, ctx context.Context, phone, code string) {
+	savedCode, err := h.Redis.Get(ctx, "verify:"+phone).Result()
+	if err != nil {
+		logger.Warn.Printf("Verification code expired or not found for %s", phone)
+		respond.Error(w, http.StatusBadRequest, "code expired or not found", nil)
+		return
+	}
+	if savedCode != code {
+		logger.Warn.Printf("Invalid verification code for %s", phone)
 		respond.Error(w, http.StatusBadRequest, "invalid code", nil)
 		return
 	}
 
-	// ----------------------------------------------------
-	// 3️⃣ Создание пользователя
-	// ----------------------------------------------------
-	user, err := h.Service.RegisterUser(req.Phone)
+	user, err := h.Service.RegisterUser(phone)
 	if err != nil {
-
-		// Если пользователь уже существует → вернуть 409
 		if errors.Is(err, errs.ErrUserExists) {
+			logger.Info.Printf("User already exists: %s", phone)
 			respond.JSON(w, http.StatusConflict, map[string]string{
 				"message": "user already registered",
 			})
 			return
 		}
-
+		logger.Error.Printf("Failed to register user %s: %v", phone, err)
 		respond.Error(w, http.StatusInternalServerError, "failed to create user", err)
 		return
 	}
 
-	// Удаляем код после успешной регистрации
-	h.Redis.Del(ctx, "verify:"+req.Phone)
-
+	h.Redis.Del(ctx, "verify:"+phone)
+	logger.Info.Printf("User registered successfully: %d", user.ID)
 	respond.JSON(w, http.StatusCreated, map[string]interface{}{
 		"message": "user registered",
 		"user_id": user.ID,
@@ -134,19 +131,23 @@ func (h *UserHandler) SetPassword(w http.ResponseWriter, r *http.Request) {
 	// 1️⃣ Устанавливаем пароль
 	err := h.Service.SetPassword(req.UserID, req.Password)
 	if err != nil {
+		logger.Error.Printf("Failed to set password for user %d: %v", req.UserID, err)
 		respond.HandleError(w, err)
 		return
 	}
 
+	logger.Info.Printf("Password set successfully for user %d", req.UserID)
+
 	// 2️⃣ Генерируем токен
-	token, err := utils.GenerateToken(req.UserID, "") // username пока можно ""
+	token, err := utils.GenerateToken(req.UserID, "")
 	if err != nil {
+		logger.Error.Printf("Failed to generate token for user %d: %v", req.UserID, err)
 		respond.Error(w, http.StatusInternalServerError, "failed to generate token", err)
 		return
 	}
 
 	// 3️⃣ Отправляем ответ
-	respond.JSON(w, http.StatusOK, map[string]interface{}{
+	respond.JSON(w, http.StatusCreated, map[string]interface{}{
 		"message": "password set successfully",
 		"token":   token,
 	})
@@ -160,16 +161,20 @@ func (h *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 
 	user, err := h.Service.Login(req.Phone, req.Password)
 	if err != nil {
+		logger.Warn.Printf("Failed login attempt for phone %s: %v", req.Phone, err)
 		respond.HandleError(w, err)
 		return
 	}
 
-	// генерируем токен
+	// Генерируем токен
 	token, err := utils.GenerateToken(user.ID, "")
 	if err != nil {
+		logger.Error.Printf("Failed to generate token for user %d: %v", user.ID, err)
 		respond.Error(w, http.StatusInternalServerError, "failed to generate token", err)
 		return
 	}
+
+	logger.Info.Printf("User %d logged in successfully", user.ID)
 
 	respond.JSON(w, http.StatusOK, map[string]interface{}{
 		"message": "logged in",
@@ -186,11 +191,14 @@ func (h *UserHandler) VerifyIdentity(w http.ResponseWriter, r *http.Request) {
 
 	err := h.Service.VerifyUser(req.UserID, req.FirstName, req.LastName, req.MiddleName, req.PassportNumber)
 	if err != nil {
+		logger.Error.Printf("Failed to verify identity for user %d: %v", req.UserID, err)
 		respond.HandleError(w, err)
 		return
 	}
 
-	respond.JSON(w, http.StatusOK, map[string]string{
+	logger.Info.Printf("User %d verified identity successfully", req.UserID)
+
+	respond.JSON(w, http.StatusCreated, map[string]string{
 		"message": "identity verified successfully",
 	})
 }

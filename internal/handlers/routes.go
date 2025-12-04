@@ -7,12 +7,14 @@ import (
 
 func RegisterRoutes(r *mux.Router, userHandler *UserHandler, accHandler *AccountHandler, txHandler *TransactionHandler) {
 
-	pingHandler := NewHandler() // создаём экземпляр
+	// ---- Ping ----
+	pingHandler := NewHandler()
 	r.HandleFunc("/ping", pingHandler.Ping).Methods("GET")
 
+	// ---- Base API ----
 	api := r.PathPrefix("/api").Subrouter()
 
-	// ---- Users (открытые маршруты) ----
+	// ---- Users (open routes) ----
 	users := api.PathPrefix("/users").Subrouter()
 	{
 		users.HandleFunc("/signUp", userHandler.SignUp).Methods("POST")
@@ -21,18 +23,18 @@ func RegisterRoutes(r *mux.Router, userHandler *UserHandler, accHandler *Account
 		users.HandleFunc("/verify", userHandler.VerifyIdentity).Methods("POST")
 	}
 
-	// ---- Закрытые маршруты с JWT ----
-	secured := api.NewRoute().Subrouter()
+	// ---- Secured (JWT protected) ----
+	secured := api.PathPrefix("").Subrouter() // упрощённый путь вместо NewRoute
 	secured.Use(middleware.CheckUserAuthentication)
 
-	// ---- Accounts (защищённые) ----
+	// ---- Accounts (protected) ----
 	accounts := secured.PathPrefix("/accounts").Subrouter()
 	{
 		accounts.HandleFunc("/create", accHandler.CreateAccount).Methods("POST")
 		accounts.HandleFunc("/{id}/balance", accHandler.GetBalance).Methods("GET")
 	}
 
-	// ---- Transactions (защищённые) ----
+	// ---- Transactions (protected) ----
 	transactions := secured.PathPrefix("/transactions").Subrouter()
 	{
 		transactions.HandleFunc("/deposit", txHandler.Deposit).Methods("POST")

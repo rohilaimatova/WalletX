@@ -1,1 +1,2 @@
 ERROR: 2025/11/23 18:27:59 logger.go:66: Logger initialized
+ERROR: 2025/12/04 20:54:27 auth_handler.go:194: Failed to verify identity for user 6: all required fields must be filled

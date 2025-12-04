@@ -5,3 +5,17 @@ WARN: 2025/11/23 18:31:25 auth_service.go:33: RegisterUser: phone already regist
 WARN: 2025/11/23 19:29:08 auth_service.go:33: RegisterUser: phone already registered: +992931112345
 WARN: 2025/11/23 19:29:12 auth_service.go:56: SetPassword: weak password for userID=2
 WARN: 2025/11/24 20:13:01 auth_service.go:33: RegisterUser: phone already registered: +992931112345
+WARN: 2025/12/04 20:47:38 user_repo.go:50: [GetByPhone] failed for phone=+992222222222: sql: no rows in result set
+WARN: 2025/12/04 20:48:23 user_repo.go:50: [GetByPhone] failed for phone=+992222222222: sql: no rows in result set
+WARN: 2025/12/04 20:52:02 auth_service.go:114: Login failed: wrong password for user 6
+WARN: 2025/12/04 20:52:02 auth_handler.go:164: Failed login attempt for phone +992222222222: wrong password
+WARN: 2025/12/04 20:52:24 auth_handler.go:93: Verification code expired or not found for +992222222222
+WARN: 2025/12/04 20:53:22 auth_service.go:114: Login failed: wrong password for user 6
+WARN: 2025/12/04 20:53:22 auth_handler.go:164: Failed login attempt for phone +992222222222: wrong password
+WARN: 2025/12/04 20:53:26 auth_service.go:114: Login failed: wrong password for user 6
+WARN: 2025/12/04 20:53:26 auth_handler.go:164: Failed login attempt for phone +992222222222: wrong password
+WARN: 2025/12/04 20:53:28 auth_service.go:110: Login blocked: user 6 reached max attempts
+WARN: 2025/12/04 20:53:28 auth_handler.go:164: Failed login attempt for phone +992222222222: user is blocked
+WARN: 2025/12/04 20:53:30 auth_service.go:93: Login blocked: user 6 is blocked
+WARN: 2025/12/04 20:53:30 auth_handler.go:164: Failed login attempt for phone +992222222222: user is blocked
+WARN: 2025/12/04 20:54:27 auth_service.go:127: VerifyUser: required fields missing, userID=6
