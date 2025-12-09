@@ -1,5 +1,6 @@
 package repository
 
+/*
 import (
 	"WalletX/models"
 	"database/sql"
@@ -30,7 +31,7 @@ func (r *PostgresTransactionRepo) SaveTransaction(tx *models.Transaction) error 
 func (r *PostgresTransactionRepo) GetTransactionsByAccountID(accountID int) ([]models.Transaction, error) {
 	rows, err := r.DB.Query(
 		`SELECT id, account_from, account_to, type, amount, created_at
-		 FROM transactions 
+		 FROM transactions
 		 WHERE account_from=$1 OR account_to=$1
 		 ORDER BY created_at DESC`,
 		accountID,
@@ -50,3 +51,4 @@ func (r *PostgresTransactionRepo) GetTransactionsByAccountID(accountID int) ([]m
 	}
 	return list, nil
 }
+*/

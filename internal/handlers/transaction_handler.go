@@ -1,5 +1,6 @@
 package handlers
 
+/*
 import (
 	"WalletX/internal/service"
 	"WalletX/models"
@@ -85,3 +86,4 @@ func (h *TransactionHandler) GetHistory(w http.ResponseWriter, r *http.Request) 
 
 	json.NewEncoder(w).Encode(history)
 }
+*/

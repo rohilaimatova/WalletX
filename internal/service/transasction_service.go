@@ -1,5 +1,6 @@
 package service
 
+/*
 import (
 	"WalletX/internal/repository"
 	"WalletX/models"
@@ -135,3 +136,4 @@ func (s *TransactionService) GetHistory(accountID int) ([]models.Transaction, er
 	logger.Info.Printf("GetHistory: fetched %d transactions for account ID %d", len(history), accountID)
 	return history, nil
 }
+*/

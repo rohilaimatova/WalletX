@@ -50,10 +50,8 @@ func CheckUserAuthentication(next http.Handler) http.Handler {
 			return
 		}
 
-		// Сохраняем userID в контекст
 		ctx := context.WithValue(r.Context(), userIDCtx, claims.UserID)
 
-		// Передаем дальше
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }

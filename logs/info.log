@@ -59,3 +59,73 @@ INFO: 2025/12/04 20:54:16 auth_handler.go:199: User 6 verified identity successf
 INFO: 2025/12/04 20:54:34 user_repo.go:107: [UpdateVerification] success: userID=6
 INFO: 2025/12/04 20:54:34 auth_service.go:136: VerifyUser: success for userID=6
 INFO: 2025/12/04 20:54:34 auth_handler.go:199: User 6 verified identity successfully
+INFO: 2025/12/06 22:02:14 main.go:63: Server running on :8080
+INFO: 2025/12/06 23:04:09 main.go:67: Server running on :8080
+INFO: 2025/12/06 23:04:38 auth_handler.go:25: Ping endpoint called
+INFO: 2025/12/06 23:05:15 auth_service.go:26: GetByPhone called for phone: +992333333333
+INFO: 2025/12/06 23:05:16 auth_handler.go:85: SMS verification code sent to +992333333333: 32539
+INFO: 2025/12/06 23:06:24 user_repo.go:37: [CreateUser] success: userID=7
+INFO: 2025/12/06 23:06:24 auth_service.go:57: RegisterUser: success, userID=7
+INFO: 2025/12/06 23:13:19 main.go:67: Server running on :8080
+INFO: 2025/12/06 23:13:43 auth_service.go:26: GetByPhone called for phone: +992333333333
+INFO: 2025/12/06 23:13:44 auth_handler.go:71: Attempt to register already existing user: +992333333333
+INFO: 2025/12/06 23:15:26 auth_service.go:26: GetByPhone called for phone: +992333334444
+INFO: 2025/12/06 23:15:26 auth_handler.go:85: SMS verification code sent to +992333334444: 66654
+INFO: 2025/12/06 23:16:05 user_repo.go:37: [CreateUser] success: userID=8
+INFO: 2025/12/06 23:16:05 auth_service.go:57: RegisterUser: success, userID=8
+INFO: 2025/12/06 23:16:05 account_service.go:34: CreateAccountForUser: success, accountID=1 for userID=8
+INFO: 2025/12/06 23:16:05 auth_handler.go:126: User registered successfully: 8
+INFO: 2025/12/06 23:16:23 user_repo.go:62: [UpdatePassword] success: userID=8
+INFO: 2025/12/06 23:16:23 auth_service.go:79: SetPassword: success for userID=8
+INFO: 2025/12/06 23:16:23 auth_handler.go:147: Password set successfully for user 8
+INFO: 2025/12/06 23:18:26 auth_service.go:26: GetByPhone called for phone: +992333334445
+INFO: 2025/12/06 23:18:26 auth_handler.go:85: SMS verification code sent to +992333334445: 84147
+INFO: 2025/12/06 23:18:46 auth_service.go:26: GetByPhone called for phone: +992333334445
+INFO: 2025/12/06 23:18:46 auth_handler.go:85: SMS verification code sent to +992333334445: 16028
+INFO: 2025/12/06 23:23:02 user_repo.go:107: [UpdateVerification] success: userID=8
+INFO: 2025/12/06 23:23:02 auth_service.go:136: VerifyUser: success for userID=8
+INFO: 2025/12/06 23:23:02 auth_handler.go:207: User 8 verified identity successfully
+INFO: 2025/12/07 21:37:23 main.go:70: Server running on :8080
+INFO: 2025/12/07 21:38:38 auth_handler.go:25: Ping endpoint called
+INFO: 2025/12/08 20:13:58 main.go:70: Server running on :8080
+INFO: 2025/12/08 20:24:00 auth_handler.go:25: Ping endpoint called
+INFO: 2025/12/08 20:49:44 main.go:70: Server running on :8080
+INFO: 2025/12/09 19:23:56 main.go:71: Server running on :8080
+INFO: 2025/12/09 19:25:14 auth_handler.go:25: Ping endpoint called
+INFO: 2025/12/09 19:25:40 auth_service.go:26: GetByPhone called for phone: +992931062345
+INFO: 2025/12/09 19:25:40 auth_handler.go:85: SMS verification code sent to +992931062345: 52998
+INFO: 2025/12/09 19:38:49 main.go:71: Server running on :8080
+INFO: 2025/12/09 19:38:59 auth_service.go:26: GetByPhone called for phone: +992931062345
+INFO: 2025/12/09 19:39:00 auth_handler.go:85: SMS verification code sent to +992931062345: 56298
+INFO: 2025/12/09 19:39:31 user_repo.go:37: [CreateUser] success: userID=2
+INFO: 2025/12/09 19:39:31 auth_service.go:57: RegisterUser: success, userID=2
+INFO: 2025/12/09 19:39:31 account_service.go:34: CreateAccountForUser: success, accountID=1 for userID=2
+INFO: 2025/12/09 19:39:31 auth_handler.go:126: User registered successfully: 2
+INFO: 2025/12/09 19:40:26 user_repo.go:62: [UpdatePassword] success: userID=2
+INFO: 2025/12/09 19:40:26 auth_service.go:79: SetPassword: success for userID=2
+INFO: 2025/12/09 19:40:26 auth_handler.go:147: Password set successfully for user 2
+INFO: 2025/12/09 19:42:06 user_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/09 19:42:06 user_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/09 19:42:06 auth_service.go:120: User 2 logged in successfully
+INFO: 2025/12/09 19:42:06 auth_handler.go:185: User 2 logged in successfully
+INFO: 2025/12/09 19:46:04 user_repo.go:107: [UpdateVerification] success: userID=2
+INFO: 2025/12/09 19:46:04 auth_service.go:136: VerifyUser: success for userID=2
+INFO: 2025/12/09 19:46:04 auth_handler.go:207: User 2 verified identity successfully
+INFO: 2025/12/09 19:55:10 main.go:71: Server running on :8080
+INFO: 2025/12/09 20:07:43 main.go:71: Server running on :8080
+INFO: 2025/12/09 20:07:51 user_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/09 20:07:51 user_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/09 20:07:51 auth_service.go:120: User 2 logged in successfully
+INFO: 2025/12/09 20:07:51 auth_handler.go:185: User 2 logged in successfully
+INFO: 2025/12/09 20:11:26 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/09 20:11:26 service_service.go:18: Fetching all services
+INFO: 2025/12/09 20:11:26 service_repo.go:22: Fetching all services from the database
+INFO: 2025/12/09 20:11:26 service_repo.go:42: Successfully fetched 3 services
+INFO: 2025/12/09 20:11:26 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/09 20:11:26 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/09 20:12:02 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/09 20:12:02 service_service.go:18: Fetching all services
+INFO: 2025/12/09 20:12:02 service_repo.go:22: Fetching all services from the database
+INFO: 2025/12/09 20:12:02 service_repo.go:42: Successfully fetched 3 services
+INFO: 2025/12/09 20:12:02 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/09 20:12:02 service_handler.go:27: Successfully fetched 3 services

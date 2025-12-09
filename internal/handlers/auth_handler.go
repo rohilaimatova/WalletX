@@ -10,9 +10,10 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"github.com/redis/go-redis/v9"
 	"net/http"
 	"time"
+
+	"github.com/redis/go-redis/v9"
 )
 
 type Handler struct{}
@@ -30,14 +31,16 @@ func (h *Handler) Ping(w http.ResponseWriter, r *http.Request) {
 }
 
 type UserHandler struct {
-	Service *service.UserService
-	Redis   *redis.Client
+	Service        *service.UserService
+	Redis          *redis.Client
+	AccountService *service.AccountService
 }
 
-func NewUserHandler(s *service.UserService, rdb *redis.Client) *UserHandler {
+func NewUserHandler(s *service.UserService, accountSvc *service.AccountService, rdb *redis.Client) *UserHandler {
 	return &UserHandler{
-		Service: s,
-		Redis:   rdb,
+		Service:        s,
+		AccountService: accountSvc,
+		Redis:          rdb,
 	}
 }
 
@@ -62,7 +65,6 @@ func (h *UserHandler) SignUp(w http.ResponseWriter, r *http.Request) {
 	h.registerUser(w, ctx, req.Phone, req.Code)
 }
 
-// Вспомогательная функция для отправки кода
 func (h *UserHandler) sendVerificationCode(w http.ResponseWriter, ctx context.Context, phone string) {
 	user, _ := h.Service.GetByPhone(phone)
 	if user.ID != 0 {
@@ -86,7 +88,6 @@ func (h *UserHandler) sendVerificationCode(w http.ResponseWriter, ctx context.Co
 	})
 }
 
-// Вспомогательная функция для регистрации пользователя
 func (h *UserHandler) registerUser(w http.ResponseWriter, ctx context.Context, phone, code string) {
 	savedCode, err := h.Redis.Get(ctx, "verify:"+phone).Result()
 	if err != nil {
@@ -114,6 +115,12 @@ func (h *UserHandler) registerUser(w http.ResponseWriter, ctx context.Context, p
 		return
 	}
 
+	_, err = h.AccountService.CreateAccountForUser(user.ID)
+	if err != nil {
+		logger.Error.Printf("Failed to create account for userID=%d: %v", user.ID, err)
+		respond.Error(w, http.StatusInternalServerError, "failed to create account", err)
+		return
+	}
 	h.Redis.Del(ctx, "verify:"+phone)
 	logger.Info.Printf("User registered successfully: %d", user.ID)
 	respond.JSON(w, http.StatusCreated, map[string]interface{}{
@@ -128,7 +135,6 @@ func (h *UserHandler) SetPassword(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 1️⃣ Устанавливаем пароль
 	err := h.Service.SetPassword(req.UserID, req.Password)
 	if err != nil {
 		logger.Error.Printf("Failed to set password for user %d: %v", req.UserID, err)
@@ -138,7 +144,6 @@ func (h *UserHandler) SetPassword(w http.ResponseWriter, r *http.Request) {
 
 	logger.Info.Printf("Password set successfully for user %d", req.UserID)
 
-	// 2️⃣ Генерируем токен
 	token, err := utils.GenerateToken(req.UserID, "")
 	if err != nil {
 		logger.Error.Printf("Failed to generate token for user %d: %v", req.UserID, err)
@@ -146,7 +151,6 @@ func (h *UserHandler) SetPassword(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 3️⃣ Отправляем ответ
 	respond.JSON(w, http.StatusCreated, map[string]interface{}{
 		"message": "password set successfully",
 		"token":   token,
@@ -166,7 +170,6 @@ func (h *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Генерируем токен
 	token, err := utils.GenerateToken(user.ID, "")
 	if err != nil {
 		logger.Error.Printf("Failed to generate token for user %d: %v", user.ID, err)

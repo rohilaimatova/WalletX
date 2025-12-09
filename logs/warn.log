@@ -19,3 +19,18 @@ WARN: 2025/12/04 20:53:28 auth_handler.go:164: Failed login attempt for phone +9
 WARN: 2025/12/04 20:53:30 auth_service.go:93: Login blocked: user 6 is blocked
 WARN: 2025/12/04 20:53:30 auth_handler.go:164: Failed login attempt for phone +992222222222: user is blocked
 WARN: 2025/12/04 20:54:27 auth_service.go:127: VerifyUser: required fields missing, userID=6
+WARN: 2025/12/06 23:05:15 user_repo.go:50: [GetByPhone] failed for phone=+992333333333: sql: no rows in result set
+WARN: 2025/12/06 23:06:24 user_repo.go:50: [GetByPhone] failed for phone=+992333333333: sql: no rows in result set
+WARN: 2025/12/06 23:12:54 auth_handler.go:95: Verification code expired or not found for +992333333333
+WARN: 2025/12/06 23:13:44 user_repo.go:50: [GetByPhone] failed for phone=+992333333333: sql: Scan error on column index 2, name "password": converting NULL to string is unsupported
+WARN: 2025/12/06 23:15:26 user_repo.go:50: [GetByPhone] failed for phone=+992333334444: sql: no rows in result set
+WARN: 2025/12/06 23:16:05 user_repo.go:50: [GetByPhone] failed for phone=+992333334444: sql: no rows in result set
+WARN: 2025/12/06 23:18:26 user_repo.go:50: [GetByPhone] failed for phone=+992333334445: sql: no rows in result set
+WARN: 2025/12/06 23:18:46 user_repo.go:50: [GetByPhone] failed for phone=+992333334445: sql: no rows in result set
+WARN: 2025/12/09 19:25:40 user_repo.go:50: [GetByPhone] failed for phone=+992931062345: sql: no rows in result set
+WARN: 2025/12/09 19:26:28 user_repo.go:50: [GetByPhone] failed for phone=+992931062345: sql: no rows in result set
+WARN: 2025/12/09 19:38:33 auth_handler.go:95: Verification code expired or not found for +992931062345
+WARN: 2025/12/09 19:39:00 user_repo.go:50: [GetByPhone] failed for phone=+992931062345: sql: no rows in result set
+WARN: 2025/12/09 19:39:31 user_repo.go:50: [GetByPhone] failed for phone=+992931062345: sql: no rows in result set
+WARN: 2025/12/09 19:40:16 auth_service.go:64: SetPassword: weak password for userID=2
+WARN: 2025/12/09 19:42:27 auth_service.go:127: VerifyUser: required fields missing, userID=2

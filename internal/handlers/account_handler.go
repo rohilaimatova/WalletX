@@ -1,5 +1,6 @@
 package handlers
 
+/*
 import (
 	"WalletX/internal/service"
 	"WalletX/models"
@@ -55,3 +56,4 @@ func (h *AccountHandler) GetBalance(w http.ResponseWriter, r *http.Request) {
 		Balance:   balance,
 	})
 }
+*/

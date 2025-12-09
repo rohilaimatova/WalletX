@@ -5,10 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/joho/godotenv"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/joho/godotenv"
 )
 
 var AppSettings models.Config
@@ -22,13 +23,11 @@ func ReadSettings() error {
 		fmt.Println(".env file not found, using system environment variables")
 	}
 
-	// Получаем текущую рабочую директорию
 	wd, err := os.Getwd()
 	if err != nil {
 		return errors.New(fmt.Sprintf("Couldn't get working directory: %s", err.Error()))
 	}
 
-	// Формируем путь к конфигу корректно
 	configPath := filepath.Join(wd, "config", "config.json")
 	fmt.Println("Reading settings file:", configPath)
 
