@@ -34,3 +34,34 @@ WARN: 2025/12/09 19:39:00 user_repo.go:50: [GetByPhone] failed for phone=+992931
 WARN: 2025/12/09 19:39:31 user_repo.go:50: [GetByPhone] failed for phone=+992931062345: sql: no rows in result set
 WARN: 2025/12/09 19:40:16 auth_service.go:64: SetPassword: weak password for userID=2
 WARN: 2025/12/09 19:42:27 auth_service.go:127: VerifyUser: required fields missing, userID=2
+WARN: 2025/12/10 20:08:11 account_service.go:68: [PaymentService] account_from not found: 2
+WARN: 2025/12/10 20:09:25 account_service.go:74: [PaymentService] account_to not found: 101
+WARN: 2025/12/10 20:09:33 account_service.go:74: [PaymentService] account_to not found: 101
+WARN: 2025/12/10 20:25:37 account_repo.go:68: [AccountRepository] GetByID: no account found for ID=101
+WARN: 2025/12/10 20:25:37 account_service.go:74: [PaymentService] account_to not found: 101
+WARN: 2025/12/10 20:25:51 account_repo.go:68: [AccountRepository] GetByID: no account found for ID=2
+WARN: 2025/12/10 20:25:51 account_service.go:68: [PaymentService] account_from not found: 2
+WARN: 2025/12/10 20:25:59 account_repo.go:68: [AccountRepository] GetByID: no account found for ID=3
+WARN: 2025/12/10 20:25:59 account_service.go:68: [PaymentService] account_from not found: 3
+WARN: 2025/12/10 21:11:00 account_repo.go:68: [AccountRepository] GetByID: no account found for ID=3
+WARN: 2025/12/10 21:11:16 account_repo.go:68: [AccountRepository] GetByID: no account found for ID=2
+WARN: 2025/12/10 22:01:40 user_repo.go:50: [GetByPhone] failed for phone=+992931062344: sql: no rows in result set
+WARN: 2025/12/10 22:02:03 user_repo.go:50: [GetByPhone] failed for phone=+992931062344: sql: no rows in result set
+WARN: 2025/12/10 22:03:01 account_service.go:75: [PaymentService] insufficient balance: have=0.00 need=50.00
+WARN: 2025/12/10 22:26:17 user_repo.go:50: [GetByPhone] failed for phone=+992931062348: sql: no rows in result set
+WARN: 2025/12/10 22:26:46 user_repo.go:50: [GetByPhone] failed for phone=+992931062348: sql: no rows in result set
+WARN: 2025/12/10 22:27:16 user_repo.go:50: [GetByPhone] failed for phone=+992931062346: sql: no rows in result set
+WARN: 2025/12/10 22:27:16 auth_service.go:80: Login failed: user not found for phone +992931062346
+WARN: 2025/12/10 22:27:16 auth_handler.go:168: Failed login attempt for phone +992931062346: user not found
+WARN: 2025/12/10 22:27:26 auth_service.go:104: Login failed: wrong password for user 4
+WARN: 2025/12/10 22:27:26 auth_handler.go:168: Failed login attempt for phone +992931062348: wrong password
+WARN: 2025/12/10 22:27:29 auth_service.go:104: Login failed: wrong password for user 4
+WARN: 2025/12/10 22:27:29 auth_handler.go:168: Failed login attempt for phone +992931062348: wrong password
+WARN: 2025/12/10 22:27:30 auth_service.go:100: Login blocked: user 4 reached max attempts
+WARN: 2025/12/10 22:27:30 auth_handler.go:168: Failed login attempt for phone +992931062348: user is blocked
+WARN: 2025/12/10 22:27:32 auth_service.go:85: Login blocked: user 4 is blocked
+WARN: 2025/12/10 22:27:32 auth_handler.go:168: Failed login attempt for phone +992931062348: user is blocked
+WARN: 2025/12/10 22:27:48 user_repo.go:50: [GetByPhone] failed for phone=+992931062347: sql: no rows in result set
+WARN: 2025/12/10 22:28:19 user_repo.go:50: [GetByPhone] failed for phone=+992931062347: sql: no rows in result set
+WARN: 2025/12/10 22:31:26 account_service.go:73: [PaymentService] insufficient balance: have=0.00 need=50.00
+WARN: 2025/12/10 22:36:37 account_service.go:73: [PaymentService] insufficient balance: have=0.00 need=50.00

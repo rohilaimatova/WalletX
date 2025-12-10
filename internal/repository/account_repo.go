@@ -2,14 +2,17 @@ package repository
 
 import (
 	"WalletX/models"
+	"WalletX/pkg/logger"
+	"context"
 	"database/sql"
-	"time"
+	"errors"
 )
 
 type AccountRepository interface {
 	CreateAccount(account models.Account) (models.Account, error)
-	GetByUserID(userID int) (models.Account, error)
-	UpdateBalance(userID int, balance, bonus float64) error
+	GetByID(ctx context.Context, id int) (*models.Account, error)
+	DecreaseBalance(ctx context.Context, id int, amount float64) error
+	IncreaseBalance(ctx context.Context, id int, amount float64) error
 }
 
 type accountRepo struct {
@@ -29,83 +32,104 @@ func (r *accountRepo) CreateAccount(account models.Account) (models.Account, err
 	row := r.db.QueryRow(query, account.UserID, account.Balance, account.BonusBalance, account.CreatedAt, account.UpdatedAt)
 	err := row.Scan(&account.ID, &account.CreatedAt, &account.UpdatedAt)
 	if err != nil {
+		logger.Warn.Printf("[CreateAccount] failed: userID=%d, err=%v", account.UserID, err) // Если ошибка
 		return models.Account{}, err
 	}
+	logger.Info.Printf("[CreateAccount] success: userID=%d, account=%v", account.UserID, account) // Если успех
 	return account, nil
 }
 
-func (r *accountRepo) GetByUserID(userID int) (models.Account, error) {
+func getTx(ctx context.Context) *sql.Tx {
+	tx, _ := ctx.Value(struct{}{}).(*sql.Tx) // если используешь другой ключ, меняем
+	return tx
+}
+
+func (r *accountRepo) GetByID(ctx context.Context, id int) (*models.Account, error) {
+	tx := getTx(ctx)
+
+	var row *sql.Row
+	if tx != nil {
+		row = tx.QueryRow("SELECT id, user_id, balance, bonus_balance, created_at, updated_at FROM accounts WHERE id = $1", id)
+	} else {
+		row = r.db.QueryRow("SELECT id, user_id, balance, bonus_balance, created_at, updated_at FROM accounts WHERE id = $1", id)
+	}
+
 	var account models.Account
-	query := `SELECT id, user_id, balance, bonus_balance, created_at, updated_at FROM accounts WHERE user_id = $1`
-	err := r.db.QueryRow(query, userID).Scan(
-		&account.ID,
-		&account.UserID,
-		&account.Balance,
-		&account.BonusBalance,
-		&account.CreatedAt,
-		&account.UpdatedAt,
-	)
+	err := row.Scan(&account.ID, &account.UserID, &account.Balance, &account.BonusBalance, &account.CreatedAt, &account.UpdatedAt)
 	if err != nil {
-		return models.Account{}, err
+		if err == sql.ErrNoRows {
+			// Если аккаунт не найден
+			logger.Warn.Printf("[AccountRepository] GetByID: no account found for ID=%d", id)
+			return nil, err
+		}
+		logger.Error.Printf("[AccountRepository] GetByID error: %v", err)
+		return nil, err
 	}
-	return account, nil
+
+	return &account, nil
 }
 
-func (r *accountRepo) UpdateBalance(userID int, balance, bonus float64) error {
-	query := `UPDATE accounts SET balance = $1, bonus_balance = $2, updated_at = $3 WHERE user_id = $4`
-	_, err := r.db.Exec(query, balance, bonus, time.Now(), userID)
-	return err
+func (r *accountRepo) DecreaseBalance(ctx context.Context, id int, amount float64) error {
+	tx := getTx(ctx)
+
+	var balance float64
+	row := r.db.QueryRow("SELECT balance FROM accounts WHERE id = $1", id)
+	if err := row.Scan(&balance); err != nil {
+		logger.Error.Printf("[AccountRepository] Error fetching balance for account ID %d: %v", id, err)
+		return err
+	}
+	logger.Info.Printf("[AccountRepository] Account ID %d current balance: %.2f", id, balance)
+
+	if balance < amount {
+		logger.Warn.Printf("[AccountRepository] Insufficient balance for account ID %d, requested: %.2f, available: %.2f", id, amount, balance)
+		return errors.New("insufficient balance")
+	}
+
+	var exec sql.Result
+	var err error
+	if tx != nil {
+		exec, err = tx.Exec("UPDATE accounts SET balance = balance - $1 WHERE id = $2 AND balance >= $1", amount, id)
+	} else {
+		exec, err = r.db.Exec("UPDATE accounts SET balance = balance - $1 WHERE id = $2 AND balance >= $1", amount, id)
+	}
+
+	if err != nil {
+		logger.Error.Printf("[AccountRepository] DecreaseBalance error: %v", err)
+		return err
+	}
+
+	rows, _ := exec.RowsAffected()
+	if rows == 0 {
+		// Если строка не была обновлена, значит либо аккаунт не найден, либо недостаточно средств
+		logger.Warn.Printf("[AccountRepository] DecreaseBalance failed: no rows affected for account ID %d", id)
+		return errors.New("insufficient balance or account not found")
+	}
+
+	logger.Info.Printf("[AccountRepository] Successfully decreased balance for account ID %d, amount: %.2f", id, amount)
+
+	return nil
 }
 
-/*package repository
+func (r *accountRepo) IncreaseBalance(ctx context.Context, id int, amount float64) error {
+	tx := getTx(ctx)
 
-import (
-	"WalletX/models"
-	"database/sql"
-)
+	var exec sql.Result
+	var err error
+	if tx != nil {
+		exec, err = tx.Exec("UPDATE accounts SET balance = balance + $1 WHERE id = $2", amount, id)
+	} else {
+		exec, err = r.db.Exec("UPDATE accounts SET balance = balance + $1 WHERE id = $2", amount, id)
+	}
 
-type AccountRepository interface {
-	CreateAccount(userID int) (models.Account, error)
-	GetAccountByID(id int) (models.Account, error)
-	UpdateBalance(id int, balance float64) error
+	if err != nil {
+		logger.Error.Printf("[AccountRepository] IncreaseBalance error: %v", err)
+		return err
+	}
+
+	rows, _ := exec.RowsAffected()
+	if rows == 0 {
+		return sql.ErrNoRows
+	}
+
+	return nil
 }
-
-type PostgresAccountRepo struct {
-	DB *sql.DB
-}
-
-func NewPostgresAccountRepo(db *sql.DB) *PostgresAccountRepo {
-	return &PostgresAccountRepo{DB: db}
-}
-
-// Создаём аккаунт для конкретного пользователя
-func (r *PostgresAccountRepo) CreateAccount(userID int) (models.Account, error) {
-	var acc models.Account
-
-	err := r.DB.QueryRow(
-		"INSERT INTO accounts (user_id, balance) VALUES ($1, 0) RETURNING id, user_id, balance",
-		userID,
-	).Scan(&acc.ID, &acc.UserID, &acc.Balance)
-
-	return acc, err
-}
-
-func (r *PostgresAccountRepo) GetAccountByID(id int) (models.Account, error) {
-	var acc models.Account
-
-	err := r.DB.QueryRow(
-		"SELECT id, user_id, balance FROM accounts WHERE id=$1",
-		id,
-	).Scan(&acc.ID, &acc.UserID, &acc.Balance)
-
-	return acc, err
-}
-
-func (r *PostgresAccountRepo) UpdateBalance(id int, balance float64) error {
-	_, err := r.DB.Exec(
-		"UPDATE accounts SET balance=$1 WHERE id=$2",
-		balance, id,
-	)
-	return err
-}
-*/

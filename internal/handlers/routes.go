@@ -6,7 +6,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func RegisterRoutes(r *mux.Router, userHandler *UserHandler, cardHandler *CardHandler, serviceHandler *ServiceHandler) {
+func RegisterRoutes(r *mux.Router, userHandler *UserHandler, cardHandler *CardHandler, serviceHandler *ServiceHandler, accountHandler *AccountHandler) {
 
 	pingHandler := NewHandler()
 	r.HandleFunc("/ping", pingHandler.Ping).Methods("GET")
@@ -21,11 +21,13 @@ func RegisterRoutes(r *mux.Router, userHandler *UserHandler, cardHandler *CardHa
 		users.HandleFunc("/verify", userHandler.VerifyIdentity).Methods("POST")
 	}
 
-	services := api.PathPrefix("/services").Subrouter()
-	services.Use(middleware.CheckUserAuthentication) // Добавляем проверку токена
-	services.HandleFunc("", serviceHandler.GetAllServices).Methods("GET")
+	services := api.PathPrefix("").Subrouter()
+	services.Use(middleware.CheckUserAuthentication)
+	services.HandleFunc("/services", serviceHandler.GetAllServices).Methods("GET")
 
-	secured := api.PathPrefix("").Subrouter() // упрощённый путь вместо NewRoute
+	api.HandleFunc("/pay", accountHandler.PayForService).Methods("POST")
+
+	secured := api.PathPrefix("").Subrouter() //
 	secured.Use(middleware.CheckUserAuthentication)
 	cards := secured.PathPrefix("/cards").Subrouter()
 
@@ -34,21 +36,4 @@ func RegisterRoutes(r *mux.Router, userHandler *UserHandler, cardHandler *CardHa
 		cards.HandleFunc("/user", cardHandler.GetCardsByUser).Methods("GET")        // ?user_id=
 		cards.HandleFunc("/deactivate", cardHandler.DeactivateCard).Methods("POST") // ?card_id=
 	}
-	// ---- Accounts (protected) ----
-	/*accounts := secured.PathPrefix("/accounts").Subrouter()
-	{
-		accounts.HandleFunc("/create", accHandler.CreateAccount).Methods("POST")
-		accounts.HandleFunc("/{id}/balance", accHandler.GetBalance).Methods("GET")
-	}
-
-	// ---- Transactions (protected) ----
-	transactions := secured.PathPrefix("/transactions").Subrouter()
-	{
-		transactions.HandleFunc("/deposit", txHandler.Deposit).Methods("POST")
-		transactions.HandleFunc("/withdraw", txHandler.Withdraw).Methods("POST")
-		transactions.HandleFunc("/transfer", txHandler.Transfer).Methods("POST")
-		transactions.HandleFunc("/{id}/history", txHandler.GetHistory).Methods("GET")
-	}
-
-	*/
 }

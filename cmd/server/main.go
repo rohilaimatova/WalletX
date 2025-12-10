@@ -4,6 +4,7 @@ import (
 	"WalletX/config"
 	"WalletX/internal/db"
 	"WalletX/internal/handlers"
+	"WalletX/internal/handlers/transaction"
 	"WalletX/internal/repository"
 	"WalletX/internal/service"
 	"WalletX/pkg/logger"
@@ -41,6 +42,9 @@ func main() {
 	cardRepo := repository.NewPostgresCardRepo(conn)
 	accountRepo := repository.NewAccountRepository(conn)
 	serviceRepo := repository.NewServiceRepo(conn)
+	//accountRepo := repository.NewAccountRepo(conn)
+	//transactionRepo := repository.NewTransactionRepo(conn)
+	transactionRepo := repository.NewTransactionRepository(conn)
 
 	userService := service.NewUserService(userRepo)
 	//accService := service.NewAccountService(accRepo)
@@ -49,14 +53,20 @@ func main() {
 	accountService := service.NewAccountService(accountRepo)
 	serviceService := service.NewServiceService(serviceRepo) // создаём сервис аккаунта
 
+	transactionManager := transaction.NewTransactionManager(conn)
+
+	// Передаем TransactionManager в PaymentService
+	paymentService := service.NewPaymentService(accountRepo, transactionRepo, serviceRepo, transactionManager)
+
 	userHandler := handlers.NewUserHandler(userService, accountService, rdb)
 	//accHandler := handlers.NewAccountHandler(accService, txService)
 	//txHandler := handlers.NewTransactionHandler(accService, txService)
 	cardHandler := handlers.NewCardHandler(cardService)
 	serviceHandler := handlers.NewServiceHandler(serviceService)
+	paymentHandler := handlers.NewPaymentHandler(paymentService)
 
 	r := mux.NewRouter()
-	handlers.RegisterRoutes(r, userHandler, cardHandler, serviceHandler) // ← передаем cardHandler
+	handlers.RegisterRoutes(r, userHandler, cardHandler, serviceHandler, paymentHandler) // ← передаем cardHandler
 
 	logger.Info.Println("Server running on :8080")
 	if err := http.ListenAndServe(":8080", r); err != nil {

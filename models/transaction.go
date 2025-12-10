@@ -20,9 +20,9 @@ type TransferRequest struct {
 
 type Transaction struct {
 	ID          int       `json:"id"`
-	AccountFrom *int      `json:"account_from,omitempty"` // NULL для депозита
-	AccountTo   *int      `json:"account_to,omitempty"`   // NULL для вывода
+	AccountFrom int       `json:"account_from,omitempty"`
+	AccountTo   int       `json:"account_to,omitempty"`
 	Amount      float64   `json:"amount"`
-	Type        string    `json:"type"` // deposit, withdraw, transfer
+	Type        string    `json:"type"`
 	CreatedAt   time.Time `json:"created_at"`
 }

@@ -1,59 +1,64 @@
+// internal/handlers/account_handler.go
+
 package handlers
 
-/*
 import (
 	"WalletX/internal/service"
 	"WalletX/models"
+	"WalletX/pkg/logger"
+	"WalletX/respond"
 	"encoding/json"
-	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
 )
 
 type AccountHandler struct {
-	AccountService     *service.AccountService
-	TransactionService *service.TransactionService
+	Payment *service.PaymentService
 }
 
-func NewAccountHandler(acc *service.AccountService, tx *service.TransactionService) *AccountHandler {
-	return &AccountHandler{
-		AccountService:     acc,
-		TransactionService: tx,
-	}
+func NewPaymentHandler(paymentService *service.PaymentService) *AccountHandler {
+	return &AccountHandler{Payment: paymentService}
 }
-func (h *AccountHandler) CreateAccount(w http.ResponseWriter, r *http.Request) {
-	var req models.CreateAccountRequest
+
+func (h *AccountHandler) PayForService(w http.ResponseWriter, r *http.Request) {
+	logger.Info.Printf("[PayForService] Incoming request: %s %s", r.Method, r.URL.Path)
+
+	var req models.PayRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "invalid request", http.StatusBadRequest)
+		logger.Error.Printf("[PayForService] Failed to decode request: %v", err)
+		respond.Error(w, http.StatusBadRequest, "invalid request body", err)
 		return
 	}
+	logger.Info.Printf("[PayForService] Request payload: %+v", req)
 
-	acc, err := h.AccountService.CreateAccount(req)
+	fromID, err := strconv.Atoi(req.Account)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		logger.Warn.Printf("[PayForService] Invalid account id: %s", req.Account)
+		respond.Error(w, http.StatusBadRequest, "invalid account id", err)
 		return
 	}
+	logger.Info.Printf("[PayForService] fromID parsed: %d", fromID)
 
-	json.NewEncoder(w).Encode(acc)
-}
-
-func (h *AccountHandler) GetBalance(w http.ResponseWriter, r *http.Request) {
-	idStr := mux.Vars(r)["id"]
-	id, err := strconv.Atoi(idStr)
+	toID, err := h.Payment.ServiceRepo.GetServiceIDByType(req.ServiceType)
 	if err != nil {
-		http.Error(w, "invalid id", http.StatusBadRequest)
+		logger.Warn.Printf("[PayForService] Invalid service type: %s, error: %v", req.ServiceType, err)
+		respond.Error(w, http.StatusBadRequest, "invalid service type", err)
 		return
 	}
+	logger.Info.Printf("[PayForService] toID resolved: %d", toID)
 
-	balance, err := h.AccountService.GetBalance(id)
+	transactionType := req.ServiceType
+
+	err = h.Payment.Pay(r.Context(), fromID, toID, req.Amount, transactionType) // Передаем тип транзакции
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound)
+		logger.Error.Printf("[PayForService] Payment failed from=%d to=%d amount=%.2f: %v", fromID, toID, req.Amount, err)
+		respond.Error(w, http.StatusBadRequest, "payment failed", err)
 		return
 	}
 
-	json.NewEncoder(w).Encode(models.BalanceResponse{
-		AccountID: id,
-		Balance:   balance,
+	logger.Info.Printf("[PayForService] Payment success from=%d to=%d amount=%.2f type=%s", fromID, toID, req.Amount, transactionType)
+	respond.JSON(w, http.StatusOK, map[string]string{
+		"status":  "success",
+		"message": "payment completed",
 	})
 }
-*/
