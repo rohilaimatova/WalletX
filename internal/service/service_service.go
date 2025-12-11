@@ -6,17 +6,17 @@ import (
 	"WalletX/pkg/logger"
 )
 
-type ServiceService struct {
-	Repo repository.ServiceRepository
+type ServicesService struct {
+	Repo repository.ServicesRepository
 }
 
-func NewServiceService(repo repository.ServiceRepository) *ServiceService {
-	return &ServiceService{
+func NewServicesService(repo repository.ServicesRepository) *ServicesService {
+	return &ServicesService{
 		Repo: repo,
 	}
 }
 
-func (s *ServiceService) GetAllServices() ([]models.Service, error) {
+func (s *ServicesService) GetAllServices() ([]models.Services, error) {
 	logger.Info.Println("Fetching all services")
 	services, err := s.Repo.GetAll()
 	if err != nil {

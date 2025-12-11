@@ -30,3 +30,17 @@ type VerifyIdentityRequest struct {
 	MiddleName     string `json:"middle_name"`
 	PassportNumber string `json:"passport_number"`
 }
+
+type UserProfileResponse struct {
+	ID         int    `json:"id"`
+	Phone      string `json:"phone"`
+	FirstName  string `json:"first_name"`
+	LastName   string `json:"last_name"`
+	MiddleName string `json:"middle_name"`
+	IsVerified bool   `json:"is_verified"`
+}
+
+type UserBalanceResponse struct {
+	Balance      float64 `json:"balance"`
+	BonusBalance float64 `json:"bonus_balance"`
+}

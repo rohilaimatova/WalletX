@@ -40,11 +40,11 @@ func (s *AccountService) CreateAccountForUser(userID int) (models.Account, error
 type PaymentService struct {
 	AccountRepo     repository.AccountRepository
 	TransactionRepo repository.TransactionRepository
-	ServiceRepo     repository.ServiceRepository
+	ServiceRepo     repository.ServicesRepository
 	TM              transaction.TransactionManager
 }
 
-func NewPaymentService(accountRepo repository.AccountRepository, transactionRepo repository.TransactionRepository, serviceRepo repository.ServiceRepository, tm transaction.TransactionManager) *PaymentService {
+func NewPaymentService(accountRepo repository.AccountRepository, transactionRepo repository.TransactionRepository, serviceRepo repository.ServicesRepository, tm transaction.TransactionManager) *PaymentService {
 	return &PaymentService{
 		AccountRepo:     accountRepo,
 		TransactionRepo: transactionRepo,
@@ -53,20 +53,23 @@ func NewPaymentService(accountRepo repository.AccountRepository, transactionRepo
 	}
 }
 
-func (s *PaymentService) Pay(ctx context.Context, fromID, toID int, amount float64, transactionType string) error {
+func (s *PaymentService) Pay(ctx context.Context, userID, toID int, amount float64, transactionType string) error {
 	return s.TM.WithinTransaction(ctx, func(txCtx context.Context) error {
 
-		from, err := s.AccountRepo.GetByID(txCtx, fromID)
+		// Получаем аккаунт пользователя по userID из токена
+		from, err := s.AccountRepo.GetByUserID(txCtx, userID)
 		if err != nil {
-			logger.Warn.Printf("[PaymentService] account_from not found: %d", fromID)
+			logger.Warn.Printf("[PaymentService] account_from not found for userID: %d", userID)
 			return errors.New("account_from not found")
 		}
 
+		// Получаем аккаунт получателя по ID аккаунта (как раньше)
 		to, err := s.AccountRepo.GetByID(txCtx, toID)
 		if err != nil {
 			logger.Warn.Printf("[PaymentService] account_to not found: %d", toID)
 			return errors.New("account_to not found")
 		}
+
 		logger.Info.Printf("[PaymentService] paying from %d to %d with amount %.2f", from.ID, to.ID, amount)
 
 		if from.Balance < amount {
@@ -74,21 +77,21 @@ func (s *PaymentService) Pay(ctx context.Context, fromID, toID int, amount float
 			return errors.New("insufficient balance")
 		}
 
-		err = s.AccountRepo.DecreaseBalance(txCtx, fromID, amount)
+		err = s.AccountRepo.DecreaseBalance(txCtx, from.ID, amount) // Используем from.ID
 		if err != nil {
 			logger.Error.Printf("[PaymentService] DecreaseBalance error: %v", err)
 			return err
 		}
 
-		err = s.AccountRepo.IncreaseBalance(txCtx, toID, amount)
+		err = s.AccountRepo.IncreaseBalance(txCtx, to.ID, amount) // Используем to.ID
 		if err != nil {
 			logger.Error.Printf("[PaymentService] IncreaseBalance error: %v", err)
 			return err
 		}
 
 		transaction := models.Transaction{
-			AccountFrom: fromID,
-			AccountTo:   toID,
+			AccountFrom: from.ID,
+			AccountTo:   to.ID,
 			Amount:      amount,
 			Type:        transactionType,
 			CreatedAt:   time.Now(),
@@ -100,7 +103,7 @@ func (s *PaymentService) Pay(ctx context.Context, fromID, toID int, amount float
 			return err
 		}
 
-		logger.Info.Printf("[PaymentService] SUCCESS transfer from=%d to=%d amount=%.2f type=%s", fromID, toID, amount, transactionType)
+		logger.Info.Printf("[PaymentService] SUCCESS transfer from=%d to=%d amount=%.2f type=%s", from.ID, to.ID, amount, transactionType)
 		return nil
 	})
 }

@@ -12,9 +12,9 @@ const (
 	authorizationHeader = "Authorization"
 )
 
-type contextKey string
+type ContextKey string
 
-const userIDCtx contextKey = "userID"
+const UserIDCtx ContextKey = "userID"
 
 func writeJSONError(w http.ResponseWriter, message string, status int) {
 	w.WriteHeader(status)
@@ -50,7 +50,7 @@ func CheckUserAuthentication(next http.Handler) http.Handler {
 			return
 		}
 
-		ctx := context.WithValue(r.Context(), userIDCtx, claims.UserID)
+		ctx := context.WithValue(r.Context(), UserIDCtx, claims.UserID)
 
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})

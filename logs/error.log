@@ -28,3 +28,9 @@ ERROR: 2025/12/10 21:22:34 account_handler.go:54: [PayForService] Payment failed
 ERROR: 2025/12/10 22:03:01 account_handler.go:54: [PayForService] Payment failed from=2 to=1 amount=50.00: insufficient balance
 ERROR: 2025/12/10 22:31:26 account_handler.go:57: [PayForService] Payment failed from=4 to=1 amount=50.00: insufficient balance
 ERROR: 2025/12/10 22:36:37 account_handler.go:57: [PayForService] Payment failed from=3 to=2 amount=50.00: insufficient balance
+ERROR: 2025/12/11 20:25:00 account_handler.go:54: [PayForService] Payment failed from=5 to=2 amount=50.00: account_from not found
+ERROR: 2025/12/11 23:17:36 account_handler.go:56: [PayForService] Payment failed from=5 to=2 amount=50.00: account_from not found
+ERROR: 2025/12/11 23:17:45 account_handler.go:56: [PayForService] Payment failed from=5 to=2 amount=50.00: account_from not found
+ERROR: 2025/12/11 23:18:50 account_handler.go:56: [PayForService] Payment failed from=5 to=2 amount=50.00: account_from not found
+ERROR: 2025/12/11 23:20:21 account_handler.go:56: [PayForService] Payment failed from=5 to=2 amount=50.00: account_from not found
+ERROR: 2025/12/11 23:20:56 account_handler.go:56: [PayForService] Payment failed from=5 to=2 amount=50.00: account_from not found

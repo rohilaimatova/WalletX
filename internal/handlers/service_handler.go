@@ -7,15 +7,15 @@ import (
 	"net/http"
 )
 
-type ServiceHandler struct {
-	Service *service.ServiceService
+type ServicesHandler struct {
+	Service *service.ServicesService
 }
 
-func NewServiceHandler(s *service.ServiceService) *ServiceHandler {
-	return &ServiceHandler{Service: s}
+func NewServicesHandler(s *service.ServicesService) *ServicesHandler {
+	return &ServicesHandler{Service: s}
 }
 
-func (h *ServiceHandler) GetAllServices(w http.ResponseWriter, r *http.Request) {
+func (h *ServicesHandler) GetAllServices(w http.ResponseWriter, r *http.Request) {
 	logger.Info.Printf("Received request to fetch all services: %s %s", r.Method, r.URL.Path)
 	services, err := h.Service.GetAllServices()
 

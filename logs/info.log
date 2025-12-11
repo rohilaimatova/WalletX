@@ -498,3 +498,187 @@ INFO: 2025/12/10 22:36:37 account_handler.go:32: [PayForService] Request payload
 INFO: 2025/12/10 22:36:37 account_handler.go:40: [PayForService] fromID parsed: 3
 INFO: 2025/12/10 22:36:37 account_handler.go:49: [PayForService] toID resolved: 2
 INFO: 2025/12/10 22:36:37 account_service.go:70: [PaymentService] paying from 3 to 2 with amount 50.00
+INFO: 2025/12/11 19:54:27 main.go:64: Server running on :8080
+INFO: 2025/12/11 20:13:22 main.go:64: Server running on :8080
+INFO: 2025/12/11 20:18:03 auth_handler.go:26: Ping endpoint called
+INFO: 2025/12/11 20:18:11 auth_repo.go:52: [GetByPhone] success for phone=+992931062347, userID=5
+INFO: 2025/12/11 20:18:11 auth_repo.go:82: [ResetPasswordAttempts] success: userID=5
+INFO: 2025/12/11 20:18:11 auth_service.go:109: User 5 logged in successfully
+INFO: 2025/12/11 20:18:11 auth_handler.go:180: User 5 logged in successfully
+INFO: 2025/12/11 20:18:29 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/11 20:18:29 service_service.go:20: Fetching all services
+INFO: 2025/12/11 20:18:29 service_repo.go:24: Fetching all services from the database
+INFO: 2025/12/11 20:18:29 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/11 20:18:29 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/11 20:18:29 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/11 20:20:06 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 20:20:06 account_handler.go:32: [PayForService] Request payload: {ServiceType:internet Account: Amount:50}
+INFO: 2025/12/11 20:24:50 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 20:24:50 account_handler.go:32: [PayForService] Request payload: {ServiceType:internet Account: Amount:50}
+INFO: 2025/12/11 20:25:00 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 20:25:00 account_handler.go:32: [PayForService] Request payload: {ServiceType:internet Account:5 Amount:50}
+INFO: 2025/12/11 20:25:00 account_handler.go:40: [PayForService] fromID parsed: 5
+INFO: 2025/12/11 20:25:00 account_handler.go:48: [PayForService] toID resolved: 2
+INFO: 2025/12/11 20:25:23 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 20:25:23 account_handler.go:32: [PayForService] Request payload: {ServiceType:internet Account:1 Amount:50}
+INFO: 2025/12/11 20:25:23 account_handler.go:40: [PayForService] fromID parsed: 1
+INFO: 2025/12/11 20:25:23 account_handler.go:48: [PayForService] toID resolved: 2
+INFO: 2025/12/11 20:25:23 account_service.go:70: [PaymentService] paying from 1 to 2 with amount 50.00
+INFO: 2025/12/11 20:25:23 account_repo.go:81: [AccountRepository] Account ID 1 current balance: 1150.00
+INFO: 2025/12/11 20:25:23 account_repo.go:108: [AccountRepository] Successfully decreased balance for account ID 1, amount: 50.00
+INFO: 2025/12/11 20:25:23 transaction.go:33: [CreateTransaction] success: transaction={9 1 2 50 internet 2025-12-11 20:25:23.550749 +0000 +0000}
+INFO: 2025/12/11 20:25:23 account_service.go:103: [PaymentService] SUCCESS transfer from=1 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 20:25:23 account_handler.go:59: [PayForService] Payment success from=1 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 20:27:31 user_handler.go:40: User profile returned for ID 5
+INFO: 2025/12/11 20:42:56 main.go:64: Server running on :8080
+INFO: 2025/12/11 20:43:03 auth_repo.go:52: [GetByPhone] success for phone=+992931062347, userID=5
+INFO: 2025/12/11 20:43:03 auth_repo.go:82: [ResetPasswordAttempts] success: userID=5
+INFO: 2025/12/11 20:43:03 auth_service.go:109: User 5 logged in successfully
+INFO: 2025/12/11 20:43:03 auth_handler.go:180: User 5 logged in successfully
+INFO: 2025/12/11 20:43:17 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/11 20:43:17 service_service.go:20: Fetching all services
+INFO: 2025/12/11 20:43:17 service_repo.go:24: Fetching all services from the database
+INFO: 2025/12/11 20:43:17 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/11 20:43:17 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/11 20:43:17 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/11 20:43:22 user_handler.go:40: User profile returned for ID 5
+INFO: 2025/12/11 20:47:33 main.go:64: Server running on :8080
+INFO: 2025/12/11 20:47:49 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/11 20:47:49 service_service.go:20: Fetching all services
+INFO: 2025/12/11 20:47:49 service_repo.go:24: Fetching all services from the database
+INFO: 2025/12/11 20:47:49 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/11 20:47:49 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/11 20:47:49 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/11 20:51:40 main.go:64: Server running on :8080
+INFO: 2025/12/11 20:51:49 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/11 20:51:49 service_service.go:20: Fetching all services
+INFO: 2025/12/11 20:51:49 service_repo.go:24: Fetching all services from the database
+INFO: 2025/12/11 20:51:49 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/11 20:51:49 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/11 20:51:49 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/11 20:51:53 user_handler.go:40: User profile returned for ID 2
+INFO: 2025/12/11 20:52:01 user_handler.go:40: User profile returned for ID 5
+INFO: 2025/12/11 22:13:27 auth_repo.go:52: [GetByPhone] success for phone=+992931062347, userID=5
+INFO: 2025/12/11 22:13:27 auth_repo.go:82: [ResetPasswordAttempts] success: userID=5
+INFO: 2025/12/11 22:13:27 auth_service.go:109: User 5 logged in successfully
+INFO: 2025/12/11 22:13:27 auth_handler.go:180: User 5 logged in successfully
+INFO: 2025/12/11 22:14:11 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/11 22:14:11 service_service.go:20: Fetching all services
+INFO: 2025/12/11 22:14:11 service_repo.go:24: Fetching all services from the database
+INFO: 2025/12/11 22:14:11 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/11 22:14:11 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/11 22:14:11 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/11 22:14:27 user_handler.go:40: User profile returned for ID 5
+INFO: 2025/12/11 22:16:23 user_handler.go:40: User profile returned for ID 2
+INFO: 2025/12/11 22:32:41 main.go:64: Server running on :8080
+INFO: 2025/12/11 22:32:47 auth_repo.go:52: [GetByPhone] success for phone=+992931062347, userID=5
+INFO: 2025/12/11 22:32:47 auth_repo.go:82: [ResetPasswordAttempts] success: userID=5
+INFO: 2025/12/11 22:32:47 auth_service.go:109: User 5 logged in successfully
+INFO: 2025/12/11 22:32:47 auth_handler.go:180: User 5 logged in successfully
+INFO: 2025/12/11 22:33:06 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/11 22:33:06 service_service.go:20: Fetching all services
+INFO: 2025/12/11 22:33:06 service_repo.go:24: Fetching all services from the database
+INFO: 2025/12/11 22:33:06 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/11 22:33:06 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/11 22:33:06 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/11 22:33:18 user_handler.go:40: User profile returned for ID 2
+INFO: 2025/12/11 22:33:25 user_handler.go:40: User profile returned for ID 5
+INFO: 2025/12/11 22:33:40 account_handler.go:23: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 22:33:47 account_handler.go:23: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 22:33:58 account_handler.go:23: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 22:34:21 account_handler.go:23: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 22:43:37 main.go:64: Server running on :8080
+INFO: 2025/12/11 22:43:52 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 22:43:57 user_handler.go:40: User profile returned for ID 5
+INFO: 2025/12/11 22:44:13 user_handler.go:40: User profile returned for ID 5
+INFO: 2025/12/11 22:44:39 user_handler.go:40: User profile returned for ID 2
+INFO: 2025/12/11 22:55:33 main.go:64: Server running on :8080
+INFO: 2025/12/11 22:55:42 auth_repo.go:52: [GetByPhone] success for phone=+992931062347, userID=5
+INFO: 2025/12/11 22:55:42 auth_repo.go:82: [ResetPasswordAttempts] success: userID=5
+INFO: 2025/12/11 22:55:42 auth_service.go:109: User 5 logged in successfully
+INFO: 2025/12/11 22:55:42 auth_handler.go:180: User 5 logged in successfully
+INFO: 2025/12/11 22:56:06 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/11 22:56:06 service_service.go:20: Fetching all services
+INFO: 2025/12/11 22:56:06 service_repo.go:24: Fetching all services from the database
+INFO: 2025/12/11 22:56:06 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/11 22:56:06 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/11 22:56:06 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/11 22:56:20 user_handler.go:42: User profile returned for ID 5
+INFO: 2025/12/11 22:56:31 user_handler.go:42: User profile returned for ID 5
+INFO: 2025/12/11 22:56:40 user_handler.go:42: User profile returned for ID 5
+INFO: 2025/12/11 22:56:46 user_handler.go:42: User profile returned for ID 5
+INFO: 2025/12/11 22:56:54 user_handler.go:42: User profile returned for ID 5
+INFO: 2025/12/11 22:57:03 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 22:57:03 account_handler.go:53: [PayForService] Payment success from=5 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 22:57:09 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 22:57:09 account_handler.go:53: [PayForService] Payment success from=5 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:00:54 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:00:54 account_handler.go:53: [PayForService] Payment success from=5 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:08:42 main.go:64: Server running on :8080
+INFO: 2025/12/11 23:08:50 user_handler.go:42: User profile returned for ID 5
+INFO: 2025/12/11 23:09:05 user_handler.go:42: User profile returned for ID 5
+INFO: 2025/12/11 23:09:13 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:09:13 account_handler.go:53: [PayForService] Payment success from=5 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:17:30 main.go:64: Server running on :8080
+INFO: 2025/12/11 23:17:36 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:17:45 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:18:50 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:20:21 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:20:56 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:29:15 main.go:64: Server running on :8080
+INFO: 2025/12/11 23:29:22 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:29:22 account_service.go:73: [PaymentService] paying from 4 to 2 with amount 50.00
+INFO: 2025/12/11 23:29:22 account_repo.go:96: [AccountRepository] Account ID 4 current balance: 450.00
+INFO: 2025/12/11 23:29:22 account_repo.go:123: [AccountRepository] Successfully decreased balance for account ID 4, amount: 50.00
+INFO: 2025/12/11 23:29:22 transaction.go:33: [CreateTransaction] success: transaction={10 4 2 50 internet 2025-12-11 23:29:22.255447 +0000 +0000}
+INFO: 2025/12/11 23:29:22 account_service.go:106: [PaymentService] SUCCESS transfer from=4 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:29:22 account_handler.go:61: [PayForService] Payment success from=5 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:30:06 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:30:06 account_service.go:73: [PaymentService] paying from 4 to 2 with amount 50.00
+INFO: 2025/12/11 23:30:06 account_repo.go:96: [AccountRepository] Account ID 4 current balance: 400.00
+INFO: 2025/12/11 23:30:06 account_repo.go:123: [AccountRepository] Successfully decreased balance for account ID 4, amount: 50.00
+INFO: 2025/12/11 23:30:06 transaction.go:33: [CreateTransaction] success: transaction={11 4 2 50 internet 2025-12-11 23:30:06.769604 +0000 +0000}
+INFO: 2025/12/11 23:30:06 account_service.go:106: [PaymentService] SUCCESS transfer from=4 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:30:06 account_handler.go:61: [PayForService] Payment success from=5 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:30:28 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:30:28 account_service.go:73: [PaymentService] paying from 4 to 2 with amount 50.00
+INFO: 2025/12/11 23:30:28 account_repo.go:96: [AccountRepository] Account ID 4 current balance: 350.00
+INFO: 2025/12/11 23:30:28 account_repo.go:123: [AccountRepository] Successfully decreased balance for account ID 4, amount: 50.00
+INFO: 2025/12/11 23:30:28 transaction.go:33: [CreateTransaction] success: transaction={12 4 2 50 internet 2025-12-11 23:30:28.364023 +0000 +0000}
+INFO: 2025/12/11 23:30:28 account_service.go:106: [PaymentService] SUCCESS transfer from=4 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:30:28 account_handler.go:61: [PayForService] Payment success from=5 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:31:15 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/11 23:31:15 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/11 23:31:15 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/11 23:31:15 auth_handler.go:180: User 2 logged in successfully
+INFO: 2025/12/11 23:31:31 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/11 23:31:31 service_service.go:20: Fetching all services
+INFO: 2025/12/11 23:31:31 service_repo.go:24: Fetching all services from the database
+INFO: 2025/12/11 23:31:31 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/11 23:31:31 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/11 23:31:31 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/11 23:31:35 user_handler.go:42: User profile returned for ID 2
+INFO: 2025/12/11 23:31:50 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:31:50 account_service.go:73: [PaymentService] paying from 1 to 2 with amount 50.00
+INFO: 2025/12/11 23:31:50 account_repo.go:96: [AccountRepository] Account ID 1 current balance: 1100.00
+INFO: 2025/12/11 23:31:50 account_repo.go:123: [AccountRepository] Successfully decreased balance for account ID 1, amount: 50.00
+INFO: 2025/12/11 23:31:50 transaction.go:33: [CreateTransaction] success: transaction={13 1 2 50 internet 2025-12-11 23:31:50.560361 +0000 +0000}
+INFO: 2025/12/11 23:31:50 account_service.go:106: [PaymentService] SUCCESS transfer from=1 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:31:50 account_handler.go:61: [PayForService] Payment success from=2 to=2 amount=50.00 type=internet
+INFO: 2025/12/11 23:31:56 account_handler.go:24: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/11 23:31:56 account_service.go:73: [PaymentService] paying from 1 to 2 with amount 60.00
+INFO: 2025/12/11 23:31:56 account_repo.go:96: [AccountRepository] Account ID 1 current balance: 1050.00
+INFO: 2025/12/11 23:31:56 account_repo.go:123: [AccountRepository] Successfully decreased balance for account ID 1, amount: 60.00
+INFO: 2025/12/11 23:31:56 transaction.go:33: [CreateTransaction] success: transaction={14 1 2 60 internet 2025-12-11 23:31:56.303576 +0000 +0000}
+INFO: 2025/12/11 23:31:56 account_service.go:106: [PaymentService] SUCCESS transfer from=1 to=2 amount=60.00 type=internet
+INFO: 2025/12/11 23:31:56 account_handler.go:61: [PayForService] Payment success from=2 to=2 amount=60.00 type=internet
+INFO: 2025/12/11 23:33:25 user_handler.go:42: User profile returned for ID 2
+INFO: 2025/12/11 23:41:42 user_handler.go:42: User profile returned for ID 2
+INFO: 2025/12/12 00:06:41 main.go:64: Server running on :8080
+INFO: 2025/12/12 00:06:51 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/12 00:06:51 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/12 00:06:51 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/12 00:06:51 auth_handler.go:180: User 2 logged in successfully
+INFO: 2025/12/12 00:07:16 user_handler.go:42: User profile returned for ID 2
+INFO: 2025/12/12 00:08:04 user_handler.go:65: Balance returned for user ID 2
+INFO: 2025/12/12 00:13:08 main.go:64: Server running on :8080

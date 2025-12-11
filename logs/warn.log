@@ -65,3 +65,17 @@ WARN: 2025/12/10 22:27:48 user_repo.go:50: [GetByPhone] failed for phone=+992931
 WARN: 2025/12/10 22:28:19 user_repo.go:50: [GetByPhone] failed for phone=+992931062347: sql: no rows in result set
 WARN: 2025/12/10 22:31:26 account_service.go:73: [PaymentService] insufficient balance: have=0.00 need=50.00
 WARN: 2025/12/10 22:36:37 account_service.go:73: [PaymentService] insufficient balance: have=0.00 need=50.00
+WARN: 2025/12/11 20:20:06 account_handler.go:36: [PayForService] Invalid account id: 
+WARN: 2025/12/11 20:24:50 account_handler.go:36: [PayForService] Invalid account id: 
+WARN: 2025/12/11 20:25:00 account_repo.go:62: [AccountRepository] GetByID: no account found for ID=5
+WARN: 2025/12/11 20:25:00 account_service.go:61: [PaymentService] account_from not found: 5
+WARN: 2025/12/11 23:17:36 account_repo.go:62: [AccountRepository] GetByID: no account found for ID=5
+WARN: 2025/12/11 23:17:36 account_service.go:61: [PaymentService] account_from not found: 5
+WARN: 2025/12/11 23:17:45 account_repo.go:62: [AccountRepository] GetByID: no account found for ID=5
+WARN: 2025/12/11 23:17:45 account_service.go:61: [PaymentService] account_from not found: 5
+WARN: 2025/12/11 23:18:50 account_repo.go:62: [AccountRepository] GetByID: no account found for ID=5
+WARN: 2025/12/11 23:18:50 account_service.go:61: [PaymentService] account_from not found: 5
+WARN: 2025/12/11 23:20:21 account_repo.go:62: [AccountRepository] GetByID: no account found for ID=5
+WARN: 2025/12/11 23:20:21 account_service.go:61: [PaymentService] account_from not found: 5
+WARN: 2025/12/11 23:20:56 account_repo.go:62: [AccountRepository] GetByID: no account found for ID=5
+WARN: 2025/12/11 23:20:56 account_service.go:61: [PaymentService] account_from not found: 5

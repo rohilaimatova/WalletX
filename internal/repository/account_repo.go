@@ -13,6 +13,7 @@ type AccountRepository interface {
 	GetByID(ctx context.Context, id int) (*models.Account, error)
 	DecreaseBalance(ctx context.Context, id int, amount float64) error
 	IncreaseBalance(ctx context.Context, id int, amount float64) error
+	GetByUserID(ctx context.Context, userID int) (models.Account, error)
 }
 
 type accountRepo struct {
@@ -58,7 +59,6 @@ func (r *accountRepo) GetByID(ctx context.Context, id int) (*models.Account, err
 	err := row.Scan(&account.ID, &account.UserID, &account.Balance, &account.BonusBalance, &account.CreatedAt, &account.UpdatedAt)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			// Если аккаунт не найден
 			logger.Warn.Printf("[AccountRepository] GetByID: no account found for ID=%d", id)
 			return nil, err
 		}
@@ -67,6 +67,20 @@ func (r *accountRepo) GetByID(ctx context.Context, id int) (*models.Account, err
 	}
 
 	return &account, nil
+}
+func (r *accountRepo) GetByUserID(ctx context.Context, userID int) (models.Account, error) {
+	var account models.Account
+	err := r.db.QueryRowContext(ctx,
+		"SELECT id, user_id, balance, bonus_balance, created_at, updated_at FROM accounts WHERE user_id = $1",
+		userID,
+	).Scan(&account.ID, &account.UserID, &account.Balance, &account.BonusBalance, &account.CreatedAt, &account.UpdatedAt)
+
+	if err != nil {
+		logger.Warn.Printf("[AccountRepository] GetByUserID: no account found for userID=%d", userID)
+		return models.Account{}, err
+	}
+
+	return account, nil
 }
 
 func (r *accountRepo) DecreaseBalance(ctx context.Context, id int, amount float64) error {

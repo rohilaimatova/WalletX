@@ -37,36 +37,29 @@ func main() {
 	conn := db.GetDBConnection()
 
 	userRepo := repository.NewPostgresUserRepo(conn)
-	//accRepo := repository.NewPostgresAccountRepo(conn)
-	//txRepo := repository.NewPostgresTransactionRepo(conn)
-	cardRepo := repository.NewPostgresCardRepo(conn)
+	//cardRepo := repository.NewPostgresCardRepo(conn)
 	accountRepo := repository.NewAccountRepository(conn)
-	serviceRepo := repository.NewServiceRepo(conn)
-	//accountRepo := repository.NewAccountRepo(conn)
-	//transactionRepo := repository.NewTransactionRepo(conn)
+	servicesRepo := repository.NewServicesRepo(conn)
 	transactionRepo := repository.NewTransactionRepository(conn)
-
-	userService := service.NewUserService(userRepo)
-	//accService := service.NewAccountService(accRepo)
-	//txService := service.NewTransactionService(accRepo, txRepo)
-	cardService := service.NewCardService(cardRepo) // ← сервис карт
-	accountService := service.NewAccountService(accountRepo)
-	serviceService := service.NewServiceService(serviceRepo) // создаём сервис аккаунта
-
+	profileRepo := repository.NewUserProfileRepository(conn)
 	transactionManager := transaction.NewTransactionManager(conn)
 
-	// Передаем TransactionManager в PaymentService
-	paymentService := service.NewPaymentService(accountRepo, transactionRepo, serviceRepo, transactionManager)
+	userService := service.NewUserService(userRepo)
+	//cardService := service.NewCardService(cardRepo)
+	accountService := service.NewAccountService(accountRepo)
+	servicesService := service.NewServicesService(servicesRepo)
+	userProfileService := service.NewUserProfileService(profileRepo)
+
+	paymentService := service.NewPaymentService(accountRepo, transactionRepo, servicesRepo, transactionManager)
 
 	userHandler := handlers.NewUserHandler(userService, accountService, rdb)
-	//accHandler := handlers.NewAccountHandler(accService, txService)
-	//txHandler := handlers.NewTransactionHandler(accService, txService)
-	cardHandler := handlers.NewCardHandler(cardService)
-	serviceHandler := handlers.NewServiceHandler(serviceService)
+	//cardHandler := handlers.NewCardHandler(cardService)
+	servicesHandler := handlers.NewServicesHandler(servicesService)
 	paymentHandler := handlers.NewPaymentHandler(paymentService)
+	userProfileHandler := handlers.NewUserProfileHandler(userProfileService)
 
 	r := mux.NewRouter()
-	handlers.RegisterRoutes(r, userHandler, cardHandler, serviceHandler, paymentHandler) // ← передаем cardHandler
+	handlers.RegisterRoutes(r, userHandler, servicesHandler, paymentHandler, userProfileHandler)
 
 	logger.Info.Println("Server running on :8080")
 	if err := http.ListenAndServe(":8080", r); err != nil {

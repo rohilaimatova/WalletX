@@ -2,125 +2,70 @@ package repository
 
 import (
 	"WalletX/models"
-	"WalletX/pkg/logger"
 	"database/sql"
+	"fmt"
 )
 
-type UserRepository interface {
-	CreateUser(user models.User) (models.User, error)
-	GetByPhone(phone string) (models.User, error)
-	UpdatePassword(userID int, hashedPassword string) error
-	UpdateVerification(userID int, firstName, lastName, middleName, passport string) error
-	GetByID(userID int) (models.User, error)
-	IncrementPasswordAttempts(userID int) error
-	ResetPasswordAttempts(userID int) error
-	BlockUser(userID int) error
+type UserProfileRepository interface {
+	GetProfileByID(id int) (models.UserProfileResponse, error)
+	GetBalanceByUserID(userID int) (models.UserBalanceResponse, error)
 }
 
-type PostgresUserRepo struct {
-	DB *sql.DB
+type userProfileRepo struct {
+	db *sql.DB
 }
 
-func NewPostgresUserRepo(db *sql.DB) *PostgresUserRepo {
-	return &PostgresUserRepo{DB: db}
-}
-
-func (r *PostgresUserRepo) CreateUser(user models.User) (models.User, error) {
-	err := r.DB.QueryRow(
-		`INSERT INTO users (phone, is_verified) VALUES ($1, $2) RETURNING id, phone, is_verified`,
-		user.Phone, user.IsVerified,
-	).Scan(&user.ID, &user.Phone, &user.IsVerified)
-	if err != nil {
-		logger.Error.Printf("[CreateUser] failed: %v", err)
-		return models.User{}, translateError(err)
+func NewUserProfileRepository(db *sql.DB) UserProfileRepository {
+	return &userProfileRepo{
+		db: db,
 	}
-	logger.Info.Printf("[CreateUser] success: userID=%d", user.ID)
+}
+
+func (r *userProfileRepo) GetProfileByID(id int) (models.UserProfileResponse, error) {
+	var user models.UserProfileResponse
+
+	query := `
+        SELECT id, phone, first_name, last_name, middle_name, is_verified
+        FROM users
+        WHERE id = $1
+        LIMIT 1
+    `
+	row := r.db.QueryRow(query, id)
+	err := row.Scan(
+		&user.ID,
+		&user.Phone,
+		&user.FirstName,
+		&user.LastName,
+		&user.MiddleName,
+		&user.IsVerified,
+	)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return user, nil
+		}
+		return user, fmt.Errorf("failed to scan user: %w", err)
+	}
+
 	return user, nil
 }
 
-func (r *PostgresUserRepo) GetByPhone(phone string) (models.User, error) {
-	var user models.User
-	err := r.DB.QueryRow(
-		`SELECT id, phone, password, device_id, password_attempts, is_verified, first_name, last_name, middle_name, passport_number 
-		 FROM users WHERE phone=$1`,
-		phone,
-	).Scan(&user.ID, &user.Phone, &user.Password, &user.DeviceID, &user.PasswordAttempts,
-		&user.IsVerified, &user.FirstName, &user.LastName, &user.MiddleName, &user.PassportNumber)
-	if err != nil {
-		logger.Warn.Printf("[GetByPhone] failed for phone=%s: %v", phone, err)
-	} else {
-		logger.Info.Printf("[GetByPhone] success for phone=%s, userID=%d", phone, user.ID)
-	}
-	return user, translateError(err)
-}
+func (r *userProfileRepo) GetBalanceByUserID(userID int) (models.UserBalanceResponse, error) {
+	var balance models.UserBalanceResponse
 
-func (r *PostgresUserRepo) UpdatePassword(userID int, hashedPassword string) error {
-	_, err := r.DB.Exec(`UPDATE users SET password=$1 WHERE id=$2`, hashedPassword, userID)
+	query := `
+        SELECT balance, bonus_balance
+        FROM accounts
+        WHERE user_id = $1
+        LIMIT 1
+    `
+	row := r.db.QueryRow(query, userID)
+	err := row.Scan(&balance.Balance, &balance.BonusBalance)
 	if err != nil {
-		logger.Error.Printf("[UpdatePassword] failed: userID=%d, err=%v", userID, err)
-	} else {
-		logger.Info.Printf("[UpdatePassword] success: userID=%d", userID)
+		if err == sql.ErrNoRows {
+			return balance, nil
+		}
+		return balance, fmt.Errorf("failed to scan balance: %w", err)
 	}
-	return translateError(err)
-}
 
-func (r *PostgresUserRepo) IncrementPasswordAttempts(userID int) error {
-	_, err := r.DB.Exec(`UPDATE users SET password_attempts = password_attempts + 1 WHERE id=$1`, userID)
-	if err != nil {
-		logger.Warn.Printf("[IncrementPasswordAttempts] failed: userID=%d, err=%v", userID, err)
-	} else {
-		logger.Info.Printf("[IncrementPasswordAttempts] success: userID=%d", userID)
-	}
-	return translateError(err)
-}
-
-func (r *PostgresUserRepo) ResetPasswordAttempts(userID int) error {
-	_, err := r.DB.Exec(`UPDATE users SET password_attempts = 0 WHERE id=$1`, userID)
-	if err != nil {
-		logger.Warn.Printf("[ResetPasswordAttempts] failed: userID=%d, err=%v", userID, err)
-	} else {
-		logger.Info.Printf("[ResetPasswordAttempts] success: userID=%d", userID)
-	}
-	return translateError(err)
-}
-
-func (r *PostgresUserRepo) BlockUser(userID int) error {
-	_, err := r.DB.Exec(`UPDATE users SET device_id = true WHERE id=$1`, userID)
-	if err != nil {
-		logger.Warn.Printf("[BlockUser] failed: userID=%d, err=%v", userID, err)
-	} else {
-		logger.Info.Printf("[BlockUser] success: userID=%d", userID)
-	}
-	return translateError(err)
-}
-
-func (r *PostgresUserRepo) UpdateVerification(userID int, firstName, lastName, middleName, passport_number string) error {
-	_, err := r.DB.Exec(
-		`UPDATE users 
-		 SET first_name=$1, last_name=$2, middle_name=$3, passport_number=$4, is_verified=true 
-		 WHERE id=$5`,
-		firstName, lastName, middleName, passport_number, userID,
-	)
-	if err != nil {
-		logger.Error.Printf("[UpdateVerification] failed: userID=%d, err=%v", userID, err)
-	} else {
-		logger.Info.Printf("[UpdateVerification] success: userID=%d", userID)
-	}
-	return translateError(err)
-}
-
-func (r *PostgresUserRepo) GetByID(userID int) (models.User, error) {
-	var user models.User
-	err := r.DB.QueryRow(
-		`SELECT id, phone, password, is_verified, first_name, last_name, middle_name, passport_number
-		 FROM users WHERE id=$1`,
-		userID,
-	).Scan(&user.ID, &user.Phone, &user.Password, &user.IsVerified,
-		&user.FirstName, &user.LastName, &user.MiddleName, &user.PassportNumber)
-	if err != nil {
-		logger.Warn.Printf("[GetByID] failed: userID=%d, err=%v", userID, err)
-	} else {
-		logger.Info.Printf("[GetByID] success: userID=%d", userID)
-	}
-	return user, translateError(err)
+	return balance, nil
 }
