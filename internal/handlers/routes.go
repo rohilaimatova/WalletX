@@ -6,7 +6,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func RegisterRoutes(r *mux.Router, userHandler *UserHandler, servicesHandler *ServicesHandler, accountHandler *AccountHandler, userProfileHandler *UserProfileHandler) {
+func RegisterRoutes(r *mux.Router, userHandler *UserHandler, servicesHandler *ServicesHandler, accountHandler *AccountHandler, userProfileHandler *UserProfileHandler, transferHandler *TransferHandler) {
 
 	pingHandler := NewHandler()
 	r.HandleFunc("/ping", pingHandler.Ping).Methods("GET")
@@ -29,16 +29,7 @@ func RegisterRoutes(r *mux.Router, userHandler *UserHandler, servicesHandler *Se
 	protected.Use(middleware.CheckUserAuthentication)
 	protected.HandleFunc("/users/profile", userProfileHandler.GetUserProfile).Methods("GET")
 	protected.HandleFunc("/users/balance", userProfileHandler.GetUserBalance).Methods("GET")
-
+	protected.HandleFunc("/transfer", transferHandler.Transfer).Methods("POST")
 	protected.HandleFunc("/pay", accountHandler.PayForService).Methods("POST")
+	protected.HandleFunc("/history", transferHandler.TransactionHistory).Methods("GET")
 }
-
-/*secured := api.PathPrefix("").Subrouter() //
-secured.Use(middleware.CheckUserAuthentication)
-cards := secured.PathPrefix("/cards").Subrouter()
-
-{
-	cards.HandleFunc("/create", cardHandler.CreateCard).Methods("POST")
-	cards.HandleFunc("/user", cardHandler.GetCardsByUser).Methods("GET")        // ?user_id=
-	cards.HandleFunc("/deactivate", cardHandler.DeactivateCard).Methods("POST") // ?card_id=
-}*/

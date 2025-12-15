@@ -11,7 +11,7 @@ func GenerateCode() string {
 	b := make([]byte, length)
 	_, err := rand.Read(b)
 	if err != nil {
-		return "00000" // fallback (редко)
+		return "00000"
 	}
 
 	code := ""

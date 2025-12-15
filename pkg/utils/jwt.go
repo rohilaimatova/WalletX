@@ -3,8 +3,9 @@ package utils
 import (
 	"WalletX/config"
 	"fmt"
-	"github.com/golang-jwt/jwt"
 	"time"
+
+	"github.com/golang-jwt/jwt"
 )
 
 type CustomClaims struct {
@@ -13,7 +14,6 @@ type CustomClaims struct {
 	jwt.StandardClaims
 }
 
-// GenerateToken — генерирует JWT токен
 func GenerateToken(userID int, username string) (string, error) {
 	auth := config.AppSettings.AuthParams
 
@@ -31,12 +31,10 @@ func GenerateToken(userID int, username string) (string, error) {
 	return token.SignedString([]byte(auth.JwtSecretKey))
 }
 
-// ParseToken — разбирает и валидирует токен
 func ParseToken(tokenString string) (*CustomClaims, error) {
 	auth := config.AppSettings.AuthParams
 
 	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(t *jwt.Token) (interface{}, error) {
-		// проверка метода подписи
 		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", t.Header["alg"])
 		}

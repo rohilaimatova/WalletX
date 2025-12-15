@@ -34,3 +34,15 @@ ERROR: 2025/12/11 23:17:45 account_handler.go:56: [PayForService] Payment failed
 ERROR: 2025/12/11 23:18:50 account_handler.go:56: [PayForService] Payment failed from=5 to=2 amount=50.00: account_from not found
 ERROR: 2025/12/11 23:20:21 account_handler.go:56: [PayForService] Payment failed from=5 to=2 amount=50.00: account_from not found
 ERROR: 2025/12/11 23:20:56 account_handler.go:56: [PayForService] Payment failed from=5 to=2 amount=50.00: account_from not found
+ERROR: 2025/12/12 19:43:10 transfer.go:50: [TransferHandler] Transfer failed: user not found
+ERROR: 2025/12/12 19:43:52 transfer.go:50: [TransferHandler] Transfer failed: user not found
+ERROR: 2025/12/12 20:08:37 transfer.go:49: [TransferHandler] Transfer failed: user not found
+ERROR: 2025/12/12 20:21:09 transfer_repo.go:84: [TransferRepo] CreateTransaction error: pq: столбец "from_id" в таблице "transactions" не существует
+ERROR: 2025/12/12 20:21:09 transfer_service.go:66: [TransferService] failed to create transaction record: pq: столбец "from_id" в таблице "transactions" не существует
+ERROR: 2025/12/12 20:21:09 transfer.go:49: [TransferHandler] Transfer failed: pq: столбец "from_id" в таблице "transactions" не существует
+ERROR: 2025/12/12 20:23:19 transfer_repo.go:87: [TransferRepo] CreateTransaction error: pq: значение NULL в столбце "type" отношения "transactions" нарушает ограничение NOT NULL
+ERROR: 2025/12/12 20:23:19 transfer_service.go:66: [TransferService] failed to create transaction record: pq: значение NULL в столбце "type" отношения "transactions" нарушает ограничение NOT NULL
+ERROR: 2025/12/12 20:23:19 transfer.go:49: [TransferHandler] Transfer failed: pq: значение NULL в столбце "type" отношения "transactions" нарушает ограничение NOT NULL
+ERROR: 2025/12/13 19:24:40 transfer.go:65: [TransferHandler] Transfer failed: insufficient balance
+ERROR: 2025/12/13 20:49:10 transfer.go:65: [TransferHandler] Transfer failed: insufficient balance
+ERROR: 2025/12/13 20:49:26 account_handler.go:52: [PayForService] Payment failed from=3 to=2 amount=70.00: insufficient balance

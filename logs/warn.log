@@ -79,3 +79,26 @@ WARN: 2025/12/11 23:20:21 account_repo.go:62: [AccountRepository] GetByID: no ac
 WARN: 2025/12/11 23:20:21 account_service.go:61: [PaymentService] account_from not found: 5
 WARN: 2025/12/11 23:20:56 account_repo.go:62: [AccountRepository] GetByID: no account found for ID=5
 WARN: 2025/12/11 23:20:56 account_service.go:61: [PaymentService] account_from not found: 5
+WARN: 2025/12/12 19:43:10 account_repo.go:65: [AccountRepository] GetByID: no account found for ID=5
+WARN: 2025/12/12 19:43:10 transfer_service.go:34: [Transfer] from account not found: sql: no rows in result set
+WARN: 2025/12/12 19:43:52 account_repo.go:65: [AccountRepository] GetByID: no account found for ID=5
+WARN: 2025/12/12 19:43:52 transfer_service.go:34: [Transfer] from account not found: sql: no rows in result set
+WARN: 2025/12/12 20:08:37 transfer_repo.go:52: [TransferRepo] GetAccountByPhone failed: pq: столбец "phone" не существует
+WARN: 2025/12/12 20:08:37 transfer_service.go:42: [TransferService] recipient account not found: pq: столбец "phone" не существует
+WARN: 2025/12/12 21:04:45 transfer_service.go:48: [TransferService] Attempt to transfer to self: accountID=1
+WARN: 2025/12/12 21:04:45 transfer.go:59: [TransferHandler] Attempt to transfer to self: fromID=1
+WARN: 2025/12/12 21:04:58 transfer_service.go:48: [TransferService] Attempt to transfer to self: accountID=1
+WARN: 2025/12/12 21:04:58 transfer.go:59: [TransferHandler] Attempt to transfer to self: fromID=1
+WARN: 2025/12/12 21:06:43 transfer_service.go:48: [TransferService] Attempt to transfer to self: accountID=1
+WARN: 2025/12/12 21:06:43 transfer.go:60: [TransferHandler] Attempt to transfer to self: fromID=1
+WARN: 2025/12/12 21:07:27 account_repo.go:40: [AccountRepository] GetByPhone: no account found for phone=+992931062349
+WARN: 2025/12/12 21:07:27 transfer.go:52: [TransferHandler] Recipient account not found: phone=+992931062349
+WARN: 2025/12/12 22:13:48 account_repo.go:42: [AccountRepository] GetByPhone: no account found for phone=+992931062349
+WARN: 2025/12/12 22:13:48 transfer.go:53: [TransferHandler] Recipient account not found: phone=+992931062349
+WARN: 2025/12/12 22:14:03 transfer_service.go:50: [TransferService] Attempt to transfer to self: accountID=1
+WARN: 2025/12/12 22:14:03 transfer.go:61: [TransferHandler] Attempt to transfer to self: fromID=1
+WARN: 2025/12/13 19:21:16 auth_repo.go:50: [GetByPhone] failed for phone=+992931062349: sql: no rows in result set
+WARN: 2025/12/13 19:22:13 auth_repo.go:50: [GetByPhone] failed for phone=+992931062349: sql: no rows in result set
+WARN: 2025/12/13 19:24:40 transfer_service.go:56: [TransferService] Insufficient funds: fromAccountID=5, balance=0.00, requested=100.00
+WARN: 2025/12/13 20:49:10 transfer_service.go:56: [TransferService] Insufficient funds: fromAccountID=2, balance=0.00, requested=500.00
+WARN: 2025/12/13 20:49:26 account_service.go:76: [PaymentService] insufficient balance: have=0.00 need=70.00

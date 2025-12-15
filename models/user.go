@@ -12,9 +12,6 @@ type User struct {
 	DeviceID         bool    `json:"device_id,omitempty"`
 	PasswordAttempts int     `json:"password_attempts" db:"password_attempts"`
 }
-type RegisterRequest struct {
-	Phone string `json:"phone"`
-}
 type SetPasswordRequest struct {
 	UserID   int    `json:"user_id"`
 	Password string `json:"password"`

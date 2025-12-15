@@ -682,3 +682,805 @@ INFO: 2025/12/12 00:06:51 auth_handler.go:180: User 2 logged in successfully
 INFO: 2025/12/12 00:07:16 user_handler.go:42: User profile returned for ID 2
 INFO: 2025/12/12 00:08:04 user_handler.go:65: Balance returned for user ID 2
 INFO: 2025/12/12 00:13:08 main.go:64: Server running on :8080
+INFO: 2025/12/12 19:36:01 main.go:67: Server running on :8080
+INFO: 2025/12/12 19:40:28 auth_repo.go:62: [UpdatePassword] success: userID=5
+INFO: 2025/12/12 19:40:28 auth_service.go:73: SetPassword: success for userID=5
+INFO: 2025/12/12 19:40:28 auth_handler.go:145: Password set successfully for user 5
+INFO: 2025/12/12 19:41:02 user_handler.go:41: User profile returned for ID 5
+INFO: 2025/12/12 19:41:24 user_handler.go:64: Balance returned for user ID 5
+INFO: 2025/12/12 19:44:12 user_handler.go:41: User profile returned for ID 5
+INFO: 2025/12/12 19:44:55 user_handler.go:41: User profile returned for ID 5
+INFO: 2025/12/12 19:45:03 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/12 19:45:03 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/12 19:45:03 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/12 19:45:03 auth_handler.go:180: User 2 logged in successfully
+INFO: 2025/12/12 19:45:24 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 19:45:33 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 19:45:40 account_repo.go:98: [AccountRepository] Account ID 2 current balance: 710.00
+INFO: 2025/12/12 19:45:40 account_repo.go:125: [AccountRepository] Successfully decreased balance for account ID 2, amount: 100.50
+INFO: 2025/12/12 19:45:40 transfer_service.go:63: [Transfer] success: fromID=2, toID=4, amount=100.50
+INFO: 2025/12/12 19:45:40 transfer.go:55: [TransferHandler] Transfer success: from=2 to=4 amount=100.50
+INFO: 2025/12/12 19:46:54 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 19:50:05 account_handler.go:22: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/12 19:50:05 account_service.go:73: [PaymentService] paying from 1 to 2 with amount 60.00
+INFO: 2025/12/12 19:50:05 account_repo.go:98: [AccountRepository] Account ID 1 current balance: 990.00
+INFO: 2025/12/12 19:50:05 account_repo.go:125: [AccountRepository] Successfully decreased balance for account ID 1, amount: 60.00
+INFO: 2025/12/12 19:50:05 transaction.go:33: [CreateTransaction] success: transaction={15 1 2 60 internet 2025-12-12 19:50:05.786821 +0000 +0000}
+INFO: 2025/12/12 19:50:05 account_service.go:106: [PaymentService] SUCCESS transfer from=1 to=2 amount=60.00 type=internet
+INFO: 2025/12/12 19:50:05 account_handler.go:57: [PayForService] Payment success from=2 to=2 amount=60.00 type=internet
+INFO: 2025/12/12 19:50:19 account_handler.go:22: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/12 19:50:19 account_service.go:73: [PaymentService] paying from 1 to 2 with amount 70.00
+INFO: 2025/12/12 19:50:19 account_repo.go:98: [AccountRepository] Account ID 1 current balance: 930.00
+INFO: 2025/12/12 19:50:19 account_repo.go:125: [AccountRepository] Successfully decreased balance for account ID 1, amount: 70.00
+INFO: 2025/12/12 19:50:19 transaction.go:33: [CreateTransaction] success: transaction={16 1 2 70 internet 2025-12-12 19:50:19.54891 +0000 +0000}
+INFO: 2025/12/12 19:50:19 account_service.go:106: [PaymentService] SUCCESS transfer from=1 to=2 amount=70.00 type=internet
+INFO: 2025/12/12 19:50:19 account_handler.go:57: [PayForService] Payment success from=2 to=2 amount=70.00 type=internet
+INFO: 2025/12/12 19:59:21 main.go:67: Server running on :8080
+INFO: 2025/12/12 19:59:27 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 19:59:31 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 19:59:35 account_repo.go:98: [AccountRepository] Account ID 2 current balance: 739.50
+INFO: 2025/12/12 19:59:35 account_repo.go:125: [AccountRepository] Successfully decreased balance for account ID 2, amount: 100.50
+INFO: 2025/12/12 19:59:35 transfer_service.go:63: [Transfer] success: fromID=2, toID=4, amount=100.50
+INFO: 2025/12/12 19:59:35 transfer.go:55: [TransferHandler] Transfer success: from=2 to=4 amount=100.50
+INFO: 2025/12/12 19:59:38 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:08:22 main.go:66: Server running on :8080
+INFO: 2025/12/12 20:08:30 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 20:08:34 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:20:57 main.go:66: Server running on :8080
+INFO: 2025/12/12 20:21:02 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 20:21:06 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:21:09 transfer_repo.go:108: [TransferRepo] Found account by phone +992931062347: {ID:4 UserID:5 Balance:501 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/12 20:22:49 main.go:66: Server running on :8080
+INFO: 2025/12/12 20:23:10 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 20:23:13 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:23:19 transfer_repo.go:111: [TransferRepo] Found account by phone +992931062347: {ID:4 UserID:5 Balance:501 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/12 20:24:29 main.go:66: Server running on :8080
+INFO: 2025/12/12 20:24:46 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 20:24:49 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:24:52 transfer_repo.go:110: [TransferRepo] Found account by phone +992931062347: {ID:4 UserID:5 Balance:501 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/12 20:24:52 transfer_service.go:70: [TransferService] Transfer success: fromID=2, toID=4, amount=100.50
+INFO: 2025/12/12 20:24:52 transfer.go:54: [TransferHandler] Transfer success: from=2 to=+992931062347 amount=100.50
+INFO: 2025/12/12 20:24:57 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:24:59 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:27:22 transfer_repo.go:110: [TransferRepo] Found account by phone +992931062347: {ID:4 UserID:5 Balance:601.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/12 20:27:22 transfer_service.go:70: [TransferService] Transfer success: fromID=2, toID=4, amount=100.00
+INFO: 2025/12/12 20:27:22 transfer.go:54: [TransferHandler] Transfer success: from=2 to=+992931062347 amount=100.00
+INFO: 2025/12/12 20:27:26 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:27:48 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:27:51 transfer_repo.go:110: [TransferRepo] Found account by phone +992931062347: {ID:4 UserID:5 Balance:701.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/12 20:27:51 transfer_service.go:70: [TransferService] Transfer success: fromID=2, toID=4, amount=100.00
+INFO: 2025/12/12 20:27:51 transfer.go:54: [TransferHandler] Transfer success: from=2 to=+992931062347 amount=100.00
+INFO: 2025/12/12 20:29:15 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 20:29:21 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:55:34 main.go:67: Server running on :8080
+INFO: 2025/12/12 20:55:45 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/12 20:55:45 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/12 20:55:45 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/12 20:55:45 auth_handler.go:180: User 2 logged in successfully
+INFO: 2025/12/12 20:56:03 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 20:56:08 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:56:11 account_repo.go:47: [AccountRepository] Found account by phone +992931062347: {ID:4 UserID:5 Balance:801.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/12 20:56:11 account_repo.go:119: [AccountRepository] Account ID 1 current balance: 860.00
+INFO: 2025/12/12 20:56:11 account_repo.go:146: [AccountRepository] Successfully decreased balance for account ID 1, amount: 100.00
+INFO: 2025/12/12 20:56:11 transfer_service.go:65: [TransferService] Transfer success: fromID=1, toID=4, amount=100.00
+INFO: 2025/12/12 20:56:11 transfer.go:63: [TransferHandler] Transfer completed: fromAccountID=1, toAccountID=4, amount=100.00
+INFO: 2025/12/12 20:56:15 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 20:57:15 account_repo.go:47: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:760 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 20:57:15 account_repo.go:119: [AccountRepository] Account ID 1 current balance: 760.00
+INFO: 2025/12/12 20:57:15 account_repo.go:146: [AccountRepository] Successfully decreased balance for account ID 1, amount: 100.00
+INFO: 2025/12/12 20:57:15 transfer_service.go:65: [TransferService] Transfer success: fromID=1, toID=1, amount=100.00
+INFO: 2025/12/12 20:57:15 transfer.go:63: [TransferHandler] Transfer completed: fromAccountID=1, toAccountID=1, amount=100.00
+INFO: 2025/12/12 20:57:24 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 20:57:29 account_repo.go:47: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:760 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 20:57:29 account_repo.go:119: [AccountRepository] Account ID 1 current balance: 760.00
+INFO: 2025/12/12 20:57:29 account_repo.go:146: [AccountRepository] Successfully decreased balance for account ID 1, amount: 100.00
+INFO: 2025/12/12 20:57:29 transfer_service.go:65: [TransferService] Transfer success: fromID=1, toID=1, amount=100.00
+INFO: 2025/12/12 20:57:29 transfer.go:63: [TransferHandler] Transfer completed: fromAccountID=1, toAccountID=1, amount=100.00
+INFO: 2025/12/12 20:57:33 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 21:04:32 main.go:67: Server running on :8080
+INFO: 2025/12/12 21:04:38 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 21:04:41 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 21:04:44 account_repo.go:47: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:760 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 21:04:52 account_repo.go:47: [AccountRepository] Found account by phone +992931062347: {ID:4 UserID:5 Balance:901.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/12 21:04:52 account_repo.go:119: [AccountRepository] Account ID 1 current balance: 760.00
+INFO: 2025/12/12 21:04:52 account_repo.go:146: [AccountRepository] Successfully decreased balance for account ID 1, amount: 100.00
+INFO: 2025/12/12 21:04:52 transfer_service.go:71: [TransferService] Transfer success: fromID=1, toID=4, amount=100.00
+INFO: 2025/12/12 21:04:52 transfer.go:68: [TransferHandler] Transfer completed: fromAccountID=1, toAccountID=4, amount=100.00
+INFO: 2025/12/12 21:04:58 account_repo.go:47: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:660 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 21:06:28 main.go:67: Server running on :8080
+INFO: 2025/12/12 21:06:35 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 21:06:39 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 21:06:43 account_repo.go:47: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:660 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 21:06:55 account_handler.go:22: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/12 21:06:55 account_service.go:73: [PaymentService] paying from 1 to 2 with amount 70.00
+INFO: 2025/12/12 21:06:55 account_repo.go:119: [AccountRepository] Account ID 1 current balance: 660.00
+INFO: 2025/12/12 21:06:55 account_repo.go:146: [AccountRepository] Successfully decreased balance for account ID 1, amount: 70.00
+INFO: 2025/12/12 21:06:55 transaction.go:33: [CreateTransaction] success: transaction={21 1 2 70 internet 2025-12-12 21:06:55.450308 +0000 +0000}
+INFO: 2025/12/12 21:06:55 account_service.go:106: [PaymentService] SUCCESS transfer from=1 to=2 amount=70.00 type=internet
+INFO: 2025/12/12 21:06:55 account_handler.go:57: [PayForService] Payment success from=2 to=2 amount=70.00 type=internet
+INFO: 2025/12/12 21:49:28 main.go:67: Server running on :8080
+INFO: 2025/12/12 21:50:11 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/12 21:50:15 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 21:50:44 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/12 21:50:44 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/12 21:50:44 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:590 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 21:50:44 account_repo.go:199: [AccountRepository] Fetched 11 transactions for accountID=1 between 2025-11-01 00:00:00 +0000 UTC and 2025-12-12 00:00:00 +0000 UTC
+INFO: 2025/12/12 21:50:44 transfer.go:117: [TransferHandler] Retrieved 11 transactions for accountID=1
+INFO: 2025/12/12 21:56:42 main.go:67: Server running on :8080
+INFO: 2025/12/12 21:56:52 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/12 21:56:53 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/12 21:56:53 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/12 21:56:53 auth_handler.go:180: User 2 logged in successfully
+INFO: 2025/12/12 21:57:06 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/12 21:57:06 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/12 21:57:06 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:590 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 21:57:06 account_repo.go:177: [AccountRepository] Fetching transactions for accountID=1
+INFO: 2025/12/12 21:57:06 account_repo.go:203: [AccountRepository] Fetched 7 transactions for accountID=1
+INFO: 2025/12/12 21:57:06 transfer.go:117: [TransferHandler] Retrieved 7 transactions for accountID=1
+INFO: 2025/12/12 22:04:16 main.go:67: Server running on :8080
+INFO: 2025/12/12 22:04:22 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/12 22:04:22 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/12 22:04:22 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:590 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 22:04:22 account_repo.go:177: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-01 00:00:00 +0000 UTC - 2025-12-12 00:00:00 +0000 UTC
+INFO: 2025/12/12 22:04:22 account_repo.go:203: [AccountRepository] Fetched 7 transactions for accountID=1
+INFO: 2025/12/12 22:04:22 transfer.go:117: [TransferHandler] Retrieved 7 transactions for accountID=1
+INFO: 2025/12/12 22:04:52 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/12 22:04:52 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/12 22:04:52 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:590 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 22:04:52 account_repo.go:177: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-01 00:00:00 +0000 UTC - 2025-12-12 00:00:00 +0000 UTC
+INFO: 2025/12/12 22:04:52 account_repo.go:203: [AccountRepository] Fetched 7 transactions for accountID=1
+INFO: 2025/12/12 22:04:52 transfer.go:117: [TransferHandler] Retrieved 7 transactions for accountID=1
+INFO: 2025/12/12 22:05:09 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/12 22:05:09 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/12 22:05:09 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:590 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 22:05:09 account_repo.go:177: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-12 00:00:00 +0000 UTC
+INFO: 2025/12/12 22:05:09 account_repo.go:203: [AccountRepository] Fetched 7 transactions for accountID=1
+INFO: 2025/12/12 22:05:09 transfer.go:117: [TransferHandler] Retrieved 7 transactions for accountID=1
+INFO: 2025/12/12 22:05:15 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/12 22:05:15 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/12 22:05:15 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:590 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 22:05:15 account_repo.go:177: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-11 00:00:00 +0000 UTC
+INFO: 2025/12/12 22:05:15 account_repo.go:203: [AccountRepository] Fetched 4 transactions for accountID=1
+INFO: 2025/12/12 22:05:15 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=1
+INFO: 2025/12/12 22:08:57 main.go:67: Server running on :8080
+INFO: 2025/12/12 22:09:01 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/12 22:09:01 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/12 22:09:01 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:590 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 22:09:01 account_repo.go:177: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-11 00:00:00 +0000 UTC
+INFO: 2025/12/12 22:09:01 account_repo.go:203: [AccountRepository] Fetched 4 transactions for accountID=1
+INFO: 2025/12/12 22:09:01 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=1
+INFO: 2025/12/12 22:09:21 account_repo.go:49: [AccountRepository] Found account by phone +992931062347: {ID:4 UserID:5 Balance:1001.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/12 22:09:21 account_repo.go:121: [AccountRepository] Account ID 1 current balance: 590.00
+INFO: 2025/12/12 22:09:21 account_repo.go:148: [AccountRepository] Successfully decreased balance for account ID 1, amount: 100.00
+INFO: 2025/12/12 22:09:21 transfer_service.go:73: [TransferService] Transfer success: fromID=1, toID=4, amount=100.00
+INFO: 2025/12/12 22:09:21 transfer.go:70: [TransferHandler] Transfer completed: fromAccountID=1, toAccountID=4, amount=100.00
+INFO: 2025/12/12 22:09:48 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/12 22:09:48 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/12 22:09:48 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:490 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 22:09:48 account_repo.go:177: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-11 00:00:00 +0000 UTC
+INFO: 2025/12/12 22:09:48 account_repo.go:203: [AccountRepository] Fetched 4 transactions for accountID=1
+INFO: 2025/12/12 22:09:48 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=1
+INFO: 2025/12/12 22:14:03 account_repo.go:49: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:490 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 22:34:36 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/12 22:41:37 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/12 22:41:37 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/12 22:41:37 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:490 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/12 22:41:37 account_repo.go:177: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-11 00:00:00 +0000 UTC
+INFO: 2025/12/12 22:41:37 account_repo.go:203: [AccountRepository] Fetched 4 transactions for accountID=1
+INFO: 2025/12/12 22:41:37 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=1
+INFO: 2025/12/13 19:16:59 main.go:63: Server running on :8080
+INFO: 2025/12/13 19:18:39 auth_handler.go:26: Ping endpoint called
+INFO: 2025/12/13 19:20:56 auth_handler.go:26: Ping endpoint called
+INFO: 2025/12/13 19:21:16 auth_service.go:24: GetByPhone called for phone: +992931062349
+INFO: 2025/12/13 19:21:16 auth_handler.go:85: SMS verification code sent to +992931062349: 35887
+INFO: 2025/12/13 19:22:13 auth_repo.go:37: [CreateUser] success: userID=6
+INFO: 2025/12/13 19:22:13 auth_service.go:52: RegisterUser: success, userID=6
+INFO: 2025/12/13 19:22:13 account_repo.go:65: [CreateAccount] success: userID=6, account={5 6 0 0 2025-12-13 19:22:13.717274 +0000 +0000 2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:22:13 account_service.go:36: CreateAccountForUser: success, accountID=5 for userID=6
+INFO: 2025/12/13 19:22:13 auth_handler.go:125: User registered successfully: 6
+INFO: 2025/12/13 19:22:42 auth_repo.go:62: [UpdatePassword] success: userID=6
+INFO: 2025/12/13 19:22:42 auth_service.go:73: SetPassword: success for userID=6
+INFO: 2025/12/13 19:22:42 auth_handler.go:145: Password set successfully for user 6
+INFO: 2025/12/13 19:23:25 auth_repo.go:107: [UpdateVerification] success: userID=6
+INFO: 2025/12/13 19:23:25 auth_service.go:124: VerifyUser: success for userID=6
+INFO: 2025/12/13 19:23:25 auth_handler.go:202: User 6 verified identity successfully
+INFO: 2025/12/13 19:24:09 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 19:24:28 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 19:24:40 account_repo.go:49: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:490 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/13 19:24:47 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:24:47 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 19:24:47 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:0 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:24:47 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-11 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:24:47 account_repo.go:202: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 19:24:47 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 19:26:30 auth_repo.go:52: [GetByPhone] success for phone=+992931062347, userID=5
+INFO: 2025/12/13 19:26:30 auth_repo.go:82: [ResetPasswordAttempts] success: userID=5
+INFO: 2025/12/13 19:26:30 auth_service.go:109: User 5 logged in successfully
+INFO: 2025/12/13 19:26:30 auth_handler.go:180: User 5 logged in successfully
+INFO: 2025/12/13 19:26:36 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 19:26:58 user_handler.go:41: User profile returned for ID 5
+INFO: 2025/12/13 19:27:03 user_handler.go:64: Balance returned for user ID 5
+INFO: 2025/12/13 19:27:21 account_repo.go:49: [AccountRepository] Found account by phone +992931062349: {ID:5 UserID:6 Balance:0 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:27:21 account_repo.go:121: [AccountRepository] Account ID 4 current balance: 1101.50
+INFO: 2025/12/13 19:27:21 account_repo.go:147: [AccountRepository] Successfully decreased balance for account ID 4, amount: 500.00
+INFO: 2025/12/13 19:27:21 transfer_service.go:73: [TransferService] Transfer success: fromID=4, toID=5, amount=500.00
+INFO: 2025/12/13 19:27:21 transfer.go:70: [TransferHandler] Transfer completed: fromAccountID=4, toAccountID=5, amount=500.00
+INFO: 2025/12/13 19:27:26 user_handler.go:64: Balance returned for user ID 5
+INFO: 2025/12/13 19:27:37 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/13 19:27:37 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/13 19:27:37 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/13 19:27:37 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/13 19:27:53 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 19:28:03 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/13 19:28:03 service_service.go:20: Fetching all services
+INFO: 2025/12/13 19:28:03 service_repo.go:25: Fetching all services from the database
+INFO: 2025/12/13 19:28:03 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/13 19:28:03 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/13 19:28:03 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/13 19:28:24 account_handler.go:22: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/13 19:28:24 account_service.go:73: [PaymentService] paying from 5 to 2 with amount 70.00
+INFO: 2025/12/13 19:28:24 account_repo.go:121: [AccountRepository] Account ID 5 current balance: 500.00
+INFO: 2025/12/13 19:28:24 account_repo.go:147: [AccountRepository] Successfully decreased balance for account ID 5, amount: 70.00
+INFO: 2025/12/13 19:28:24 transaction.go:33: [CreateTransaction] success: transaction={22 5 2 70 internet 2025-12-13 19:28:24.36563 +0000 +0000}
+INFO: 2025/12/13 19:28:24 account_service.go:106: [PaymentService] SUCCESS transfer from=5 to=2 amount=70.00 type=internet
+INFO: 2025/12/13 19:28:24 account_handler.go:57: [PayForService] Payment success from=6 to=2 amount=70.00 type=internet
+INFO: 2025/12/13 19:28:34 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:28:34 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 19:28:34 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:28:34 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-11 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:28:34 account_repo.go:202: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 19:28:34 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 19:28:43 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:28:43 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 19:28:43 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:28:43 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:28:43 account_repo.go:202: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 19:28:43 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 19:28:48 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:28:48 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 19:28:48 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:28:48 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:28:48 account_repo.go:202: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 19:28:48 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 19:29:26 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:29:26 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 19:29:26 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:29:26 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:29:26 account_repo.go:202: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 19:29:26 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 19:29:46 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:29:46 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 19:29:46 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:29:46 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:29:46 account_repo.go:202: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 19:29:46 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 19:29:56 auth_repo.go:52: [GetByPhone] success for phone=+992931062347, userID=5
+INFO: 2025/12/13 19:29:56 auth_repo.go:82: [ResetPasswordAttempts] success: userID=5
+INFO: 2025/12/13 19:29:56 auth_service.go:109: User 5 logged in successfully
+INFO: 2025/12/13 19:29:56 auth_handler.go:180: User 5 logged in successfully
+INFO: 2025/12/13 19:30:09 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:30:09 transfer.go:101: [TransferHandler] UserID from token: 5
+INFO: 2025/12/13 19:30:09 transfer.go:109: [TransferHandler] Found account: {ID:4 UserID:5 Balance:601.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/13 19:30:09 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=4, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:30:09 account_repo.go:202: [AccountRepository] Fetched 4 transactions for accountID=4
+INFO: 2025/12/13 19:30:09 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=4
+INFO: 2025/12/13 19:30:52 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/13 19:30:52 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/13 19:30:52 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/13 19:30:52 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/13 19:31:08 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 19:31:13 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:31:13 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 19:31:13 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:31:13 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:31:13 account_repo.go:202: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 19:31:13 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 19:33:02 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 19:53:17 main.go:63: Server running on :8080
+INFO: 2025/12/13 19:53:41 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 19:53:46 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:53:46 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 19:53:46 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:53:46 account_repo.go:181: [AccountRepository] Fetching transactions for userID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:53:46 account_repo.go:212: [AccountRepository] Fetched 4 transactions for userID=5
+INFO: 2025/12/13 19:53:46 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=5
+INFO: 2025/12/13 19:54:02 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 19:54:36 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 19:54:45 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 19:54:45 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 19:54:45 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 19:54:45 account_repo.go:181: [AccountRepository] Fetching transactions for userID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 19:54:45 account_repo.go:212: [AccountRepository] Fetched 4 transactions for userID=5
+INFO: 2025/12/13 19:54:45 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=5
+INFO: 2025/12/13 20:12:00 main.go:63: Server running on :8080
+INFO: 2025/12/13 20:12:09 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 20:12:13 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 20:12:18 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:12:18 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 20:12:18 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 20:12:18 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:12:18 account_repo.go:206: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 20:12:18 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 20:15:59 auth_repo.go:52: [GetByPhone] success for phone=+992931062347, userID=5
+INFO: 2025/12/13 20:15:59 auth_repo.go:82: [ResetPasswordAttempts] success: userID=5
+INFO: 2025/12/13 20:15:59 auth_service.go:109: User 5 logged in successfully
+INFO: 2025/12/13 20:15:59 auth_handler.go:180: User 5 logged in successfully
+INFO: 2025/12/13 20:16:15 user_handler.go:41: User profile returned for ID 5
+INFO: 2025/12/13 20:16:20 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:16:20 transfer.go:101: [TransferHandler] UserID from token: 5
+INFO: 2025/12/13 20:16:20 transfer.go:109: [TransferHandler] Found account: {ID:4 UserID:5 Balance:601.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/13 20:16:20 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=4, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:16:20 account_repo.go:206: [AccountRepository] Fetched 4 transactions for accountID=4
+INFO: 2025/12/13 20:16:20 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=4
+INFO: 2025/12/13 20:17:32 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/13 20:17:32 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/13 20:17:32 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/13 20:17:32 auth_handler.go:180: User 2 logged in successfully
+INFO: 2025/12/13 20:17:46 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/13 20:17:51 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:17:51 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/13 20:17:51 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:490 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/13 20:17:51 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:17:51 account_repo.go:206: [AccountRepository] Fetched 10 transactions for accountID=1
+INFO: 2025/12/13 20:17:51 transfer.go:117: [TransferHandler] Retrieved 10 transactions for accountID=1
+INFO: 2025/12/13 20:24:32 auth_repo.go:52: [GetByPhone] success for phone=+992931062344, userID=3
+INFO: 2025/12/13 20:24:32 auth_repo.go:82: [ResetPasswordAttempts] success: userID=3
+INFO: 2025/12/13 20:24:32 auth_service.go:109: User 3 logged in successfully
+INFO: 2025/12/13 20:24:32 auth_handler.go:180: User 3 logged in successfully
+INFO: 2025/12/13 20:25:00 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:25:00 transfer.go:101: [TransferHandler] UserID from token: 3
+INFO: 2025/12/13 20:25:00 transfer.go:109: [TransferHandler] Found account: {ID:2 UserID:3 Balance:478.5 BonusBalance:0 CreatedAt:2025-12-10 22:02:03.240834 +0000 +0000 UpdatedAt:2025-12-10 22:02:03.240834 +0000 +0000}
+INFO: 2025/12/13 20:25:00 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=2, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:25:00 account_repo.go:206: [AccountRepository] Fetched 6 transactions for accountID=2
+INFO: 2025/12/13 20:25:00 transfer.go:117: [TransferHandler] Retrieved 6 transactions for accountID=2
+INFO: 2025/12/13 20:35:12 main.go:63: Server running on :8080
+INFO: 2025/12/13 20:35:37 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:35:37 transfer.go:101: [TransferHandler] UserID from token: 3
+INFO: 2025/12/13 20:35:37 transfer.go:109: [TransferHandler] Found account: {ID:2 UserID:3 Balance:478.5 BonusBalance:0 CreatedAt:2025-12-10 22:02:03.240834 +0000 +0000 UpdatedAt:2025-12-10 22:02:03.240834 +0000 +0000}
+INFO: 2025/12/13 20:35:37 account_repo.go:176: [AccountRepository] Fetching transactions for userID=2, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:35:37 account_repo.go:209: [AccountRepository] Fetched 3 transactions for userID=2
+INFO: 2025/12/13 20:35:37 transfer.go:117: [TransferHandler] Retrieved 3 transactions for accountID=2
+INFO: 2025/12/13 20:35:50 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/13 20:35:50 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/13 20:35:50 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/13 20:35:50 auth_handler.go:180: User 2 logged in successfully
+INFO: 2025/12/13 20:36:00 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/13 20:36:00 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/13 20:36:00 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/13 20:36:00 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/13 20:36:16 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 20:36:21 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 20:36:25 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:36:25 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 20:36:25 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 20:36:25 account_repo.go:176: [AccountRepository] Fetching transactions for userID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:36:25 account_repo.go:209: [AccountRepository] Fetched 1 transactions for userID=5
+INFO: 2025/12/13 20:36:25 transfer.go:117: [TransferHandler] Retrieved 1 transactions for accountID=5
+INFO: 2025/12/13 20:37:01 auth_repo.go:52: [GetByPhone] success for phone=+992931062347, userID=5
+INFO: 2025/12/13 20:37:01 auth_repo.go:82: [ResetPasswordAttempts] success: userID=5
+INFO: 2025/12/13 20:37:01 auth_service.go:109: User 5 logged in successfully
+INFO: 2025/12/13 20:37:01 auth_handler.go:180: User 5 logged in successfully
+INFO: 2025/12/13 20:37:16 user_handler.go:41: User profile returned for ID 5
+INFO: 2025/12/13 20:37:20 user_handler.go:64: Balance returned for user ID 5
+INFO: 2025/12/13 20:37:24 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:37:24 transfer.go:101: [TransferHandler] UserID from token: 5
+INFO: 2025/12/13 20:37:24 transfer.go:109: [TransferHandler] Found account: {ID:4 UserID:5 Balance:601.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/13 20:37:24 account_repo.go:176: [AccountRepository] Fetching transactions for userID=4, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:37:24 account_repo.go:209: [AccountRepository] Fetched 0 transactions for userID=4
+INFO: 2025/12/13 20:37:24 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=4
+INFO: 2025/12/13 20:39:12 main.go:63: Server running on :8080
+INFO: 2025/12/13 20:39:29 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:39:29 transfer.go:101: [TransferHandler] UserID from token: 5
+INFO: 2025/12/13 20:39:29 transfer.go:109: [TransferHandler] Found account: {ID:4 UserID:5 Balance:601.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/13 20:39:29 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=4, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:39:29 account_repo.go:206: [AccountRepository] Fetched 4 transactions for accountID=4
+INFO: 2025/12/13 20:39:29 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=4
+INFO: 2025/12/13 20:40:09 auth_repo.go:52: [GetByPhone] success for phone=+992931062344, userID=3
+INFO: 2025/12/13 20:40:09 auth_repo.go:82: [ResetPasswordAttempts] success: userID=3
+INFO: 2025/12/13 20:40:09 auth_service.go:109: User 3 logged in successfully
+INFO: 2025/12/13 20:40:09 auth_handler.go:180: User 3 logged in successfully
+INFO: 2025/12/13 20:40:29 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:40:29 transfer.go:101: [TransferHandler] UserID from token: 3
+INFO: 2025/12/13 20:40:29 transfer.go:109: [TransferHandler] Found account: {ID:2 UserID:3 Balance:478.5 BonusBalance:0 CreatedAt:2025-12-10 22:02:03.240834 +0000 +0000 UpdatedAt:2025-12-10 22:02:03.240834 +0000 +0000}
+INFO: 2025/12/13 20:40:29 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=2, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:40:29 account_repo.go:206: [AccountRepository] Fetched 6 transactions for accountID=2
+INFO: 2025/12/13 20:40:29 transfer.go:117: [TransferHandler] Retrieved 6 transactions for accountID=2
+INFO: 2025/12/13 20:40:35 user_handler.go:64: Balance returned for user ID 3
+INFO: 2025/12/13 20:48:46 main.go:63: Server running on :8080
+INFO: 2025/12/13 20:48:56 user_handler.go:64: Balance returned for user ID 3
+INFO: 2025/12/13 20:49:01 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:49:01 transfer.go:101: [TransferHandler] UserID from token: 3
+INFO: 2025/12/13 20:49:01 transfer.go:109: [TransferHandler] Found account: {ID:2 UserID:3 Balance:0 BonusBalance:0 CreatedAt:2025-12-10 22:02:03.240834 +0000 +0000 UpdatedAt:2025-12-10 22:02:03.240834 +0000 +0000}
+INFO: 2025/12/13 20:49:01 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=2, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:49:01 account_repo.go:206: [AccountRepository] Fetched 0 transactions for accountID=2
+INFO: 2025/12/13 20:49:01 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=2
+INFO: 2025/12/13 20:49:10 account_repo.go:49: [AccountRepository] Found account by phone +992931062349: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 20:49:26 account_handler.go:22: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/13 20:49:26 account_service.go:73: [PaymentService] paying from 2 to 2 with amount 70.00
+INFO: 2025/12/13 20:49:37 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/13 20:49:37 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/13 20:49:37 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/13 20:49:37 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/13 20:49:52 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 20:49:57 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 20:50:01 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:50:01 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 20:50:01 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 20:50:01 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:50:01 account_repo.go:206: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 20:50:01 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 20:52:39 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 20:56:38 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:56:38 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 20:56:38 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:430 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 20:56:38 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:56:38 account_repo.go:206: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 20:56:38 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 20:56:51 account_repo.go:49: [AccountRepository] Found account by phone +992931062347: {ID:4 UserID:5 Balance:601.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/13 20:56:51 account_repo.go:121: [AccountRepository] Account ID 5 current balance: 430.00
+INFO: 2025/12/13 20:56:51 account_repo.go:147: [AccountRepository] Successfully decreased balance for account ID 5, amount: 10.00
+INFO: 2025/12/13 20:56:51 transfer_service.go:73: [TransferService] Transfer success: fromID=5, toID=4, amount=10.00
+INFO: 2025/12/13 20:56:51 transfer.go:70: [TransferHandler] Transfer completed: fromAccountID=5, toAccountID=4, amount=10.00
+INFO: 2025/12/13 20:56:57 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 20:57:01 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 20:57:01 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 20:57:01 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:420 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 20:57:01 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 20:57:01 account_repo.go:206: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 20:57:01 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 21:13:03 main.go:63: Server running on :8080
+INFO: 2025/12/13 21:13:08 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:13:08 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 21:13:08 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:420 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:13:08 account_repo.go:176: [AccountRepository] Fetching transactions for userID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:13:08 account_repo.go:209: [AccountRepository] Fetched 4 transactions for userID=5
+INFO: 2025/12/13 21:13:08 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=5
+INFO: 2025/12/13 21:13:20 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 21:13:23 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 21:13:27 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:13:27 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 21:13:27 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:420 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:13:27 account_repo.go:176: [AccountRepository] Fetching transactions for userID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:13:27 account_repo.go:209: [AccountRepository] Fetched 4 transactions for userID=5
+INFO: 2025/12/13 21:13:27 transfer.go:117: [TransferHandler] Retrieved 4 transactions for accountID=5
+INFO: 2025/12/13 21:15:45 main.go:63: Server running on :8080
+INFO: 2025/12/13 21:15:52 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 21:15:55 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 21:15:59 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:15:59 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 21:15:59 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:420 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:15:59 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:15:59 account_repo.go:203: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 21:15:59 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 21:17:59 account_repo.go:49: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:490 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/13 21:17:59 account_repo.go:121: [AccountRepository] Account ID 5 current balance: 420.00
+INFO: 2025/12/13 21:17:59 account_repo.go:147: [AccountRepository] Successfully decreased balance for account ID 5, amount: 10.00
+INFO: 2025/12/13 21:17:59 transfer_service.go:73: [TransferService] Transfer success: fromID=5, toID=1, amount=10.00
+INFO: 2025/12/13 21:17:59 transfer.go:70: [TransferHandler] Transfer completed: fromAccountID=5, toAccountID=1, amount=10.00
+INFO: 2025/12/13 21:19:09 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/13 21:19:09 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/13 21:19:09 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/13 21:19:09 auth_handler.go:180: User 2 logged in successfully
+INFO: 2025/12/13 21:19:25 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/13 21:19:30 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/13 21:19:35 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:19:35 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/13 21:19:35 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:500 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/13 21:19:35 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:19:35 account_repo.go:203: [AccountRepository] Fetched 11 transactions for accountID=1
+INFO: 2025/12/13 21:19:35 transfer.go:117: [TransferHandler] Retrieved 11 transactions for accountID=1
+INFO: 2025/12/13 21:20:24 account_repo.go:49: [AccountRepository] Found account by phone +992931062349: {ID:5 UserID:6 Balance:410 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:20:24 account_repo.go:121: [AccountRepository] Account ID 1 current balance: 500.00
+INFO: 2025/12/13 21:20:24 account_repo.go:147: [AccountRepository] Successfully decreased balance for account ID 1, amount: 10.00
+INFO: 2025/12/13 21:20:24 transfer_service.go:73: [TransferService] Transfer success: fromID=1, toID=5, amount=10.00
+INFO: 2025/12/13 21:20:24 transfer.go:70: [TransferHandler] Transfer completed: fromAccountID=1, toAccountID=5, amount=10.00
+INFO: 2025/12/13 21:20:30 account_repo.go:49: [AccountRepository] Found account by phone +992931062349: {ID:5 UserID:6 Balance:420 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:20:30 account_repo.go:121: [AccountRepository] Account ID 1 current balance: 490.00
+INFO: 2025/12/13 21:20:30 account_repo.go:147: [AccountRepository] Successfully decreased balance for account ID 1, amount: 30.00
+INFO: 2025/12/13 21:20:30 transfer_service.go:73: [TransferService] Transfer success: fromID=1, toID=5, amount=30.00
+INFO: 2025/12/13 21:20:30 transfer.go:70: [TransferHandler] Transfer completed: fromAccountID=1, toAccountID=5, amount=30.00
+INFO: 2025/12/13 21:22:42 main.go:63: Server running on :8080
+INFO: 2025/12/13 21:22:47 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:22:47 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/13 21:22:47 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:460 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/13 21:22:47 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:22:47 account_repo.go:206: [AccountRepository] Fetched 11 transactions for accountID=1
+INFO: 2025/12/13 21:22:47 transfer.go:117: [TransferHandler] Retrieved 11 transactions for accountID=1
+INFO: 2025/12/13 21:23:00 account_repo.go:49: [AccountRepository] Found account by phone +992931062349: {ID:5 UserID:6 Balance:450 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:23:00 account_repo.go:121: [AccountRepository] Account ID 1 current balance: 460.00
+INFO: 2025/12/13 21:23:00 account_repo.go:147: [AccountRepository] Successfully decreased balance for account ID 1, amount: 30.00
+INFO: 2025/12/13 21:23:00 transfer_service.go:73: [TransferService] Transfer success: fromID=1, toID=5, amount=30.00
+INFO: 2025/12/13 21:23:00 transfer.go:70: [TransferHandler] Transfer completed: fromAccountID=1, toAccountID=5, amount=30.00
+INFO: 2025/12/13 21:23:04 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:23:04 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/13 21:23:04 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:430 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/13 21:23:04 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:23:04 account_repo.go:206: [AccountRepository] Fetched 11 transactions for accountID=1
+INFO: 2025/12/13 21:23:04 transfer.go:117: [TransferHandler] Retrieved 11 transactions for accountID=1
+INFO: 2025/12/13 21:37:45 main.go:63: Server running on :8080
+INFO: 2025/12/13 21:37:50 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:37:50 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/13 21:37:50 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:430 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/13 21:37:50 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:37:50 account_repo.go:206: [AccountRepository] Fetched 11 transactions for accountID=1
+INFO: 2025/12/13 21:37:50 transfer.go:117: [TransferHandler] Retrieved 11 transactions for accountID=1
+INFO: 2025/12/13 21:38:04 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/13 21:38:15 account_repo.go:49: [AccountRepository] Found account by phone +992931062349: {ID:5 UserID:6 Balance:480 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:38:15 account_repo.go:121: [AccountRepository] Account ID 1 current balance: 430.00
+INFO: 2025/12/13 21:38:15 account_repo.go:147: [AccountRepository] Successfully decreased balance for account ID 1, amount: 1.00
+INFO: 2025/12/13 21:38:15 transaction.go:33: [CreateTransaction] success: transaction={23 1 5 1 transfer 2025-12-13 21:38:15.186869 +0000 +0000}
+INFO: 2025/12/13 21:38:15 transfer_service.go:82: [TransferService] Transfer success: fromID=1, toID=5, amount=1.00
+INFO: 2025/12/13 21:38:15 transfer.go:70: [TransferHandler] Transfer completed: fromAccountID=1, toAccountID=5, amount=1.00
+INFO: 2025/12/13 21:38:19 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/13 21:38:37 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:38:37 transfer.go:101: [TransferHandler] UserID from token: 2
+INFO: 2025/12/13 21:38:37 transfer.go:109: [TransferHandler] Found account: {ID:1 UserID:2 Balance:429 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/13 21:38:37 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:38:37 account_repo.go:206: [AccountRepository] Fetched 12 transactions for accountID=1
+INFO: 2025/12/13 21:38:37 transfer.go:117: [TransferHandler] Retrieved 12 transactions for accountID=1
+INFO: 2025/12/13 21:38:48 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/13 21:38:48 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/13 21:38:48 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/13 21:38:48 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/13 21:39:02 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 21:39:06 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 21:39:11 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:39:11 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 21:39:11 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:481 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:39:11 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:39:11 account_repo.go:206: [AccountRepository] Fetched 1 transactions for accountID=5
+INFO: 2025/12/13 21:39:11 transfer.go:117: [TransferHandler] Retrieved 1 transactions for accountID=5
+INFO: 2025/12/13 21:39:23 account_repo.go:49: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:429 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/13 21:39:23 account_repo.go:121: [AccountRepository] Account ID 5 current balance: 481.00
+INFO: 2025/12/13 21:39:23 account_repo.go:147: [AccountRepository] Successfully decreased balance for account ID 5, amount: 1.00
+INFO: 2025/12/13 21:39:23 transaction.go:33: [CreateTransaction] success: transaction={24 5 1 1 transfer 2025-12-13 21:39:23.186666 +0000 +0000}
+INFO: 2025/12/13 21:39:23 transfer_service.go:82: [TransferService] Transfer success: fromID=5, toID=1, amount=1.00
+INFO: 2025/12/13 21:39:23 transfer.go:70: [TransferHandler] Transfer completed: fromAccountID=5, toAccountID=1, amount=1.00
+INFO: 2025/12/13 21:39:27 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/13 21:39:30 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:39:30 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 21:39:30 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:480 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:39:30 account_repo.go:176: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:39:30 account_repo.go:206: [AccountRepository] Fetched 2 transactions for accountID=5
+INFO: 2025/12/13 21:39:30 transfer.go:117: [TransferHandler] Retrieved 2 transactions for accountID=5
+INFO: 2025/12/13 21:54:50 main.go:63: Server running on :8080
+INFO: 2025/12/13 21:57:46 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:57:46 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 21:57:46 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:480 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:57:46 account_repo.go:167: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:57:46 account_repo.go:193: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/13 21:57:46 transfer.go:117: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/13 21:57:54 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 21:58:33 main.go:63: Server running on :8080
+INFO: 2025/12/13 21:58:36 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/13 21:58:40 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/13 21:58:40 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/13 21:58:40 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:480 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/13 21:58:40 account_repo.go:168: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/13 21:58:40 account_repo.go:198: [AccountRepository] Fetched 2 transactions for accountID=5
+INFO: 2025/12/13 21:58:40 transfer.go:117: [TransferHandler] Retrieved 2 transactions for accountID=5
+INFO: 2025/12/14 20:26:26 main.go:63: Server running on :8080
+INFO: 2025/12/14 20:26:45 auth_handler.go:26: Ping endpoint called
+INFO: 2025/12/14 20:27:19 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/14 20:27:19 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/14 20:27:19 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/14 20:27:19 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/14 20:27:43 service_handler.go:19: Received request to fetch all services: GET /api/services
+INFO: 2025/12/14 20:27:43 service_service.go:20: Fetching all services
+INFO: 2025/12/14 20:27:43 service_repo.go:25: Fetching all services from the database
+INFO: 2025/12/14 20:27:43 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/14 20:27:43 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/14 20:27:43 service_handler.go:27: Successfully fetched 3 services
+INFO: 2025/12/14 20:27:51 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/14 20:28:03 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/14 20:28:14 transfer.go:75: [TransferHandler] TransactionHistory called
+INFO: 2025/12/14 20:28:14 transfer.go:101: [TransferHandler] UserID from token: 6
+INFO: 2025/12/14 20:28:14 transfer.go:109: [TransferHandler] Found account: {ID:5 UserID:6 Balance:480 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/14 20:28:14 account_repo.go:168: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/14 20:28:14 account_repo.go:198: [AccountRepository] Fetched 2 transactions for accountID=5
+INFO: 2025/12/14 20:28:14 transfer.go:117: [TransferHandler] Retrieved 2 transactions for accountID=5
+INFO: 2025/12/14 22:00:25 main.go:62: Server running on :8080
+INFO: 2025/12/14 22:02:22 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/14 22:02:22 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/14 22:02:22 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/14 22:02:22 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/14 22:03:38 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/14 22:03:38 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/14 22:03:38 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/14 22:03:38 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/14 22:04:15 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/14 22:04:20 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/14 22:04:20 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/14 22:04:20 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:480 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/14 22:04:20 transaction.go:41: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/14 22:04:20 transaction.go:71: [AccountRepository] Fetched 2 transactions for accountID=5
+INFO: 2025/12/14 22:04:20 transfer.go:113: [TransferHandler] Retrieved 2 transactions for accountID=5
+INFO: 2025/12/14 22:04:28 account_repo.go:49: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:430 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/14 22:04:28 account_repo.go:156: [AccountRepository] Successfully decreased balance for account ID 5, amount: 5.00
+INFO: 2025/12/14 22:04:28 transaction.go:36: [CreateTransaction] success: transaction={25 5 1 5 transfer 2025-12-14 22:04:28.797784 +0000 +0000}
+INFO: 2025/12/14 22:04:28 transfer_service.go:82: [TransferService] Transfer success: fromID=5, toID=1, amount=5.00
+INFO: 2025/12/14 22:04:28 transfer.go:66: [TransferHandler] Transfer completed: fromAccountID=5, toAccountID=1, amount=5.00
+INFO: 2025/12/14 22:04:33 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/14 22:04:33 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/14 22:04:33 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:475 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/14 22:04:33 transaction.go:41: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/14 22:04:33 transaction.go:71: [AccountRepository] Fetched 3 transactions for accountID=5
+INFO: 2025/12/14 22:04:33 transfer.go:113: [TransferHandler] Retrieved 3 transactions for accountID=5
+INFO: 2025/12/15 11:52:26 main.go:62: Server running on :8080
+INFO: 2025/12/15 11:53:48 auth_handler.go:26: Ping endpoint called
+INFO: 2025/12/15 11:53:55 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/15 11:53:55 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/15 11:53:55 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/15 11:53:55 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/15 11:54:16 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/15 11:54:21 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 11:54:21 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 11:54:21 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:475 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 11:54:21 transaction.go:41: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 11:54:21 transaction.go:71: [AccountRepository] Fetched 3 transactions for accountID=5
+INFO: 2025/12/15 11:54:21 transfer.go:113: [TransferHandler] Retrieved 3 transactions for accountID=5
+INFO: 2025/12/15 12:30:42 main.go:62: Server running on :8080
+INFO: 2025/12/15 12:30:48 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/15 12:30:53 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 12:30:53 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 12:30:53 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:475 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 12:30:53 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 12:30:53 transaction.go:90: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 12:30:53 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 12:31:39 main.go:62: Server running on :8080
+INFO: 2025/12/15 12:31:44 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 12:31:44 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 12:31:44 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:475 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 12:31:44 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 12:31:44 transaction.go:90: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 12:31:44 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 12:33:22 account_repo.go:49: [AccountRepository] Found account by phone +992931062345: {ID:1 UserID:2 Balance:435 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/15 12:33:22 account_repo.go:156: [AccountRepository] Successfully decreased balance for account ID 5, amount: 9.00
+INFO: 2025/12/15 12:33:22 transaction.go:36: [CreateTransaction] success: transaction={26 5 1 9 transfer 2025-12-15 12:33:22.438544 +0000 +0000}
+INFO: 2025/12/15 12:33:22 transfer_service.go:82: [TransferService] Transfer success: fromID=5, toID=1, amount=9.00
+INFO: 2025/12/15 12:33:22 transfer.go:66: [TransferHandler] Transfer completed: fromAccountID=5, toAccountID=1, amount=9.00
+INFO: 2025/12/15 12:37:30 main.go:62: Server running on :8080
+INFO: 2025/12/15 12:37:37 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 12:37:37 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 12:37:37 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 12:37:37 transaction.go:41: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 12:37:37 transaction.go:71: [AccountRepository] Fetched 4 transactions for accountID=5
+INFO: 2025/12/15 12:37:37 transfer.go:113: [TransferHandler] Retrieved 4 transactions for accountID=5
+INFO: 2025/12/15 12:43:34 main.go:62: Server running on :8080
+INFO: 2025/12/15 12:43:38 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 12:43:38 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 12:43:38 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 12:43:38 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 12:43:38 transaction.go:90: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 12:43:38 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 12:46:01 main.go:62: Server running on :8080
+INFO: 2025/12/15 12:46:05 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 12:46:05 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 12:46:05 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 12:46:05 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 12:46:05 transaction.go:90: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 12:46:05 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 12:54:17 main.go:62: Server running on :8080
+INFO: 2025/12/15 12:54:25 auth_repo.go:52: [GetByPhone] success for phone=+992931062349, userID=6
+INFO: 2025/12/15 12:54:25 auth_repo.go:82: [ResetPasswordAttempts] success: userID=6
+INFO: 2025/12/15 12:54:25 auth_service.go:109: User 6 logged in successfully
+INFO: 2025/12/15 12:54:25 auth_handler.go:180: User 6 logged in successfully
+INFO: 2025/12/15 12:54:36 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/15 12:54:40 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 12:54:40 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 12:54:40 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 12:54:40 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 12:54:40 transaction.go:90: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 12:54:40 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 12:55:53 main.go:62: Server running on :8080
+INFO: 2025/12/15 12:55:56 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 12:55:56 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 12:55:56 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 12:55:56 transaction.go:42: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 12:55:56 transaction.go:86: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 12:55:56 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 12:57:53 main.go:62: Server running on :8080
+INFO: 2025/12/15 12:57:57 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 12:57:57 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 12:57:57 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 12:57:57 transaction.go:42: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 12:57:57 transaction.go:86: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 12:57:57 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 13:23:20 main.go:62: Server running on :8080
+INFO: 2025/12/15 13:23:23 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:23:23 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:23:23 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:23:23 transaction.go:42: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 13:23:23 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 13:25:45 main.go:62: Server running on :8080
+INFO: 2025/12/15 13:25:49 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:25:49 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:25:49 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:25:49 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 13:25:49 transaction.go:100: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 13:25:49 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 13:28:30 main.go:62: Server running on :8080
+INFO: 2025/12/15 13:28:32 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:28:32 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:28:32 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:28:32 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 13:28:32 transaction.go:90: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 13:28:32 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 13:28:34 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:28:34 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:28:34 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:28:34 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-13 00:00:00 +0000 UTC
+INFO: 2025/12/15 13:28:34 transaction.go:90: [AccountRepository] Fetched 0 transactions for accountID=5
+INFO: 2025/12/15 13:28:34 transfer.go:113: [TransferHandler] Retrieved 0 transactions for accountID=5
+INFO: 2025/12/15 13:28:41 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/15 13:28:51 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:28:51 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:28:51 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:28:51 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-15 00:00:00 +0000 UTC
+INFO: 2025/12/15 13:28:51 transaction.go:90: [AccountRepository] Fetched 4 transactions for accountID=5
+INFO: 2025/12/15 13:28:51 transfer.go:113: [TransferHandler] Retrieved 4 transactions for accountID=5
+INFO: 2025/12/15 13:29:42 main.go:62: Server running on :8080
+INFO: 2025/12/15 13:29:45 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:29:45 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:29:45 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:29:45 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-15 00:00:00 +0000 UTC
+INFO: 2025/12/15 13:29:45 transaction.go:96: [AccountRepository] Fetched 3 transactions for accountID=5
+INFO: 2025/12/15 13:29:45 transfer.go:113: [TransferHandler] Retrieved 3 transactions for accountID=5
+INFO: 2025/12/15 13:33:14 main.go:62: Server running on :8080
+INFO: 2025/12/15 13:33:18 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:33:18 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:33:18 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:33:18 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-15 00:00:00 +0000 UTC
+INFO: 2025/12/15 13:33:18 transaction.go:101: [AccountRepository] Fetched 3 transactions for accountID=5
+INFO: 2025/12/15 13:33:18 transfer.go:113: [TransferHandler] Retrieved 3 transactions for accountID=5
+INFO: 2025/12/15 13:35:58 main.go:62: Server running on :8080
+INFO: 2025/12/15 13:36:08 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:36:08 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:36:08 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:466 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:36:08 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-15 00:00:00 +0000 UTC
+INFO: 2025/12/15 13:36:08 transaction.go:100: [AccountRepository] Fetched 3 transactions for accountID=5
+INFO: 2025/12/15 13:36:08 transfer.go:113: [TransferHandler] Retrieved 3 transactions for accountID=5
+INFO: 2025/12/15 13:36:32 user_handler.go:41: User profile returned for ID 6
+INFO: 2025/12/15 13:36:53 account_repo.go:49: [AccountRepository] Found account by phone +992931062347: {ID:4 UserID:5 Balance:611.5 BonusBalance:0 CreatedAt:2025-12-10 22:28:19.551558 +0000 +0000 UpdatedAt:2025-12-10 22:28:19.551558 +0000 +0000}
+INFO: 2025/12/15 13:36:53 account_repo.go:156: [AccountRepository] Successfully decreased balance for account ID 5, amount: 11.00
+INFO: 2025/12/15 13:36:53 transaction.go:36: [CreateTransaction] success: transaction={27 5 4 11 transfer 2025-12-15 13:36:53.126601 +0000 +0000}
+INFO: 2025/12/15 13:36:53 transfer_service.go:82: [TransferService] Transfer success: fromID=5, toID=4, amount=11.00
+INFO: 2025/12/15 13:36:53 transfer.go:66: [TransferHandler] Transfer completed: fromAccountID=5, toAccountID=4, amount=11.00
+INFO: 2025/12/15 13:36:58 user_handler.go:64: Balance returned for user ID 6
+INFO: 2025/12/15 13:37:02 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:37:02 transfer.go:97: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:37:02 transfer.go:105: [TransferHandler] Found account: {ID:5 UserID:6 Balance:455 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:37:02 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-15 00:00:00 +0000 UTC
+INFO: 2025/12/15 13:37:02 transaction.go:100: [AccountRepository] Fetched 3 transactions for accountID=5
+INFO: 2025/12/15 13:37:02 transfer.go:113: [TransferHandler] Retrieved 3 transactions for accountID=5
+INFO: 2025/12/15 13:48:29 main.go:62: Server running on :8080
+INFO: 2025/12/15 13:48:32 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:48:32 transfer.go:100: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:48:32 transfer.go:108: [TransferHandler] Found account: {ID:5 UserID:6 Balance:455 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:48:32 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-15 23:59:59.999999999 +0000 UTC
+INFO: 2025/12/15 13:48:32 transaction.go:100: [AccountRepository] Fetched 5 transactions for accountID=5
+INFO: 2025/12/15 13:48:32 transfer.go:116: [TransferHandler] Retrieved 5 transactions for accountID=5
+INFO: 2025/12/15 13:50:51 main.go:62: Server running on :8080
+INFO: 2025/12/15 13:50:55 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 13:50:55 transfer.go:100: [TransferHandler] UserID from token: 6
+INFO: 2025/12/15 13:50:55 transfer.go:108: [TransferHandler] Found account: {ID:5 UserID:6 Balance:455 BonusBalance:0 CreatedAt:2025-12-13 19:22:13.717274 +0000 +0000 UpdatedAt:2025-12-13 19:22:13.717274 +0000 +0000}
+INFO: 2025/12/15 13:50:55 transaction.go:46: [AccountRepository] Fetching transactions for accountID=5, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-15 23:59:59.999999999 +0000 UTC
+INFO: 2025/12/15 13:50:55 transaction.go:100: [AccountRepository] Fetched 5 transactions for accountID=5
+INFO: 2025/12/15 13:50:55 transfer.go:116: [TransferHandler] Retrieved 5 transactions for accountID=5
+INFO: 2025/12/15 13:53:52 main.go:62: Server running on :8080
+INFO: 2025/12/15 14:02:18 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/15 14:02:18 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/15 14:02:18 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/15 14:02:18 auth_handler.go:180: User 2 logged in successfully
+INFO: 2025/12/15 14:02:31 user_service.go:21: [UserProfileService] GetProfileByID called with id=2
+INFO: 2025/12/15 14:02:31 user_service.go:29: [UserProfileService] Successfully retrieved profile for userID=2: {ID:2 Phone:+992931062345 FirstName:Иван LastName:Иванов MiddleName:Иванович IsVerified:true}
+INFO: 2025/12/15 14:02:31 user_handler.go:41: User profile returned for ID 2
+INFO: 2025/12/15 14:02:36 user_service.go:34: [UserProfileService] GetBalanceByUserID called with userID=2
+INFO: 2025/12/15 14:02:36 user_service.go:42: [UserProfileService] Successfully retrieved balance for userID=2: {Balance:444 BonusBalance:0}
+INFO: 2025/12/15 14:02:36 user_handler.go:64: Balance returned for user ID 2
+INFO: 2025/12/15 14:02:39 transfer.go:71: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 14:02:39 transfer.go:100: [TransferHandler] UserID from token: 2
+INFO: 2025/12/15 14:02:39 transfer.go:108: [TransferHandler] Found account: {ID:1 UserID:2 Balance:444 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/15 14:02:39 transaction.go:46: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-15 23:59:59.999999999 +0000 UTC
+INFO: 2025/12/15 14:02:39 transaction.go:100: [AccountRepository] Fetched 11 transactions for accountID=1
+INFO: 2025/12/15 14:02:39 transfer.go:116: [TransferHandler] Retrieved 11 transactions for accountID=1

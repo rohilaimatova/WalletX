@@ -2,10 +2,11 @@ package repository
 
 import (
 	"WalletX/models"
+	"WalletX/pkg/errs"
 	"WalletX/pkg/logger"
 	"context"
 	"database/sql"
-	"errors"
+	"time"
 )
 
 type AccountRepository interface {
@@ -14,6 +15,8 @@ type AccountRepository interface {
 	DecreaseBalance(ctx context.Context, id int, amount float64) error
 	IncreaseBalance(ctx context.Context, id int, amount float64) error
 	GetByUserID(ctx context.Context, userID int) (models.Account, error)
+	GetByPhone(ctx context.Context, phone string) (*models.Account, error)
+	GetTransactions(ctx context.Context, accountID int, start, end time.Time) ([]models.TransactionHistory, error)
 }
 
 type accountRepo struct {
@@ -22,6 +25,29 @@ type accountRepo struct {
 
 func NewAccountRepository(db *sql.DB) AccountRepository {
 	return &accountRepo{db: db}
+}
+
+func (r *accountRepo) GetByPhone(ctx context.Context, phone string) (*models.Account, error) {
+	var acc models.Account
+	query := `
+		SELECT a.id, a.user_id, a.balance, a.bonus_balance, a.created_at, a.updated_at
+		FROM accounts a
+		JOIN users u ON a.user_id = u.id
+		WHERE u.phone = $1
+	`
+	err := r.db.QueryRowContext(ctx, query, phone).
+		Scan(&acc.ID, &acc.UserID, &acc.Balance, &acc.BonusBalance, &acc.CreatedAt, &acc.UpdatedAt)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			logger.Warn.Printf("[AccountRepository] Account not found by phone=%s", phone)
+			return nil, errs.ErrAccountNotFound
+		}
+		logger.Error.Printf("[AccountRepository] GetByPhone DB error: %v", err)
+		return nil, errs.ErrInternal
+	}
+
+	logger.Info.Printf("[AccountRepository] Found account by phone %s: %+v", phone, acc)
+	return &acc, nil
 }
 
 func (r *accountRepo) CreateAccount(account models.Account) (models.Account, error) {
@@ -34,14 +60,14 @@ func (r *accountRepo) CreateAccount(account models.Account) (models.Account, err
 	err := row.Scan(&account.ID, &account.CreatedAt, &account.UpdatedAt)
 	if err != nil {
 		logger.Warn.Printf("[CreateAccount] failed: userID=%d, err=%v", account.UserID, err) // Если ошибка
-		return models.Account{}, err
+		return models.Account{}, errs.ErrInternal
 	}
 	logger.Info.Printf("[CreateAccount] success: userID=%d, account=%v", account.UserID, account) // Если успех
 	return account, nil
 }
 
 func getTx(ctx context.Context) *sql.Tx {
-	tx, _ := ctx.Value(struct{}{}).(*sql.Tx) // если используешь другой ключ, меняем
+	tx, _ := ctx.Value(struct{}{}).(*sql.Tx)
 	return tx
 }
 
@@ -59,11 +85,11 @@ func (r *accountRepo) GetByID(ctx context.Context, id int) (*models.Account, err
 	err := row.Scan(&account.ID, &account.UserID, &account.Balance, &account.BonusBalance, &account.CreatedAt, &account.UpdatedAt)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			logger.Warn.Printf("[AccountRepository] GetByID: no account found for ID=%d", id)
-			return nil, err
+			logger.Warn.Printf("[AccountRepository] Account not found: id=%d", id)
+			return nil, errs.ErrAccountNotFound
 		}
-		logger.Error.Printf("[AccountRepository] GetByID error: %v", err)
-		return nil, err
+		logger.Error.Printf("[AccountRepository] GetByID DB error: %v", err)
+		return nil, errs.ErrInternal
 	}
 
 	return &account, nil
@@ -76,8 +102,12 @@ func (r *accountRepo) GetByUserID(ctx context.Context, userID int) (models.Accou
 	).Scan(&account.ID, &account.UserID, &account.Balance, &account.BonusBalance, &account.CreatedAt, &account.UpdatedAt)
 
 	if err != nil {
-		logger.Warn.Printf("[AccountRepository] GetByUserID: no account found for userID=%d", userID)
-		return models.Account{}, err
+		if err == sql.ErrNoRows {
+			logger.Warn.Printf("[AccountRepository] Account not found for userID=%d", userID)
+			return models.Account{}, errs.ErrAccountNotFound
+		}
+		logger.Error.Printf("[AccountRepository] GetByUserID DB error: %v", err)
+		return models.Account{}, errs.ErrInternal
 	}
 
 	return account, nil
@@ -89,14 +119,19 @@ func (r *accountRepo) DecreaseBalance(ctx context.Context, id int, amount float6
 	var balance float64
 	row := r.db.QueryRow("SELECT balance FROM accounts WHERE id = $1", id)
 	if err := row.Scan(&balance); err != nil {
-		logger.Error.Printf("[AccountRepository] Error fetching balance for account ID %d: %v", id, err)
-		return err
+		logger.Error.Printf(
+			"[AccountRepository] Failed to fetch balance for accountID=%d: %v",
+			id, err,
+		)
+		if err == sql.ErrNoRows {
+			return errs.ErrAccountNotFound
+		}
+		return errs.ErrInternal
 	}
-	logger.Info.Printf("[AccountRepository] Account ID %d current balance: %.2f", id, balance)
 
 	if balance < amount {
 		logger.Warn.Printf("[AccountRepository] Insufficient balance for account ID %d, requested: %.2f, available: %.2f", id, amount, balance)
-		return errors.New("insufficient balance")
+		return errs.ErrInsufficientBalance
 	}
 
 	var exec sql.Result
@@ -109,14 +144,13 @@ func (r *accountRepo) DecreaseBalance(ctx context.Context, id int, amount float6
 
 	if err != nil {
 		logger.Error.Printf("[AccountRepository] DecreaseBalance error: %v", err)
-		return err
+		return errs.ErrInternal
 	}
 
 	rows, _ := exec.RowsAffected()
 	if rows == 0 {
-		// Если строка не была обновлена, значит либо аккаунт не найден, либо недостаточно средств
 		logger.Warn.Printf("[AccountRepository] DecreaseBalance failed: no rows affected for account ID %d", id)
-		return errors.New("insufficient balance or account not found")
+		return errs.ErrAccountNotFound
 	}
 
 	logger.Info.Printf("[AccountRepository] Successfully decreased balance for account ID %d, amount: %.2f", id, amount)
@@ -137,12 +171,12 @@ func (r *accountRepo) IncreaseBalance(ctx context.Context, id int, amount float6
 
 	if err != nil {
 		logger.Error.Printf("[AccountRepository] IncreaseBalance error: %v", err)
-		return err
+		return errs.ErrInternal
 	}
 
 	rows, _ := exec.RowsAffected()
 	if rows == 0 {
-		return sql.ErrNoRows
+		return errs.ErrAccountNotFound
 	}
 
 	return nil

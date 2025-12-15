@@ -56,14 +56,12 @@ func NewPaymentService(accountRepo repository.AccountRepository, transactionRepo
 func (s *PaymentService) Pay(ctx context.Context, userID, toID int, amount float64, transactionType string) error {
 	return s.TM.WithinTransaction(ctx, func(txCtx context.Context) error {
 
-		// Получаем аккаунт пользователя по userID из токена
 		from, err := s.AccountRepo.GetByUserID(txCtx, userID)
 		if err != nil {
 			logger.Warn.Printf("[PaymentService] account_from not found for userID: %d", userID)
 			return errors.New("account_from not found")
 		}
 
-		// Получаем аккаунт получателя по ID аккаунта (как раньше)
 		to, err := s.AccountRepo.GetByID(txCtx, toID)
 		if err != nil {
 			logger.Warn.Printf("[PaymentService] account_to not found: %d", toID)

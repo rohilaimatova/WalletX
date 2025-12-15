@@ -17,7 +17,7 @@ import (
 func main() {
 
 	if err := config.ReadSettings(); err != nil {
-		logger.Error.Fatalf("Ошибка чтения настроек: %s", err)
+		logger.Error.Fatalf("Failed to read configuration settings: %s", err)
 	}
 
 	if err := logger.Init(); err != nil {
@@ -26,7 +26,7 @@ func main() {
 
 	rdb := redisPkg.InitRedis()
 	if rdb == nil {
-		logger.Error.Fatalf("Ошибка подключения Redis")
+		logger.Error.Fatalf("Failed to connect to Redis")
 	}
 
 	if err := db.ConnectDB(); err != nil {
@@ -37,7 +37,6 @@ func main() {
 	conn := db.GetDBConnection()
 
 	userRepo := repository.NewPostgresUserRepo(conn)
-	//cardRepo := repository.NewPostgresCardRepo(conn)
 	accountRepo := repository.NewAccountRepository(conn)
 	servicesRepo := repository.NewServicesRepo(conn)
 	transactionRepo := repository.NewTransactionRepository(conn)
@@ -45,21 +44,20 @@ func main() {
 	transactionManager := transaction.NewTransactionManager(conn)
 
 	userService := service.NewUserService(userRepo)
-	//cardService := service.NewCardService(cardRepo)
 	accountService := service.NewAccountService(accountRepo)
 	servicesService := service.NewServicesService(servicesRepo)
 	userProfileService := service.NewUserProfileService(profileRepo)
-
+	transferService := service.NewTransferService(accountRepo, transactionRepo, transactionManager)
 	paymentService := service.NewPaymentService(accountRepo, transactionRepo, servicesRepo, transactionManager)
 
 	userHandler := handlers.NewUserHandler(userService, accountService, rdb)
-	//cardHandler := handlers.NewCardHandler(cardService)
 	servicesHandler := handlers.NewServicesHandler(servicesService)
 	paymentHandler := handlers.NewPaymentHandler(paymentService)
 	userProfileHandler := handlers.NewUserProfileHandler(userProfileService)
+	transferHandler := handlers.NewTransferHandler(transferService)
 
 	r := mux.NewRouter()
-	handlers.RegisterRoutes(r, userHandler, servicesHandler, paymentHandler, userProfileHandler)
+	handlers.RegisterRoutes(r, userHandler, servicesHandler, paymentHandler, userProfileHandler, transferHandler)
 
 	logger.Info.Println("Server running on :8080")
 	if err := http.ListenAndServe(":8080", r); err != nil {
