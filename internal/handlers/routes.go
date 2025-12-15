@@ -4,6 +4,7 @@ import (
 	"WalletX/internal/handlers/middleware"
 
 	"github.com/gorilla/mux"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 func RegisterRoutes(r *mux.Router, userHandler *UserHandler, servicesHandler *ServicesHandler, accountHandler *AccountHandler, userProfileHandler *UserProfileHandler, transferHandler *TransferHandler) {
@@ -32,4 +33,7 @@ func RegisterRoutes(r *mux.Router, userHandler *UserHandler, servicesHandler *Se
 	protected.HandleFunc("/transfer", transferHandler.Transfer).Methods("POST")
 	protected.HandleFunc("/pay", accountHandler.PayForService).Methods("POST")
 	protected.HandleFunc("/history", transferHandler.TransactionHistory).Methods("GET")
+
+	r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+	//http://localhost:8080/swagger/index.html
 }

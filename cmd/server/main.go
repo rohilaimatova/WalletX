@@ -12,8 +12,16 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+
+	_ "WalletX/docs"
 )
 
+// @title           WalletX API
+// @version         1.0
+// @description     Digital wallet backend API
+// @securityDefinitions.apikey BearerAuth
+// @in              header
+// @name            Authorization
 func main() {
 
 	if err := config.ReadSettings(); err != nil {

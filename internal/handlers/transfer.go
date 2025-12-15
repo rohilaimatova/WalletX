@@ -22,6 +22,20 @@ func NewTransferHandler(ts *service.TransferService) *TransferHandler {
 	}
 }
 
+// Transfer godoc
+// @Summary Transfer money to another user
+// @Description Transfer funds to another user by phone number
+// @Tags transfer
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Param request body models.TransferRequest true "Transfer request"
+// @Success 200 {object} map[string]string "success"
+// @Failure 400 {object} models.ErrorResponse "bad request"
+// @Failure 401 {object} models.ErrorResponse "unauthorized"
+// @Failure 404 {object} models.ErrorResponse "recipient not found"
+// @Failure 500 {object} models.ErrorResponse "internal error"
+// @Router /api/transfer [post]
 func (h *TransferHandler) Transfer(w http.ResponseWriter, r *http.Request) {
 	var req models.TransferRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -67,6 +81,21 @@ func (h *TransferHandler) Transfer(w http.ResponseWriter, r *http.Request) {
 		fromAcc.ID, toAcc.ID, req.Amount)
 	respond.JSON(w, http.StatusOK, map[string]string{"status": "success"})
 }
+
+// TransactionHistory godoc
+// @Summary Get transaction history
+// @Description Returns transaction history for authenticated user within date range
+// @Tags transactions
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Param start query string false "Start date (YYYY-MM-DD)" example(2025-11-02)
+// @Param end query string false "End date (YYYY-MM-DD)" example(2025-12-15)
+// @Success 200 {array} models.TransactionHistory
+// @Failure 400 {object} models.ErrorResponse "bad request"
+// @Failure 401 {object} models.ErrorResponse "unauthorized"
+// @Failure 500 {object} models.ErrorResponse "internal error"
+// @Router /api/history [get]
 func (h *TransferHandler) TransactionHistory(w http.ResponseWriter, r *http.Request) {
 	logger.Info.Println("[TransferHandler] TransactionHistory called")
 

@@ -22,6 +22,14 @@ func NewHandler() *Handler {
 	return &Handler{}
 }
 
+// Ping godoc
+// @Summary      Health check
+// @Description  Check if service is running
+// @Tags         System
+// @Accept       json
+// @Produce      json
+// @Success      200 {object} map[string]string
+// @Router       /ping [get]
 func (h *Handler) Ping(w http.ResponseWriter, r *http.Request) {
 	logger.Info.Println("Ping endpoint called")
 	respond.JSON(w, http.StatusOK, map[string]string{
@@ -44,6 +52,18 @@ func NewUserHandler(s *service.UserService, accountSvc *service.AccountService, 
 	}
 }
 
+// SignUp godoc
+// @Summary Register user
+// @Description Register user in two steps: 1) send SMS code 2) complete registration with code
+// @Tags User
+// @Accept json
+// @Produce json
+// @Param body body models.SignUpRequest true "Phone and optional SMS code"
+// @Success 201 {object} models.RegisterResponse "Registration successful"
+// @Success 201 {object} models.MessageResponse "SMS code sent"
+// @Failure 400 {object} models.ErrorResponse "Invalid request or code"
+// @Failure 409 {object} models.ErrorResponse "User already registered"
+// @Router /api/users/signUp [post]
 func (h *UserHandler) SignUp(w http.ResponseWriter, r *http.Request) {
 	var req struct {
 		Phone string `json:"phone"`
@@ -92,12 +112,12 @@ func (h *UserHandler) registerUser(w http.ResponseWriter, ctx context.Context, p
 	savedCode, err := h.Redis.Get(ctx, "verify:"+phone).Result()
 	if err != nil {
 		logger.Warn.Printf("Verification code expired or not found for %s", phone)
-		respond.Error(w, http.StatusBadRequest, "code expired or not found", nil)
+		respond.Error(w, http.StatusBadRequest, "code expired or not found", errors.New("verification code expired or not found"))
 		return
 	}
 	if savedCode != code {
 		logger.Warn.Printf("Invalid verification code for %s", phone)
-		respond.Error(w, http.StatusBadRequest, "invalid code", nil)
+		respond.Error(w, http.StatusBadRequest, "invalid code", errors.New("invalid verification code"))
 		return
 	}
 
@@ -128,6 +148,17 @@ func (h *UserHandler) registerUser(w http.ResponseWriter, ctx context.Context, p
 		"user_id": user.ID,
 	})
 }
+
+// SetPassword godoc
+// @Summary      Set user password
+// @Description  Sets password and returns JWT token
+// @Tags         Auth
+// @Accept       json
+// @Produce      json
+// @Param        request body models.SetPasswordRequest true "Set password request"
+// @Success      201 {object} map[string]interface{}
+// @Failure      400 {object} map[string]string
+// @Router       /api/users/set-password [post]
 func (h *UserHandler) SetPassword(w http.ResponseWriter, r *http.Request) {
 	var req models.SetPasswordRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -156,6 +187,18 @@ func (h *UserHandler) SetPassword(w http.ResponseWriter, r *http.Request) {
 		"token":   token,
 	})
 }
+
+// Login godoc
+// @Summary      User login
+// @Description  Login using phone and password
+// @Tags         Auth
+// @Accept       json
+// @Produce      json
+// @Param        request body models.LoginRequest true "Login request"
+// @Success      200 {object} map[string]interface{}
+// @Failure      400 {object} map[string]string
+// @Failure      401 {object} map[string]string
+// @Router       /api/users/login [post]
 func (h *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 	var req models.LoginRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -185,6 +228,18 @@ func (h *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+// VerifyIdentity godoc
+// @Summary      Verify user identity
+// @Description  Verify user passport and personal data
+// @Tags         User
+// @Security     BearerAuth
+// @Accept       json
+// @Produce      json
+// @Param        request body models.VerifyIdentityRequest true "Identity data"
+// @Success      201 {object} map[string]string
+// @Failure      400 {object} map[string]string
+// @Failure      401 {object} map[string]string
+// @Router       /api/users/verify [post]
 func (h *UserHandler) VerifyIdentity(w http.ResponseWriter, r *http.Request) {
 	var req models.VerifyIdentityRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {

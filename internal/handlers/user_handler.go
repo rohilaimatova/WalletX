@@ -18,6 +18,17 @@ func NewUserProfileHandler(s *service.UserProfileService) *UserProfileHandler {
 	}
 }
 
+// GetUserProfile godoc
+// @Summary Get user profile
+// @Description Returns profile information of the authenticated user
+// @Tags user
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Success 200 {object} models.UserProfileResponse
+// @Failure 401 {object} models.ErrorResponse "unauthorized"
+// @Failure 500 {object} models.ErrorResponse "internal error"
+// @Router /api/users/profile [get]
 func (h *UserProfileHandler) GetUserProfile(w http.ResponseWriter, r *http.Request) {
 	userIDRaw := r.Context().Value(middleware.UserIDCtx)
 	if userIDRaw == nil {
@@ -41,6 +52,17 @@ func (h *UserProfileHandler) GetUserProfile(w http.ResponseWriter, r *http.Reque
 	logger.Info.Printf("User profile returned for ID %d", userID)
 }
 
+// GetUserBalance godoc
+// @Summary Get user balance
+// @Description Returns balance of the authenticated user
+// @Tags user
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Success 200 {object} models.UserBalanceResponse
+// @Failure 401 {object} models.ErrorResponse "unauthorized"
+// @Failure 500 {object} models.ErrorResponse "internal error"
+// @Router /api/users/balance [get]
 func (h *UserProfileHandler) GetUserBalance(w http.ResponseWriter, r *http.Request) {
 	userIDRaw := r.Context().Value(middleware.UserIDCtx)
 	if userIDRaw == nil {

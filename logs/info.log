@@ -1484,3 +1484,118 @@ INFO: 2025/12/15 14:02:39 transfer.go:108: [TransferHandler] Found account: {ID:
 INFO: 2025/12/15 14:02:39 transaction.go:46: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-02 00:00:00 +0000 UTC - 2025-12-15 23:59:59.999999999 +0000 UTC
 INFO: 2025/12/15 14:02:39 transaction.go:100: [AccountRepository] Fetched 11 transactions for accountID=1
 INFO: 2025/12/15 14:02:39 transfer.go:116: [TransferHandler] Retrieved 11 transactions for accountID=1
+INFO: 2025/12/15 14:20:52 main.go:62: Server running on :8080
+INFO: 2025/12/15 18:27:28 main.go:68: Server running on :8080
+INFO: 2025/12/15 18:28:26 main.go:68: Server running on :8080
+INFO: 2025/12/15 18:31:50 main.go:70: Server running on :8080
+INFO: 2025/12/15 18:54:09 main.go:70: Server running on :8080
+INFO: 2025/12/15 19:02:28 main.go:70: Server running on :8080
+INFO: 2025/12/15 19:02:46 auth_handler.go:34: Ping endpoint called
+INFO: 2025/12/15 19:21:28 main.go:70: Server running on :8080
+INFO: 2025/12/15 19:22:00 auth_handler.go:34: Ping endpoint called
+INFO: 2025/12/15 19:25:32 main.go:70: Server running on :8080
+INFO: 2025/12/15 19:28:03 main.go:70: Server running on :8080
+INFO: 2025/12/15 19:28:31 auth_handler.go:34: Ping endpoint called
+INFO: 2025/12/15 19:28:56 auth_service.go:24: GetByPhone called for phone: +992931082345
+INFO: 2025/12/15 19:28:56 auth_handler.go:105: SMS verification code sent to +992931082345: 74614
+INFO: 2025/12/15 19:36:35 main.go:70: Server running on :8080
+INFO: 2025/12/15 19:36:49 auth_handler.go:34: Ping endpoint called
+INFO: 2025/12/15 19:37:11 auth_service.go:24: GetByPhone called for phone: +992931082345
+INFO: 2025/12/15 19:37:11 auth_handler.go:105: SMS verification code sent to +992931082345: 28762
+INFO: 2025/12/15 19:37:38 auth_repo.go:37: [CreateUser] success: userID=7
+INFO: 2025/12/15 19:37:38 auth_service.go:52: RegisterUser: success, userID=7
+INFO: 2025/12/15 19:37:38 account_repo.go:65: [CreateAccount] success: userID=7, account={6 7 0 0 2025-12-15 19:37:38.882114 +0000 +0000 2025-12-15 19:37:38.882114 +0000 +0000}
+INFO: 2025/12/15 19:37:38 account_service.go:36: CreateAccountForUser: success, accountID=6 for userID=7
+INFO: 2025/12/15 19:37:38 auth_handler.go:145: User registered successfully: 7
+INFO: 2025/12/15 19:38:43 auth_repo.go:62: [UpdatePassword] success: userID=7
+INFO: 2025/12/15 19:38:43 auth_service.go:73: SetPassword: success for userID=7
+INFO: 2025/12/15 19:38:43 auth_handler.go:176: Password set successfully for user 7
+INFO: 2025/12/15 19:39:13 auth_repo.go:52: [GetByPhone] success for phone=+992931082345, userID=7
+INFO: 2025/12/15 19:39:13 auth_repo.go:82: [ResetPasswordAttempts] success: userID=7
+INFO: 2025/12/15 19:39:13 auth_service.go:109: User 7 logged in successfully
+INFO: 2025/12/15 19:39:13 auth_handler.go:223: User 7 logged in successfully
+INFO: 2025/12/15 19:43:42 main.go:70: Server running on :8080
+INFO: 2025/12/15 19:44:34 auth_repo.go:52: [GetByPhone] success for phone=+992931082345, userID=7
+INFO: 2025/12/15 19:44:35 auth_repo.go:82: [ResetPasswordAttempts] success: userID=7
+INFO: 2025/12/15 19:44:35 auth_service.go:109: User 7 logged in successfully
+INFO: 2025/12/15 19:44:35 auth_handler.go:223: User 7 logged in successfully
+INFO: 2025/12/15 19:45:12 user_service.go:21: [UserProfileService] GetProfileByID called with id=7
+INFO: 2025/12/15 19:45:48 auth_repo.go:52: [GetByPhone] success for phone=+992931082345, userID=7
+INFO: 2025/12/15 19:45:48 auth_repo.go:82: [ResetPasswordAttempts] success: userID=7
+INFO: 2025/12/15 19:45:48 auth_service.go:109: User 7 logged in successfully
+INFO: 2025/12/15 19:45:48 auth_handler.go:223: User 7 logged in successfully
+INFO: 2025/12/15 19:46:09 user_service.go:21: [UserProfileService] GetProfileByID called with id=7
+INFO: 2025/12/15 19:48:21 main.go:70: Server running on :8080
+INFO: 2025/12/15 19:49:00 auth_repo.go:52: [GetByPhone] success for phone=+992931082345, userID=7
+INFO: 2025/12/15 19:49:00 auth_repo.go:82: [ResetPasswordAttempts] success: userID=7
+INFO: 2025/12/15 19:49:00 auth_service.go:109: User 7 logged in successfully
+INFO: 2025/12/15 19:49:00 auth_handler.go:223: User 7 logged in successfully
+INFO: 2025/12/15 19:50:08 auth_repo.go:107: [UpdateVerification] success: userID=7
+INFO: 2025/12/15 19:50:08 auth_service.go:124: VerifyUser: success for userID=7
+INFO: 2025/12/15 19:50:08 auth_handler.go:257: User 7 verified identity successfully
+INFO: 2025/12/15 19:54:04 user_service.go:21: [UserProfileService] GetProfileByID called with id=7
+INFO: 2025/12/15 19:54:04 user_service.go:29: [UserProfileService] Successfully retrieved profile for userID=7: {ID:7 Phone:+992931082345 FirstName:Bob LastName:John MiddleName:Doe IsVerified:true}
+INFO: 2025/12/15 19:54:04 user_handler.go:52: User profile returned for ID 7
+INFO: 2025/12/15 19:54:24 user_service.go:34: [UserProfileService] GetBalanceByUserID called with userID=7
+INFO: 2025/12/15 19:54:24 user_service.go:42: [UserProfileService] Successfully retrieved balance for userID=7: {Balance:0 BonusBalance:0}
+INFO: 2025/12/15 19:54:24 user_handler.go:86: Balance returned for user ID 7
+INFO: 2025/12/15 19:58:32 main.go:70: Server running on :8080
+INFO: 2025/12/15 19:59:12 auth_repo.go:52: [GetByPhone] success for phone=+992931082345, userID=7
+INFO: 2025/12/15 19:59:13 auth_repo.go:82: [ResetPasswordAttempts] success: userID=7
+INFO: 2025/12/15 19:59:13 auth_service.go:109: User 7 logged in successfully
+INFO: 2025/12/15 19:59:13 auth_handler.go:223: User 7 logged in successfully
+INFO: 2025/12/15 19:59:44 user_service.go:21: [UserProfileService] GetProfileByID called with id=7
+INFO: 2025/12/15 19:59:44 user_service.go:29: [UserProfileService] Successfully retrieved profile for userID=7: {ID:7 Phone:+992931082345 FirstName:Bob LastName:John MiddleName:Doe IsVerified:true}
+INFO: 2025/12/15 19:59:44 user_handler.go:52: User profile returned for ID 7
+INFO: 2025/12/15 19:59:59 service_handler.go:29: Received request to fetch all services: GET /api/services
+INFO: 2025/12/15 19:59:59 service_service.go:20: Fetching all services
+INFO: 2025/12/15 19:59:59 service_repo.go:25: Fetching all services from the database
+INFO: 2025/12/15 19:59:59 service_repo.go:44: Successfully fetched 3 services
+INFO: 2025/12/15 19:59:59 service_service.go:26: Successfully fetched 3 services
+INFO: 2025/12/15 19:59:59 service_handler.go:37: Successfully fetched 3 services
+INFO: 2025/12/15 20:00:14 transfer.go:100: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 20:00:14 transfer.go:110: [TransferHandler] No valid start date provided, using 1970-01-01 00:00:00 +0000 UTC
+INFO: 2025/12/15 20:00:14 transfer.go:116: [TransferHandler] No valid end date provided, using 2025-12-15 20:00:14.3579119 +0500 +05 m=+102.189774701
+INFO: 2025/12/15 20:00:14 transfer.go:128: [TransferHandler] UserID from token: 7
+INFO: 2025/12/15 20:00:14 transfer.go:136: [TransferHandler] Found account: {ID:6 UserID:7 Balance:0 BonusBalance:0 CreatedAt:2025-12-15 19:37:38.882114 +0000 +0000 UpdatedAt:2025-12-15 19:37:38.882114 +0000 +0000}
+INFO: 2025/12/15 20:00:14 transaction.go:41: [AccountRepository] Fetching transactions for accountID=6, period=1970-01-01 00:00:00 +0000 UTC - 2025-12-15 20:00:14.3579119 +0500 +05 m=+102.189774701
+INFO: 2025/12/15 20:00:14 transaction.go:94: [AccountRepository] Fetched 0 transactions for accountID=6
+INFO: 2025/12/15 20:00:14 transfer.go:144: [TransferHandler] Retrieved 0 transactions for accountID=6
+INFO: 2025/12/15 20:00:55 auth_repo.go:52: [GetByPhone] success for phone=+992931062345, userID=2
+INFO: 2025/12/15 20:00:55 auth_repo.go:82: [ResetPasswordAttempts] success: userID=2
+INFO: 2025/12/15 20:00:55 auth_service.go:109: User 2 logged in successfully
+INFO: 2025/12/15 20:00:55 auth_handler.go:223: User 2 logged in successfully
+INFO: 2025/12/15 20:01:18 user_service.go:21: [UserProfileService] GetProfileByID called with id=2
+INFO: 2025/12/15 20:01:18 user_service.go:29: [UserProfileService] Successfully retrieved profile for userID=2: {ID:2 Phone:+992931062345 FirstName:Иван LastName:Иванов MiddleName:Иванович IsVerified:true}
+INFO: 2025/12/15 20:01:18 user_handler.go:52: User profile returned for ID 2
+INFO: 2025/12/15 20:01:30 user_service.go:34: [UserProfileService] GetBalanceByUserID called with userID=2
+INFO: 2025/12/15 20:01:30 user_service.go:42: [UserProfileService] Successfully retrieved balance for userID=2: {Balance:444 BonusBalance:0}
+INFO: 2025/12/15 20:01:30 user_handler.go:86: Balance returned for user ID 2
+INFO: 2025/12/15 20:02:17 transfer.go:100: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 20:02:17 transfer.go:128: [TransferHandler] UserID from token: 2
+INFO: 2025/12/15 20:02:17 transfer.go:136: [TransferHandler] Found account: {ID:1 UserID:2 Balance:444 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/15 20:02:17 transaction.go:41: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-01 00:00:00 +0000 UTC - 2025-12-15 23:59:59.999999999 +0000 UTC
+INFO: 2025/12/15 20:02:17 transaction.go:94: [AccountRepository] Fetched 11 transactions for accountID=1
+INFO: 2025/12/15 20:02:17 transfer.go:144: [TransferHandler] Retrieved 11 transactions for accountID=1
+INFO: 2025/12/15 20:03:38 account_handler.go:35: [PayForService] Incoming request: POST /api/pay
+INFO: 2025/12/15 20:03:38 account_service.go:71: [PaymentService] paying from 1 to 2 with amount 1.00
+INFO: 2025/12/15 20:03:38 account_repo.go:156: [AccountRepository] Successfully decreased balance for account ID 1, amount: 1.00
+INFO: 2025/12/15 20:03:38 transaction.go:36: [CreateTransaction] success: transaction={28 1 2 1 internet 2025-12-15 20:03:38.907802 +0000 +0000}
+INFO: 2025/12/15 20:03:38 account_service.go:104: [PaymentService] SUCCESS transfer from=1 to=2 amount=1.00 type=internet
+INFO: 2025/12/15 20:03:38 account_handler.go:70: [PayForService] Payment success from=2 to=2 amount=1.00 type=internet
+INFO: 2025/12/15 20:03:58 user_service.go:34: [UserProfileService] GetBalanceByUserID called with userID=2
+INFO: 2025/12/15 20:03:58 user_service.go:42: [UserProfileService] Successfully retrieved balance for userID=2: {Balance:443 BonusBalance:0}
+INFO: 2025/12/15 20:03:58 user_handler.go:86: Balance returned for user ID 2
+INFO: 2025/12/15 20:04:05 transfer.go:100: [TransferHandler] TransactionHistory called
+INFO: 2025/12/15 20:04:05 transfer.go:128: [TransferHandler] UserID from token: 2
+INFO: 2025/12/15 20:04:05 transfer.go:136: [TransferHandler] Found account: {ID:1 UserID:2 Balance:443 BonusBalance:0 CreatedAt:2025-12-09 19:39:31.62456 +0000 +0000 UpdatedAt:2025-12-09 19:39:31.62456 +0000 +0000}
+INFO: 2025/12/15 20:04:05 transaction.go:41: [AccountRepository] Fetching transactions for accountID=1, period=2025-11-01 00:00:00 +0000 UTC - 2025-12-15 23:59:59.999999999 +0000 UTC
+INFO: 2025/12/15 20:04:05 transaction.go:94: [AccountRepository] Fetched 12 transactions for accountID=1
+INFO: 2025/12/15 20:04:05 transfer.go:144: [TransferHandler] Retrieved 12 transactions for accountID=1
+INFO: 2025/12/15 20:05:12 auth_repo.go:52: [GetByPhone] success for phone=+992931082345, userID=7
+INFO: 2025/12/15 20:05:13 auth_repo.go:72: [IncrementPasswordAttempts] success: userID=7
+INFO: 2025/12/15 20:05:15 auth_repo.go:52: [GetByPhone] success for phone=+992931082345, userID=7
+INFO: 2025/12/15 20:05:16 auth_repo.go:72: [IncrementPasswordAttempts] success: userID=7
+INFO: 2025/12/15 20:05:16 auth_repo.go:52: [GetByPhone] success for phone=+992931082345, userID=7
+INFO: 2025/12/15 20:05:16 auth_repo.go:72: [IncrementPasswordAttempts] success: userID=7
+INFO: 2025/12/15 20:05:16 auth_repo.go:92: [BlockUser] success: userID=7

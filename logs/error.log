@@ -46,3 +46,5 @@ ERROR: 2025/12/12 20:23:19 transfer.go:49: [TransferHandler] Transfer failed: pq
 ERROR: 2025/12/13 19:24:40 transfer.go:65: [TransferHandler] Transfer failed: insufficient balance
 ERROR: 2025/12/13 20:49:10 transfer.go:65: [TransferHandler] Transfer failed: insufficient balance
 ERROR: 2025/12/13 20:49:26 account_handler.go:52: [PayForService] Payment failed from=3 to=2 amount=70.00: insufficient balance
+ERROR: 2025/12/15 19:45:12 user_service.go:25: [UserProfileService] Failed to get user by ID=7: failed to scan user: sql: Scan error on column index 2, name "first_name": converting NULL to string is unsupported
+ERROR: 2025/12/15 19:46:09 user_service.go:25: [UserProfileService] Failed to get user by ID=7: failed to scan user: sql: Scan error on column index 2, name "first_name": converting NULL to string is unsupported

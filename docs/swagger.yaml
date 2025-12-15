@@ -1,0 +1,500 @@
+definitions:
+  models.ErrorResponse:
+    properties:
+      error: {}
+      message:
+        example: error message
+        type: string
+    type: object
+  models.LoginRequest:
+    properties:
+      password:
+        example: "12345678"
+        type: string
+      phone:
+        example: "+992931753756"
+        type: string
+    type: object
+  models.MessageResponse:
+    properties:
+      message:
+        example: registration code sent
+        type: string
+    type: object
+  models.PayRequest:
+    properties:
+      account:
+        type: string
+      amount:
+        example: 100
+        type: number
+      service_type:
+        example: internet
+        type: string
+    type: object
+  models.RegisterResponse:
+    properties:
+      message:
+        example: user registered
+        type: string
+      user_id:
+        example: 6
+        type: integer
+    type: object
+  models.Services:
+    properties:
+      created_at:
+        type: string
+      description:
+        example: mobile services
+        type: string
+      id:
+        example: 1
+        type: integer
+      name:
+        example: mobile
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.SetPasswordRequest:
+    properties:
+      password:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.SignUpRequest:
+    properties:
+      code:
+        description: опционально
+        example: "12345678"
+        type: string
+      phone:
+        example: "+992931062345"
+        type: string
+    type: object
+  models.TransactionHistory:
+    properties:
+      account_to:
+        example: 3
+        type: integer
+      amount:
+        example: 100
+        type: number
+      created_at:
+        type: string
+      to_phone:
+        example: "+992931753756"
+        type: string
+      type:
+        example: transfer
+        type: string
+    type: object
+  models.TransferRequest:
+    properties:
+      amount:
+        example: 100.34
+        type: number
+      to_phone:
+        example: "+992931753756"
+        type: string
+    type: object
+  models.UserBalanceResponse:
+    properties:
+      balance:
+        example: 100
+        type: number
+      bonus_balance:
+        example: 100
+        type: number
+    type: object
+  models.UserProfileResponse:
+    properties:
+      first_name:
+        type: string
+      id:
+        example: 1
+        type: integer
+      is_verified:
+        example: true
+        type: boolean
+      last_name:
+        type: string
+      middle_name:
+        type: string
+      phone:
+        example: "+992931753756"
+        type: string
+    type: object
+  models.VerifyIdentityRequest:
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      middle_name:
+        type: string
+      passport_number:
+        type: string
+      user_id:
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: Digital wallet backend API
+  title: WalletX API
+  version: "1.0"
+paths:
+  /api/history:
+    get:
+      consumes:
+      - application/json
+      description: Returns transaction history for authenticated user within date
+        range
+      parameters:
+      - description: Start date (YYYY-MM-DD)
+        example: "2025-11-02"
+        in: query
+        name: start
+        type: string
+      - description: End date (YYYY-MM-DD)
+        example: "2025-12-15"
+        in: query
+        name: end
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.TransactionHistory'
+            type: array
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get transaction history
+      tags:
+      - transactions
+  /api/pay:
+    post:
+      consumes:
+      - application/json
+      description: Pay for a service like internet, mobile, etc.
+      parameters:
+      - description: Payment request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.PayRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: payment completed
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Pay for a service
+      tags:
+      - payments
+  /api/services:
+    get:
+      consumes:
+      - application/json
+      description: Returns a list of all available services
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Services'
+            type: array
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get all services
+      tags:
+      - services
+  /api/transfer:
+    post:
+      consumes:
+      - application/json
+      description: Transfer funds to another user by phone number
+      parameters:
+      - description: Transfer request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.TransferRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "404":
+          description: recipient not found
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Transfer money to another user
+      tags:
+      - transfer
+  /api/users/balance:
+    get:
+      consumes:
+      - application/json
+      description: Returns balance of the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserBalanceResponse'
+        "401":
+          description: unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get user balance
+      tags:
+      - user
+  /api/users/login:
+    post:
+      consumes:
+      - application/json
+      description: Login using phone and password
+      parameters:
+      - description: Login request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: User login
+      tags:
+      - Auth
+  /api/users/profile:
+    get:
+      consumes:
+      - application/json
+      description: Returns profile information of the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserProfileResponse'
+        "401":
+          description: unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get user profile
+      tags:
+      - user
+  /api/users/set-password:
+    post:
+      consumes:
+      - application/json
+      description: Sets password and returns JWT token
+      parameters:
+      - description: Set password request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.SetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Set user password
+      tags:
+      - Auth
+  /api/users/signUp:
+    post:
+      consumes:
+      - application/json
+      description: 'Register user in two steps: 1) send SMS code 2) complete registration
+        with code'
+      parameters:
+      - description: Phone and optional SMS code
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.SignUpRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: SMS code sent
+          schema:
+            $ref: '#/definitions/models.MessageResponse'
+        "400":
+          description: Invalid request or code
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "409":
+          description: User already registered
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Register user
+      tags:
+      - User
+  /api/users/verify:
+    post:
+      consumes:
+      - application/json
+      description: Verify user passport and personal data
+      parameters:
+      - description: Identity data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.VerifyIdentityRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Verify user identity
+      tags:
+      - User
+  /ping:
+    get:
+      consumes:
+      - application/json
+      description: Check if service is running
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Health check
+      tags:
+      - System
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

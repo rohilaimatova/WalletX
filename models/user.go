@@ -3,7 +3,7 @@ package models
 type User struct {
 	ID               int     `json:"id"`
 	Phone            string  `json:"phone"`
-	Password         string  `json:"-"` // не отдаём наружу
+	Password         string  `json:"-"`
 	FirstName        *string `json:"first_name,omitempty"`
 	LastName         *string `json:"last_name,omitempty"`
 	MiddleName       *string `json:"middle_name,omitempty"`
@@ -17,8 +17,8 @@ type SetPasswordRequest struct {
 	Password string `json:"password"`
 }
 type LoginRequest struct {
-	Phone    string `json:"phone"`
-	Password string `json:"password"`
+	Phone    string `json:"phone" example:"+992931753756"`
+	Password string `json:"password" example:"12345678"`
 }
 type VerifyIdentityRequest struct {
 	UserID         int    `json:"user_id"`
@@ -29,15 +29,15 @@ type VerifyIdentityRequest struct {
 }
 
 type UserProfileResponse struct {
-	ID         int    `json:"id"`
-	Phone      string `json:"phone"`
-	FirstName  string `json:"first_name"`
-	LastName   string `json:"last_name"`
-	MiddleName string `json:"middle_name"`
-	IsVerified bool   `json:"is_verified"`
+	ID         int    `json:"id" example:"1"`
+	Phone      string `json:"phone" example:"+992931753756"`
+	FirstName  string `json:"first_name" example: "Ali"`
+	LastName   string `json:"last_name" example: "Bob"`
+	MiddleName string `json:"middle_name" example: "Bob"`
+	IsVerified bool   `json:"is_verified" example:"true"`
 }
 
 type UserBalanceResponse struct {
-	Balance      float64 `json:"balance"`
-	BonusBalance float64 `json:"bonus_balance"`
+	Balance      float64 `json:"balance" example:"100"`
+	BonusBalance float64 `json:"bonus_balance" example:"100"`
 }

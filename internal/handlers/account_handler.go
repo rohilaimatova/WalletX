@@ -18,6 +18,19 @@ func NewPaymentHandler(paymentService *service.PaymentService) *AccountHandler {
 	return &AccountHandler{Payment: paymentService}
 }
 
+// PayForService godoc
+// @Summary Pay for a service
+// @Description Pay for a service like internet, mobile, etc.
+// @Tags payments
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Param request body models.PayRequest true "Payment request"
+// @Success 200 {object} map[string]string "payment completed"
+// @Failure 400 {object} models.ErrorResponse "bad request"
+// @Failure 401 {object} models.ErrorResponse "unauthorized"
+// @Failure 500 {object} models.ErrorResponse "internal error"
+// @Router /api/pay [post]
 func (h *AccountHandler) PayForService(w http.ResponseWriter, r *http.Request) {
 	logger.Info.Printf("[PayForService] Incoming request: %s %s", r.Method, r.URL.Path)
 

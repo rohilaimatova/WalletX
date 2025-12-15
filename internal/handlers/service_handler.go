@@ -15,6 +15,16 @@ func NewServicesHandler(s *service.ServicesService) *ServicesHandler {
 	return &ServicesHandler{Service: s}
 }
 
+// GetAllServices godoc
+// @Summary Get all services
+// @Description Returns a list of all available services
+// @Tags services
+// @Accept json
+// @Produce json
+// @Success 200 {array} models.Services
+// @Failure 500 {object} models.ErrorResponse "internal server error"
+// @Security BearerAuth
+// @Router /api/services [get]
 func (h *ServicesHandler) GetAllServices(w http.ResponseWriter, r *http.Request) {
 	logger.Info.Printf("Received request to fetch all services: %s %s", r.Method, r.URL.Path)
 	services, err := h.Service.GetAllServices()

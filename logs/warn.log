@@ -102,3 +102,17 @@ WARN: 2025/12/13 19:22:13 auth_repo.go:50: [GetByPhone] failed for phone=+992931
 WARN: 2025/12/13 19:24:40 transfer_service.go:56: [TransferService] Insufficient funds: fromAccountID=5, balance=0.00, requested=100.00
 WARN: 2025/12/13 20:49:10 transfer_service.go:56: [TransferService] Insufficient funds: fromAccountID=2, balance=0.00, requested=500.00
 WARN: 2025/12/13 20:49:26 account_service.go:76: [PaymentService] insufficient balance: have=0.00 need=70.00
+WARN: 2025/12/15 19:28:56 auth_repo.go:50: [GetByPhone] failed for phone=+992931082345: sql: no rows in result set
+WARN: 2025/12/15 19:29:26 auth_handler.go:119: Invalid verification code for +992931082345
+WARN: 2025/12/15 19:29:26 auth_handler.go:119: Invalid verification code for +992931082345
+WARN: 2025/12/15 19:29:26 auth_handler.go:119: Invalid verification code for +992931082345
+WARN: 2025/12/15 19:29:35 auth_handler.go:119: Invalid verification code for +992931082345
+WARN: 2025/12/15 19:37:11 auth_repo.go:50: [GetByPhone] failed for phone=+992931082345: sql: no rows in result set
+WARN: 2025/12/15 19:37:38 auth_repo.go:50: [GetByPhone] failed for phone=+992931082345: sql: no rows in result set
+WARN: 2025/12/15 19:37:56 auth_handler.go:114: Verification code expired or not found for +992931082345
+WARN: 2025/12/15 20:05:13 auth_service.go:104: Login failed: wrong password for user 7
+WARN: 2025/12/15 20:05:13 auth_handler.go:211: Failed login attempt for phone +992931082345: wrong password
+WARN: 2025/12/15 20:05:16 auth_service.go:104: Login failed: wrong password for user 7
+WARN: 2025/12/15 20:05:16 auth_handler.go:211: Failed login attempt for phone +992931082345: wrong password
+WARN: 2025/12/15 20:05:16 auth_service.go:100: Login blocked: user 7 reached max attempts
+WARN: 2025/12/15 20:05:16 auth_handler.go:211: Failed login attempt for phone +992931082345: user is blocked
