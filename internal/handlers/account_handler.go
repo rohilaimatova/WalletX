@@ -5,7 +5,7 @@ import (
 	"WalletX/internal/service"
 	"WalletX/models"
 	"WalletX/pkg/logger"
-	"WalletX/respond"
+	"WalletX/pkg/respond"
 	"encoding/json"
 	"net/http"
 )

@@ -4,7 +4,7 @@ import (
 	"WalletX/internal/handlers/middleware"
 	"WalletX/internal/service"
 	"WalletX/pkg/logger"
-	"WalletX/respond"
+	"WalletX/pkg/respond"
 	"net/http"
 )
 

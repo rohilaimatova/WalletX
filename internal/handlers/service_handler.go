@@ -3,7 +3,7 @@ package handlers
 import (
 	"WalletX/internal/service"
 	"WalletX/pkg/logger"
-	"WalletX/respond"
+	"WalletX/pkg/respond"
 	"net/http"
 )
 
