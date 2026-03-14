@@ -1,4 +1,4 @@
 ../.idea
 .vscode
-WalletX/.env
-WalletX/logs
+.env
+logs
